@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      width: 100vw; height: 100vh; background: radial-gradient(ellipse at bottom, rgba(255, 254, 234, 1) 0%, rgba(255,254,234,1) 35%, #b7e8eb 100%);
+      /* overflow: hidden; */
+    }
+    .ocean{
+      height: 5%;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      /* background: #015871; */
+    }
+    .wave1{
+      background: url('./img/svg/wave.svg') repeat-x;
+      position: absolute;
+      top: -148px;
+      width: 6400px;
+      height: 198px;
+      animation: wave 5s infinite;
+      /* ? */
+      transform: translate3d(0,0,0);
+    }
+    .wave2{
+      background: url('./img/svg/wave.svg') repeat-x;
+      top: -175px;
+      animation: wave 10s infinite, swell 7s ease 1s infinite;
+      opacity: 0.5;
+      transition: 1s;
+    }
+    @keyframes wave {
+      0%{
+        margin-left: 0;
+      }
+      100%{
+        margin-left: -1600px;
+      }
+    }
+    @keyframes swell{
+      0%{
+        transform: translate3d(0, -10px, 0);
+      }
+      50%{
+        transform: translate3d(0, -25px, 0);
+      }
+      100%{
+        transform: translate3d(0, -25px, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ocean">
+    <div class="wave1"></div>
+    <div class="wave2"></div>
+  </div>
+  
+</body>
+</html>
