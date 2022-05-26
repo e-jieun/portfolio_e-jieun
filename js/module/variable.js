@@ -5,3 +5,5 @@ const colorObj = {
   colorC4: `#c4c4c4`,
   color33: `#333`
 }
+
+export default colorObj;
