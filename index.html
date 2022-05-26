@@ -7,6 +7,8 @@
   <title>E-JIEUN Portfolio</title>
   <script type="module" src="./js/module/common.js" defer></script>
   <script type="module" src="./js/home.js" defer></script>
+  <script type="module" src="./js/introduce.js" defer></script>
+  <script type="module" src="./js/shaka.js" defer></script>
   <style>
     .border-bk{
       border: 1px solid #000;
@@ -18,10 +20,68 @@
 </head>
 <body>
   <div id="root">
+    <!-- *home -->
     <section id="home"></section>
-    <section id="introduce"></section>
-    <section id="shaka"></section>
-    <!-- <img src="./img/svg/wave.svg" alt=""> -->
+    <!-- *introduce -->
+    <section id="introduce">
+      <div id="behind">
+        <div>I AM<br>SUCH<br>A GOOD SURFER</div>
+        <img src="./img/memoji-introduce.png" alt="memoji-introduce">
+      </div>
+      <div id="wave">
+        <div id="skillset">
+          <ul>
+            <li>GRAPHIC</li>
+            <li>PROGRAMMING</li>
+            <li>INTEREST</li>
+          </ul>
+          <ul>
+            <!-- graphic -->
+            <li>포토샵과 일러스트레이터를 다룰 수 있어요!
+              <br>사진 촬영과 라이트룸을 이용한 편집이 가능해요!
+              <br>파이널컷프로를 이용한 짧은 영상 편집이 가능해요!
+              <br>인디자인으로 포스터와 팜플렛을 만들어 인쇄해본 적이 있어요!</li>
+            <!-- programming -->
+            <li>HTML, CSS로 문서를 작성할 수 있어요
+              <br>Vanilla Javascript를 사용하고 있어요
+              <br>자세한 사항은 github를 통해 확인해주세요!</li>
+            <!-- interest -->
+            <li>주변 사람들을 찍어주는 일을 좋아해요
+              <br>아이패드로 능숙하지 않지만 그림을 그려요!
+              <br>다양한 장르의 영화를 감삼하는 일을 좋아해요!</li>
+            <li>저에 대해 더 알고싶으시다면 링크를 통해 방문해주세요!</li>
+          </ul>
+        </div>
+        <div id="introduce">
+          안녕하세요! 파도를 타듯 코드의 바다를 서핑 중인 디자이너 <span>이지은</span>입니다<br>
+        </div>
+        <div class="github">
+          <div data-icon="1"></div>
+          <div data-url="1"></div>
+        </div>
+        <div class="notion">
+          <div data-icon="2"></div>
+          <div data-url="2"></div>
+        </div>
+      </div>
+    </section>
+    <!-- *shaka.js -->
+    <section id="shaka">
+      <div id="shakahand">
+        <img src="./img/svg/shaka.svg" alt="shakacall">
+      </div>
+      <div id="footertext">
+        <ul id="shakatext">
+          <li></li>
+          <li></li>
+        </ul>
+        <ul>
+          <li class="github"></li>
+          <li class="notion"></li>
+        </ul>
+        <ul id="email">liz950827@gmail.com</ul>
+      </div>
+    </section>
   </div>
 </body>
 </html>
