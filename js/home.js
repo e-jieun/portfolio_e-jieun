@@ -1,5 +1,8 @@
 // ?다시 import를 시도해보기
 // variable declaration
+// import { hun } from "./module/variable";
+// import { colorObj } from "./module/variable";
+
 let hun = 100;
 const colorObj = {
   colorBk: `#000`,
@@ -13,6 +16,10 @@ function getAppendName(element) {
   if (element.tagName !== null && element.tagName !== '') {
     return element.tagName;
   }
+}
+
+function setBgColor(elem, bgColor) {
+  elem.style.backgroundColor = bgColor;
 }
 
 function setDisplay(elem, display, align = 'center', justify = 'center', direction = 'row') {
@@ -44,16 +51,13 @@ function setPosition(elem, position, top = null, bottom = null, left = null, rig
     elem.style.right = right;
   }
 }
+
 // root
 const root = document.getElementById('root');
 // root.children
 const home = document.getElementById('home');
-const introduce = document.getElementById('introduce');
-const shaka = document.getElementById('shaka');
 console.log(root);
 console.log(home);
-console.log(introduce);
-console.log(shaka);
 console.log(root.children);
 
 // root.children요소들의 크기를 화면 100vw, 100vh의 한 페이지씩 설정해주기
@@ -119,27 +123,41 @@ for (let i = 0; i < home.children.length; i++) {
 // 1>text+svgCon+svgCon
 
 // 2>waveCon>wave>button#introduce+button#project
-// !appendChild가 안되고 있다 왜일까?
-// 결국 if문을 제외하고 사용했다
+// ?appendChild가 안되고 있다 왜일까?
+// !결국 if문을 제외하고 사용했다
 // *home.children[1].data-home = '2';
 // *homeChildTwo.children
 homeChildTwo = home.lastElementChild;
 // waveCon을 자식요소로 생성해 덧붙여준다
 setDisplay(homeChildTwo, 'flex');
+// *waveCon
 const makeWaveCon = document.createElement('img');
 homeChildTwo.appendChild(makeWaveCon);
 // console.log(getAppendName(homeChildTwo));
 const waveCon = homeChildTwo.children[0];
-setSize(waveCon, `${hun}%`, `${hun}%`);
+setSize(waveCon, ``, `${hun}%`);
 waveCon.src = './img/svg/wave.svg';
 // waveCon.classList.add(`bg-colorC4`);
 console.log(waveCon);
 
-// waveCon에 waveItem을 append 해준다
-// console.log(getAppendName(waveCon));
-const makeWaveImg = document.createElement(getAppendName(waveCon));
-// 1. 3개의 파도 이미지를 넣기 위해서 item태그로 img 태그를 3개를 만들어 준다
-// https://getwaves.io/
-let imgArr = ['./img/svg/waveimg1.svg', './img/svg/waveimg2.svg', './img/svg/waveimg3.svg'];
-// 2. 이미지 태그에 파도 svg를 src로 설정해준다
-// 3. 그 다음에 움직임을 어떻게 준 것인지 파악하기
+// waveCon에 div을 append 해준다
+// *btnCon
+const makeBtn = document.createElement('div');
+setSize(makeBtn, `${hun}vw`, `${hun/5}px`);
+setPosition(makeBtn, 'absolute');
+makeBtn.classList.add('border-bk');
+waveCon.before(makeBtn);
+console.log(homeChildTwo);
+const btnCon = homeChildTwo.firstElementChild;
+btnCon.innerHTML = `<div><div>Introduce</div></div><div><div>Project</div></div>`;
+setDisplay(btnCon, 'flex', 'center', 'space-around');
+console.log(btnCon.children);
+// *btn
+const btn = btnCon.children;
+for (let i = 0; i < btn.length; i++) {
+  setSize(btn[i], `${hun/30}vmax`, `${hun/30}vmax`);
+  btn[i].classList.add('bg-colorC4');
+  btn[i].style.borderRadius = `${hun/2}%`;
+  setDisplay(btn[i], `flex`, ``, `center`);
+  setPosition(btn[i].children[0], `relative`, `${hun/10*4}px`);
+}

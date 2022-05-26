@@ -1,5 +1,7 @@
 // variable declaration
-export let hun = 100;
-export const colorObj = {
-  colorBk: `#000`
+let hun = 100;
+const colorObj = {
+  colorBk: `#000`,
+  colorC4: `#c4c4c4`,
+  color33: `#333`
 }
