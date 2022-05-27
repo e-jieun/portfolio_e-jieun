@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <ul id="menu">
+    <li data-menu="btn">1</li>
+    <li data-menu="hide">가나다라</li>
+    <li data-menu="btn">2</li>
+    <li data-menu="hide">abcd</li>
+    <li data-menu="btn">3</li>
+    <li data-menu="hide">Canada</li>
+  </ul>
+  <script>
+    const ul = document.getElementById('menu');
+    const li = document.getElementsByTagName('li');
+    console.log(ul);
+    console.log(li);
+
+    // <!-- ?클릭하면 하단의 설명이 나타나는 인터랙션(드롭다운 메뉴와 유사) -->
+    // 1. 우선 dataset data-menu='hide'인 부분을 숨겨줘야 한다 -> 버튼에 관련된 설명을 숨겨주고
+    for (let i = 0; i < li.length; i++) {
+      if (li[i].dataset.menu === 'hide') {
+        li[i].style.display = 'none';
+      }
+    }
+    // 2. 이벤트 타겟을 li로 설정되도록 ul에 이벤트를 생성하고
+
+    ul.addEventListener('click', (event) => {
+      // console.log(event.target);
+      // 3. dataset 값을 이용해서 if() 조건문을 걸어주고
+      if (event.target.dataset.menu === 'btn') {
+        console.log(event.target);
+        // <!--!우선 여기까지 하고 그 다음에 인터랙션 순서 생각을 하자-->
+        // ?문제 1. btn을 클릭하면 hide 부분의 display값이 block이 되고
+        for (let i = 0; i < li.length; i++) {
+          if (li[i].dataset.menu === 'btn') {
+            li[i+1].style.display = 'block';
+            // li[i].style.transition = '1s';
+          }
+        }
+        // ?문제 2. 트랜지션을 줘서 시간을 두고 늘어나도록 하자
+
+        // 4. dataset 나타났다, 사라졌다하는 인터랙션을 만들어주기로 
+
+      }
+    });
+  </script>
+</body>
+
+</html>

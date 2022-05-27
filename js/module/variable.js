@@ -1,9 +1,12 @@
 // variable declaration
-let hun = 100;
-const colorObj = {
-  colorBk: `#000`,
-  colorC4: `#c4c4c4`,
-  color33: `#333`
+const varObj = {
+  hun: 100,
+  colorObj: {
+    colorBk: `#000`,
+    colorC4: `#c4c4c4`,
+    color33: `#333`,
+    colorNa: '#3773A5'
+  }
 }
 
-export default colorObj;
+export default varObj;

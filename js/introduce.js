@@ -2,7 +2,7 @@
 // import { setDisplay } from "./module/css-function";
 // import { setDisplay } from "./module/css-function";
 // import {setBgColor, setDisplay, set, getAppendName} from "./module/css-function.js";
-// import "./module/css-function";
+// import { varObj } from "css-function.js";
 // console.log(a);
 
 // variable declaration
@@ -10,7 +10,8 @@ let hun = 100;
 const colorObj = {
   colorBk: `#000`,
   colorC4: `#c4c4c4`,
-  color33: `#333`
+  color33: `#333`,
+  colorNa:'#3773A5'
 }
 // function
 const getAppendName = (element) => {
@@ -58,6 +59,7 @@ introduce.style.gridTemplateRows = `1fr 3fr`;
 
 // *introduce.children
 const behind = document.getElementById('behind');
+// !이미지 넣어주기
 const wave = document.getElementById('wave');
 console.log(behind);
 console.log(wave);
@@ -67,6 +69,15 @@ console.log(wave);
 // *behind style
 // 2-1. flex로 가로로 나열하고
 setDisplay(behind, `flex`, `center`, `space-around`);
+console.log(behind.children);
+// *behind.children
+const goodSurferText = behind.firstElementChild;
+console.log(goodSurferText);
+goodSurferText.style.fontSize = `2.5rem`;
+goodSurferText.style.fontWeight = `${hun*9}`;
+goodSurferText.style.color = `#fff`;
+goodSurferText.style.textShadow = `0px 0px px ${colorObj.colorNa}`;
+
 
 // !wave
 // *#wave => 3fr
@@ -113,13 +124,6 @@ console.log(dropMenu.children);
 // *.github
 
 // *.notion
-
-
-
-
-
-
-
 
 // !interation dropdown
 // *droptext 숨겨준 부분
