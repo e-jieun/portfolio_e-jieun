@@ -78,7 +78,6 @@ for (let i = 0; i < homeChildArr.length; i++) {
   // 첫번째 요소는 data-home = '1', data-home = '2'
   makeHomeChild.setAttribute(`data-home`, homeChildArr[i]);
   setSize(makeHomeChild, `${hun}%`, ``)
-  makeHomeChild.classList.add('border-bk');
   // 1-2. 두 개의 자식요소를 부모요소에 붙여준다
   home.appendChild(makeHomeChild);
 }
@@ -112,7 +111,6 @@ for (let i = 0; i < home.children.length; i++) {
       const makeHomeOneChild = document.createElement('div');
       makeHomeOneChild.setAttribute(`data-item`, homeOneChildArr[i]);
       // *homeChildOne.children style
-      makeHomeOneChild.classList.add('border-bk');
       makeHomeOneChild.setAttribute(`style`, `width: ${hun/2}%;`);
       setSize(makeHomeOneChild, `${hun/3}vw`, `${hun}%`);
       // 2. 자식요소를 3개 붙여줘야 하는데
@@ -141,7 +139,7 @@ for(let i = 0; i < homeChildOne.children.length; i++){
     // !현재 shaka.svg 이미지를 변경한 곳
     // ?파도도 면이고 샤카 제스처 면 이미지의 손일 때는 대비도 없고 강조점이 없었어서 눈에 잘 들어오지 않는 구조였었다 -> 샤카 제스처가 선으로 이뤄졌을 때는 분리가 되면서 크기가 훨씬 작음에도 불구하고 개방감이 들고 제스처의 동적인 부분이 좀 더 눈에 들어오는 구조였다
     
-    homeChildOne.children[i].innerHTML = `<img src = './img/svg/지은씨.svg'></img>`;
+    homeChildOne.children[i].innerHTML = `<img src = './img/svg/feedback-img.svg'></img>`;
     homeChildOne.children[i].children[0].style.width = `${hun*8}px`;
   }
 }
@@ -169,7 +167,6 @@ homeChildTwo.appendChild(makeWaveCon);
 const waveCon = homeChildTwo.children[0];
 setSize(waveCon, ``, `${hun}%`);
 waveCon.src = './img/svg/wave.svg';
-// waveCon.classList.add(`bg-colorC4`);
 console.log(waveCon);
 
 // waveCon에 div을 append 해준다
@@ -177,7 +174,6 @@ console.log(waveCon);
 const makeBtn = document.createElement('div');
 setSize(makeBtn, `${hun}vw`, `${hun/5}px`);
 setPosition(makeBtn, 'absolute');
-makeBtn.classList.add('border-bk');
 waveCon.before(makeBtn);
 console.log(homeChildTwo);
 const btnCon = homeChildTwo.firstElementChild;
@@ -188,7 +184,7 @@ console.log(btnCon.children);
 const btn = btnCon.children;
 for (let i = 0; i < btn.length; i++) {
   setSize(btn[i], `${hun/30}vmax`, `${hun/30}vmax`);
-  btn[i].classList.add('bg-colorC4');
+  btn[i].classList.add('bg-color');
   btn[i].style.borderRadius = `${hun/2}%`;
   setDisplay(btn[i], `flex`, ``, `center`);
   setPosition(btn[i].children[0], `relative`, `${hun/10*4}px`);
