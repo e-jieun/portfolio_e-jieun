@@ -11,7 +11,9 @@ const colorObj = {
   colorBk: `#000`,
   colorC4: `#c4c4c4`,
   color33: `#333`,
-  colorNa:'#3773A5'
+  colorNa: `#3773A5`,
+  colorFf: `#fff`,
+  colorSb: `#BAD8F2`
 }
 // function
 const getAppendName = (element) => {
@@ -40,12 +42,14 @@ const setDisplay = (elem, display, align = 'center', justify = 'center', directi
 const setSize = (elem, width, height) => {
   elem.style.width = width;
   elem.style.height = height;
-} 
+}
 
 // *children
 const introduce = document.getElementById('introduce');
 console.log(introduce);
 setDisplay(introduce, `grid`);
+setBgColor(introduce, `${colorObj.colorSb}`);
+introduce.style.color = `${colorObj.colorFf}`;
 // 1.  그리드로 두 컨테이너 크기를 구분하고
 // 1. gridTemplateRows 1fr 3fr
 introduce.style.gridTemplateRows = `1fr 3fr`;
@@ -68,15 +72,17 @@ console.log(wave);
 // *#behind => 1fr
 // *behind style
 // 2-1. flex로 가로로 나열하고
-setDisplay(behind, `flex`, `center`, `space-around`);
+setSize(behind, `${hun/10*9}vmin`)
+setDisplay(behind, `flex`, `center`, `center`);
 console.log(behind.children);
 // *behind.children
 const goodSurferText = behind.firstElementChild;
 console.log(goodSurferText);
-goodSurferText.style.fontSize = `2.5rem`;
-goodSurferText.style.fontWeight = `${hun*9}`;
-goodSurferText.style.color = `#fff`;
-goodSurferText.style.textShadow = `0px 0px px ${colorObj.colorNa}`;
+goodSurferText.setAttribute(`style`, `font-size: 2.5rem; font-weight: ${hun*9}; color: ${colorObj.colorSb};`);
+// ?canvas API? strokeText, strokeStyle을 사용하려면 캔버스 API를 사용해야 한다고 한다 => test용으로 사용해보자
+// !top, right, bottom, left 네가지 방향으로 그림자를 줘서 보더 텍스트를 만들어 줌
+// css webkit를 사용하면 사용할 수 있다
+// goodSurferText.style.textShadow = `-1px 0 ${colorObj.colorNa}, 0 1px ${colorObj.colorNa}, 1px 0 ${colorObj.colorNa}, 0 -1px ${colorObj.colorNa}`;
 
 
 // !wave
@@ -96,7 +102,7 @@ console.log(wave.children);
 
 // *wave.children 공통 적용
 // 1. 글씨를 가운데 정렬
-for(let i = 0; i < wave.children.length; i++){
+for (let i = 0; i < wave.children.length; i++) {
   wave.children[i].style.textAlign = `center`;
 }
 
@@ -107,31 +113,60 @@ console.log(skillSet.children);
 
 // *#skillset > #dropmenu
 const dropMenu = skillSet.children[0];
+const li = dropMenu.children;
 console.log(dropMenu);
 console.log(dropMenu.children);
+console.log(li);
 
-// 배열로 텍스트 넣어주기
+// *dropMenu style
+setDisplay(dropMenu, `grid`);
+dropMenu.style.rowGap = `${hun/hun}rem`;
+
+// !interation dropdown
+// 1. li 중 우선 data-menutext를 숨겨주고
+for (let i = 0; i < li.length; i++) {
+  li[i].style.listStyleType = `none`;
+  if (li[i].dataset.menutext) {
+    li[i].classList.add('none');
+  }
+}
+
 // skillSet style
 // 1. 리스트 타입 논 => ul
 // 2. row 간격
-
 
 // interaction 1. 클릭 이벤트로 드롭다운을 만들어줘야함
 // interaction 2. 클릭 이벤트 타겟을 dataset으로 컨트롤 해줘야 함(선택됐다는 인터랙션이 필요)
 
 // *#introduce
+// 2. li의 컨테이너에 이벤트 생성
+// 3. 이벤트 타겟을 클릭하면ㄴ li의 data-menutext를 나타내준다
+dropMenu.addEventListener('mouseover', (event) => {
+  // 이벤트 타겟 === 데이터셋 클릭
+  if (event.target.dataset.click) {
+    console.log(event.target);
+    for (let i = 0; i < li.length; i++) {
+      // 이벤트 타겟 데이터셋 클릭 값 === 설명부분 li[i] 데이터셋 메뉴텍스트 값
+      if (event.target.dataset.click === li[i].dataset.menutext) {
+        // display: none; 지워주기
+        li[i].classList.remove('none');
+      } else {
+        // 설명부분 li[i] 데이터셋 메뉴텍스트 값
+        if (li[i].dataset.menutext) {
+          // display: none; 더해주기
+          li[i].classList.add('none');
+        }
+      }
+    }
+  }
+})
+
 
 // *.github
-
+const githubCon = document.querySelector('.github');
 // *.notion
+const notionCon = document.querySelector('.notion');
+console.log(githubCon);
+console.log(notionCon);
 
-// !interation dropdown
-// *droptext 숨겨준 부분
-const dropText = document.getElementById('droptext');
-dropText.classList.add('none');
-
-
-
-
-
-
+const 
