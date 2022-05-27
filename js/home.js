@@ -117,7 +117,21 @@ for (let i = 0; i < home.children.length; i++) {
       homeChildOne.append(makeHomeOneChild);
     }
   }
-
+}
+// *homeChildOne.children
+console.log(homeChildOne.children);
+for(let i = 0; i < homeChildOne.children.length; i++){
+  // *homeChildOne.children[0]
+  if(i === 0){
+    homeChildOne.children[i].textContent = `Shaka!`;
+  // *homeChildOne.children[1]
+  } else if(i === 1){
+    // !svg line img 넣어주기 
+    homeChildOne.children[i].textContent = `wave line`;
+  // *homeChildOne.children[2]
+  } else{
+    homeChildOne.children[i].innerHTML = `<img src = './img/svg/shaka.svg'></img>`;
+  }
 }
 
 // 1>text+svgCon+svgCon

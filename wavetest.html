@@ -6,36 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    /* ?setInterval을 사용할 수 있을지 */
+    /* 더 알아보기 */
+
+    /*  */
     *{
-      width: 100vw; height: 100vh; background: radial-gradient(ellipse at bottom, rgba(255, 254, 234, 1) 0%, rgba(255,254,234,1) 35%, #b7e8eb 100%);
-      /* overflow: hidden; */
+      margin: 0; padding: 0;
+      width: 100vw; height: 100vh;
     }
     .ocean{
-      height: 5%;
-      width: 100%;
+      height: 90vh;
+      width: 100vw;
       position: absolute;
       bottom: 0;
       left: 0;
+      overflow: hidden;
       /* background: #015871; */
     }
     .wave1{
       background: url('./img/svg/wave.svg') repeat-x;
       position: absolute;
-      top: -148px;
-      width: 6400px;
-      height: 198px;
-      animation: wave 5s infinite;
-      /* ? */
+      top: 240px;
+      width: 3000px;
+      /* height: 198px; */
+      animation: waveMove 5s infinite, swell 7s infinite;
+      /* ?translate을 3d지점으로 조절해주는 것
+      transform: translate3d(tx, ty, tz); */
       transform: translate3d(0,0,0);
+      overflow: hidden;
     }
+    /* ?이어지도록은 해줬는데 계속해서 움직임을 주려면 어떻게 해야할까 고민이다 */
     .wave2{
       background: url('./img/svg/wave.svg') repeat-x;
-      top: -175px;
-      animation: wave 10s infinite, swell 7s ease 1s infinite;
+      position: relative;
+      top: 240px;
+      animation: waveMove 10s infinite, swell 7s infinite;
+      width: 3000px;
+      /* height: 0vh; */
       opacity: 0.5;
-      transition: 1s;
+      /* transition: 1s; */
+      transform: translate3d(0,20px,-20px);
     }
-    @keyframes wave {
+    @keyframes waveMove {
       0%{
         margin-left: 0;
       }
@@ -43,6 +55,7 @@
         margin-left: -1600px;
       }
     }
+    /* ?swell */
     @keyframes swell{
       0%{
         transform: translate3d(0, -10px, 0);
