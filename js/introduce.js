@@ -52,7 +52,7 @@ setBgColor(introduce, `${colorObj.colorSb}`);
 introduce.style.color = `${colorObj.colorFf}`;
 // 1.  그리드로 두 컨테이너 크기를 구분하고
 // 1. gridTemplateRows 1fr 3fr
-introduce.style.gridTemplateRows = `1fr 3fr`;
+introduce.style.gridTemplateRows = `1fr 1fr`;
 
 // *introduce.children test border
 // for(let i = 0; i < introduce.children.length; i++){
@@ -72,8 +72,8 @@ console.log(wave);
 // *#behind => 1fr
 // *behind style
 // 2-1. flex로 가로로 나열하고
-setSize(behind, `${hun/10*9}vmin`)
-setDisplay(behind, `flex`, `center`, `center`);
+setSize(behind, `${hun}vmin`)
+setDisplay(behind, `flex`, `center`, `space-around`);
 console.log(behind.children);
 // *behind.children
 const goodSurferText = behind.firstElementChild;
@@ -90,9 +90,10 @@ goodSurferText.setAttribute(`style`, `font-size: 2.5rem; font-weight: ${hun*9}; 
 // *wave style
 // 3. 텍스트 박스 크기를 grid로 나눠주기
 setDisplay(wave, `grid`, `center`, `space-around`);
-setSize(wave, `${hun}%`, `${hun}%`);
+// setSize(wave, `${hun}%`, ``);
 // 3-1. 2fr .skillset 1fr .introduce 1fr .github 1fr .notion
-wave.style.gridTemplateRows = `2fr 1fr 1fr 1fr`;
+wave.style.gridTemplateRows = `1fr 1fr 1fr 1fr`;
+setSize(wave, `${hun}vw`, `${hun}vh`);
 // ?이 부분을 svg가 아니라 코드로 작성해야하나?
 // wave.style.backgroundImage = url(`./img/svg/wave.svg`);
 // 3-3. 1fr인 부분을 3fr보다 뒤로 가도록 z-index를 조절한다
@@ -105,9 +106,15 @@ console.log(wave.children);
 for (let i = 0; i < wave.children.length; i++) {
   wave.children[i].style.textAlign = `center`;
 }
+// *wave.lastElementChild
+const iconCon = wave.lastElementChild;
+console.log(wave.lastElementChild);
+console.log(iconCon);
+// *wave.lastElementChild
+setDisplay(iconCon, `flex`, ``, `space-around`);
 
 // *#skillset
-// !querySelector를 쓰면서 아이디라는 것을 명시 안하면 안되지
+// ?querySelector를 쓰면서 아이디라는 것을 명시 안하면 안되지
 const skillSet = document.querySelector('#skillset');
 console.log(skillSet.children);
 
@@ -125,11 +132,15 @@ dropMenu.style.rowGap = `${hun/hun}rem`;
 // !interation dropdown
 // 1. li 중 우선 data-menutext를 숨겨주고
 for (let i = 0; i < li.length; i++) {
-  li[i].style.listStyleType = `none`;
+  li[i].style.listStyle = `none`;
   if (li[i].dataset.menutext) {
     li[i].classList.add('none');
   }
 }
+//*h2 간격 없애주기
+const h2Shaka = document.getElementsByTagName('h2');
+console.log(h2Shaka);
+// h2Shaka.style.margin = 0;
 
 // skillSet style
 // 1. 리스트 타입 논 => ul
@@ -161,12 +172,9 @@ dropMenu.addEventListener('mouseover', (event) => {
   }
 })
 
-
-// *.github
-const githubCon = document.querySelector('.github');
-// *.notion
-const notionCon = document.querySelector('.notion');
-console.log(githubCon);
-console.log(notionCon);
-
-const 
+// *ul의 paddingLeft 모두 없애주기
+const ul = document.getElementsByTagName('ul');
+console.log(ul);
+for(let i = 0; ul.length; i++){
+  ul[i].style.paddingLeft = 0;
+}
