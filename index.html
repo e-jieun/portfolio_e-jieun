@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E-JIEUN Portfolio</title>
-  <script src="https://use.fontawesome.com/95d9d9d61c.js"></script>
+  <!-- <script src="https://use.fontawesome.com/95d9d9d61c.js"></script> -->
   <script type="module" src="./js/module/common.js" defer></script>
   <script type="module" src="./js/home.js" defer></script>
   <script type="module" src="./js/introduce.js" defer></script>
@@ -61,9 +61,11 @@
           </ul>
         </div>
         <div id="introduce">
-          <span>Shaka!</span><br>
+          <h2>Shaka!</h2><br>
           안녕하세요!<br>
-          파도를 타듯 코드의 바다를 서핑 중인 디자이너 <span>이지은</span>입니다<br>
+          <br>
+          파도를 타듯 코드의 바다를 서핑 중인 디자이너<br>
+          <span>이지은</span>입니다
         </div>
         <div>
           <div class="github" data-icon="1">
@@ -78,17 +80,20 @@
     <!-- *shaka.js -->
     <section id="shaka">
       <div id="shakahand">
-        <img src="./img/svg/feedback-img.svg" alt="shakacall" width="200px" height="200px">
+        <img src="./img/svg/feedback-img.svg" alt="shakacall" width="100%">
       </div>
       <div id="footertext">
         <ul id="shakatext">
-          <li>Shaka!</li>
-          <li>Shaka는<br>안녕하세요, 감사합니다의<br>의미를 담고 있습니다</li>
+          <h1>Contact Me!</h1>
+          <li><span>Shaka!</span><br>
+          즐거운 서핑 서비스를 이용해주셔서 감사합니다!</li>
         </ul>
-        <ul>
+        <ul id="footericon">
           <li class="github" data-icon="1">
+            <img src="./img/svg/github-icon.svg" alt="github" width="50px" height="50px"><a href="https://github.com/e-jieun" target="_blank"></a>
           </li>
           <li class="notion" data-icon="1">
+            <img src="./img//svg/notion-icon.svg" alt="notion" width="50px" height="50px"><a href="https://www.notion.so/e-jieun-265effdb10cb4a47a248cbf8bfc18445" target="_blank"></a>
           </li>
         </ul>
         <!-- !img로 바꾸는 편이 크롤링에 걸리지 않는다 -->
