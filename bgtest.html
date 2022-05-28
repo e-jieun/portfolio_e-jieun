@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #root{
+      background: linear-gradient(#000, #fff);
+    }
+    .none{
+      display: none;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <button id="topbtn">Top</button>
+  </div>
+  <script>
+    document.body.setAttribute(`style`,`margin: 0; padding: 0;`);
+
+    const root = document.getElementById('root');
+    console.log(root);
+    root.setAttribute(`style`, `width: 100vw; height: 300vh; display: flex; align-items: center; justify-content: center;`);
+    
+    const topBtn = document.getElementById('topbtn');
+    topBtn.style.position = `fixed`;
+    topBtn.style.bottom = `1vh`;
+    topBtn.style.right = `1vh`;
+
+
+    // root.style.background = ``
+    // 색이 점점 어두워지는 인터랙션을 만들어줄 것
+    // 해당 요소는 포트폴리오 세로 스크롤 화면의 바닷 속으로 들어가는 인터랙션에 활용할 예정
+    
+    // 1. 스크롤 위치가 전체 문서의 몇 퍼센트이면 
+    // 2. 색을 점점 어둡게 한다 => rgb 색상 값으로 변화를 줄 것
+    
+    
+    // 1. 어느 정도 내려오면 나타나도록
+    // 1-1. 화면 전체 크기(root.offsetHeight)의 1/3이 되면 나타나도록 한다
+    // 2. topbtn 클릭이벤트 위로 올라가도록
+//     if(!topBtn.classList.contains(`none`)){
+//   topBtn.classList.add(`none`);
+// }
+    console.dir(window);
+    window.addEventListener(`scroll`,(event)=>{
+      let scrollY = this.scrollY;
+      root.textContent = scrollY;
+      root.style.color = `#fff`;
+      // 
+      if(scrollY <= Math.round(root.offsetHeight/3)){
+        // ?콘솔을 찍힌다
+        console.log(topBtn);
+        topBtn.classList.remove(`none`);
+      } else{
+        console.log('hi');
+      }
+    })
+    </script>
+  
+</body>
+</html>
