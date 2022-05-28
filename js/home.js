@@ -61,7 +61,7 @@ console.log(root.children);
 
 // root.children요소들의 크기를 화면 100vw, 100vh의 한 페이지씩 설정해주기
 for (let i = 0; i < root.children.length; i++) {
-  root.children[i].setAttribute(`style`, `width: ${hun}vw; height: ${hun}vh; border: ${hun/hun}px solid ${colorObj.colorBk};`);
+  root.children[i].setAttribute(`style`, `width: ${hun}vw; height: ${hun}vh;`);
 }
 
 // home을 2개의 박스로 나눠주고 그 안에 뭘 넣을지
@@ -126,7 +126,7 @@ for(let i = 0; i < homeChildOne.children.length; i++){
   // *각각 homeChildOne.children[i]에 세부 적용할 부분
   // *homeChildOne.children[0] > div => Shaka!
   if(i === 0){
-    homeChildOne.children[i].innerHTML = `<div>Shaka!</div>`;
+    homeChildOne.children[i].innerHTML = `<div>Let's Surf!</div>`;
     // *homeChildOne.children[0].firstElementChild => <div>Shaka!</div>
     homeChildOne.children[i].firstElementChild.setAttribute(`style`, `font-size: 1.5rem; font-weight: 800; color: ${colorObj.colorNa}`);
     console.log(homeChildOne.children[i]);
@@ -144,6 +144,7 @@ for(let i = 0; i < homeChildOne.children.length; i++){
   }
 }
 
+console.log(homeChildOne.children[1].children);
 // // *homeChildOne.children[i] > div+img+img
 // const homeOneChild = homeChildOne.children;
 // console.log(homeOneChild);
