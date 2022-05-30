@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #root {
+      background: linear-gradient(#000, #fff);
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <button id="topbtn">Top</button>
+  </div>
+  <script>
+    document.body.setAttribute(`style`, `margin: 0; padding: 0;`);
+
+    const root = document.getElementById('root');
+    console.log(root);
+    root.setAttribute(`style`,
+      `width: 100vw; height: 300vh; display: flex; align-items: center; justify-content: center;`);
+
+    const topBtn = document.getElementById('topbtn');
+    topBtn.style.position = `fixed`;
+    topBtn.style.bottom = `1vh`;
+    topBtn.style.right = `1vh`;
+
+    // 1. top button을 만들어준다
+    
+    // top button
+    // 1. 우선 버튼을 누르면 window.scrollY의 0 지점으로 이동하도록 scrollTo를 걸어준다
+    // 2. top버튼은 화면의 20퍼센트 이상일 때만 나타나도록 해준다
+    topBtn.addEventListener('click', () => {
+      console.log('1');
+      window.scrollTo({
+        top: 0,
+        behavior: `smooth`
+      });
+    });
+    
+    // 2. 배경색이 스크롤에 따라 달라지도록 만들어 준다
+
+
+  </script>
+
+</body>
+
+</html>
