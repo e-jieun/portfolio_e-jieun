@@ -6,7 +6,7 @@ const colorObj = {
   color33: `#333`,
   colorNa: `#3773A5`,
   colorFf: `#fff`,
-  colorSb: `rgba(186,216,242,1.0)`
+  colorSb: `#bad8f2ff`
 }
 // function
 const getAppendName = (element) => {

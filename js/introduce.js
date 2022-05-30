@@ -1,48 +1,17 @@
-// ?우선 js import 문제를 해결
-// import { setDisplay } from "./module/css-function";
-// import { setDisplay } from "./module/css-function";
-// import {setBgColor, setDisplay, set, getAppendName} from "./module/css-function.js";
-// import { varObj } from "css-function.js";
-// console.log(a);
+// import js
+import {
+  getAppendName,
+  setBgColor,
+  setDisplay,
+  setPosition,
+  setSize
+} from "./module/css-function.js";
+import colorObj from "./module/color.js";
 
 // variable declaration
 let hun = 100;
-const colorObj = {
-  colorBk: `#000`,
-  colorC4: `#c4c4c4`,
-  color33: `#333`,
-  colorNa: `#3773A5`,
-  colorFf: `#fff`,
-  colorSb: `#BAD8F2`
-}
+
 // function
-const getAppendName = (element) => {
-  // 언제 가져오면 안되는가?
-  // null, 빈값일 때는 가져오면 안된다
-  if (element.tagName !== null && element.tagName !== '') {
-    return element.tagName;
-  }
-}
-
-const setBgColor = (elem, bgColor) => {
-  elem.style.backgroundColor = bgColor;
-}
-
-const setDisplay = (elem, display, align = 'center', justify = 'center', direction = 'row') => {
-  if (typeof elem === 'object') {
-    elem.style.display = display;
-    elem.style.alignItems = align;
-    elem.style.justifyContent = justify;
-    elem.style.flexDirection = direction;
-  } else {
-    console.error('try again');
-  }
-}
-
-const setSize = (elem, width, height) => {
-  elem.style.width = width;
-  elem.style.height = height;
-}
 
 // *children
 const introduce = document.getElementById('introduce');
@@ -56,9 +25,9 @@ introduce.style.gridTemplateRows = `1fr 1fr`;
 
 // *introduce.children test border
 // for(let i = 0; i < introduce.children.length; i++){
-//   // introduce.children[i].classList.add('border-bk');
+  // introduce.children[i].classList.add('border-bk');
 //   setSize(introduce.children[i], `${hun}vw`);
-//   // setBgColor(introduce.lastElementChild, '#c4c4c4');
+// setBgColor(introduce.lastElementChild, '#c4c4c4');
 // }
 
 // *introduce.children
@@ -175,6 +144,8 @@ dropMenu.addEventListener('mouseover', (event) => {
 // *ul의 paddingLeft 모두 없애주기
 const ul = document.getElementsByTagName('ul');
 console.log(ul);
-for(let i = 0; ul.length; i++){
-  ul[i].style.paddingLeft = 0;
-}
+const ulArr = Array.from(ul);
+console.log(ulArr);
+ulArr.forEach((elem) => {
+  elem.style.paddingLeft = 0;
+});

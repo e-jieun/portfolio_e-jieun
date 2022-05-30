@@ -1,58 +1,15 @@
-// ?다시 import를 시도해보기
+// import js
+import {
+  getAppendName,
+  setBgColor,
+  setDisplay,
+  setSize,
+  setPosition
+} from './module/css-function.js';
+import colorObj from "./module/color.js";
+
 // variable declaration
-// import { hun } from "./module/variable";
-// import { colorObj } from "./module/variable";
-// import {varObj} from './module/variable.js';
-
 let hun = 100;
-const colorObj = {
-  colorBk: `#000`,
-  colorC4: `#c4c4c4`,
-  color33: `#333`, 
-  colorNa: '#3773A5'
-}
-// function
-function getAppendName(element) {
-  // 언제 가져오면 안되는가?
-  // null, 빈값일 때는 가져오면 안된다
-  if (element.tagName !== null && element.tagName !== '') {
-    return element.tagName;
-  }
-}
-
-function setBgColor(elem, bgColor) {
-  elem.style.backgroundColor = bgColor;
-}
-
-function setDisplay(elem, display, align = 'center', justify = 'center', direction = 'row') {
-  if (typeof elem === 'object') {
-    elem.style.display = display;
-    elem.style.alignItems = align;
-    elem.style.justifyContent = justify;
-    elem.style.flexDirection = direction;
-  } else {
-    console.error('try again');
-  }
-}
-
-function setSize(elem, width = null, height = null) {
-  if (typeof elem === 'object') {
-    elem.style.width = width;
-    elem.style.height = height;
-  } else {
-    console.error('try again');
-  }
-}
-
-function setPosition(elem, position, top = null, bottom = null, left = null, right = null) {
-  if (typeof elem === 'object') {
-    elem.style.position = position;
-    elem.style.top = top;
-    elem.style.bottom = bottom;
-    elem.style.left = left;
-    elem.style.right = right;
-  }
-}
 
 // root.children
 const home = document.getElementById('home');
@@ -132,20 +89,23 @@ for(let i = 0; i < homeChildOne.children.length; i++){
     console.log(homeChildOne.children[i]);
     // *homeChildOne.children[1] > img => waveline
   } else if(i === 1){
-    homeChildOne.children[i].innerHTML = `<img src = './img/svg/waveline.svg'></img>`;
+    homeChildOne.children[i].innerHTML = `<img src = './img/svg/waveline-retry.svg'></img>`;
     homeChildOne.children[i].firstElementChild.style.width = `${hun/10}vmax`;
     // *homeChildOne.children[2] > img => shaka.svg
   } else{
     // !현재 shaka.svg 이미지를 변경한 곳
     // ?파도도 면이고 샤카 제스처 면 이미지의 손일 때는 대비도 없고 강조점이 없었어서 눈에 잘 들어오지 않는 구조였었다 -> 샤카 제스처가 선으로 이뤄졌을 때는 분리가 되면서 크기가 훨씬 작음에도 불구하고 개방감이 들고 제스처의 동적인 부분이 좀 더 눈에 들어오는 구조였다
     
-    homeChildOne.children[i].innerHTML = `<img src = './img/svg/feedback-img.svg'></img>`;
-    homeChildOne.children[i].children[0].style.width = `${hun*8}px`;
+    homeChildOne.children[i].innerHTML = `<img src = './img/svg/shaka.svg'></img>`;
+    const shakaImg = homeChildOne.children[i].children[0];
+    shakaImg.style.width = `250px`;
+    shakaImg.style.position = `relative`;
+    setPosition(shakaImg, `relative`, `${hun/2}px`);
   }
 }
 
 console.log(homeChildOne.children[1].children);
-// // *homeChildOne.children[i] > div+img+img
+// *homeChildOne.children[i] > div+img+img
 // const homeOneChild = homeChildOne.children;
 // console.log(homeOneChild);
 
@@ -168,6 +128,7 @@ homeChildTwo.appendChild(makeWaveCon);
 const waveCon = homeChildTwo.children[0];
 setSize(waveCon, ``, `${hun}%`);
 waveCon.src = './img/svg/wave.svg';
+
 console.log(waveCon);
 
 // waveCon에 div을 append 해준다
@@ -190,17 +151,21 @@ for (let i = 0; i < btn.length; i++) {
   setDisplay(btn[i], `flex`, ``, `center`);
   setPosition(btn[i].children[0], `relative`, `${hun/10*4}px`);
 }
-
 // *메뉴의 텍스트 컬러를 변경해줘야함
-// 
 // 1. data-menutext값이 1인 태그라면
 // 1-1. 색 변경(colorObj.colorNa) 
-// if()
-console.log(btnCon.children);
 // 자식요소가 유사배열 for()안에서 적용해줘야 한다
-for(let i = 0; i < btnCon.children.length; i++){
-  if(btnCon.children[i].firstElementChild.dataset.menutext === '1'){
-    // console.log('맞아');
-    btnCon.children[i].firstElementChild.style.color = `${colorObj.colorNa}`;
+for(let i = 0; i < btn.length; i++){
+  if(btn[i].firstElementChild.dataset.menutext === '1'){
+    btn[i].firstElementChild.style.color = `${colorObj.colorNa}`;
   }
 }
+
+// *data-menutext = '1'을 값으로 가지고 있는 부분들에 클릭이벤트 걸어주기
+const bgColor = document.getElementsByClassName('bg-color');
+const bgColorArr = Array.from(bgColor);
+bgColorArr.forEach((elem, index) => {
+  console.log(elem.children);
+  // 이 부분에 이벤트를 달아줘야 한다
+  // introduce와 project를 분리해주자
+});

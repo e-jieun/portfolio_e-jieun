@@ -6,23 +6,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E-JIEUN Portfolio</title>
+  
   <!-- <script src="https://use.fontawesome.com/95d9d9d61c.js"></script> -->
+
   <script type="module" src="./js/module/common.js" defer></script>
   <script type="module" src="./js/home.js" defer></script>
   <script type="module" src="./js/introduce.js" defer></script>
   <script type="module" src="./js/shaka.js" defer></script>
+
   <style>
-    .none {
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;900&display=swap');
+    
+    .none{
       display: none;
-      transition: 1s;
     }
-    .border-bk{
+    
+    .border-bk {
       border: 1px solid #000;
     }
+
     .bg-color {
       background-color: #fff;
     }
-    #behind>div{
+
+    #behind>div {
       -webkit-text-stroke: 1px #fff;
     }
   </style>
@@ -59,6 +66,7 @@
               <br>다양한 장르의 영화를 감상하는 일을 좋아해요!</li>
             <li data-menutext="interest">저에 대해 더 알고싶으시다면 링크를 통해 방문해주세요!</li>
           </ul>
+          <img src="./img/svg/waveline-retry.svg" alt="waveline-retry" width="100px">
         </div>
         <div id="introduce">
           <h2>Shaka!</h2><br>
@@ -69,10 +77,15 @@
         </div>
         <div>
           <div class="github" data-icon="1">
-            <img src="./img/svg/github-icon.svg" alt="github" width="50px" height="50px"><a href="https://github.com/e-jieun" target="_blank"></a>
+            <a href="https://github.com/e-jieun">
+              <img src="./img/svg/github-icon.svg" alt="github" width="50px" height="50px">
+            </a>
           </div>
           <div class="notion" data-icon="1">
-            <img src="./img//svg/notion-icon.svg" alt="notion" width="50px" height="50px"><a href="https://www.notion.so/e-jieun-265effdb10cb4a47a248cbf8bfc18445" target="_blank"></a>
+            <!-- !a태그를 먼저 사용하고, img를 자식태그로 넣어줘야 작동을 함 -->
+            <a href="https://www.notion.so/e-jieun-265effdb10cb4a47a248cbf8bfc18445">
+              <img src="./img//svg/notion-icon.svg" alt="notion" width="50px" height="50px">
+            </a>
           </div>
         </div>
       </div>
@@ -80,20 +93,24 @@
     <!-- *shaka.js -->
     <section id="shaka">
       <div id="shakahand">
-        <img src="./img/svg/feedback-img.svg" alt="shakacall" width="100%">
+        <img src="./img/svg/shaka.svg" alt="shakacall" width="100%">
       </div>
       <div id="footertext">
         <ul id="shakatext">
           <h1>Contact Me!</h1>
           <li><span>Shaka!</span><br>
-          즐거운 서핑 서비스를 이용해주셔서 감사합니다!</li>
+            즐거운 서핑 서비스를 이용해주셔서 감사합니다!</li>
         </ul>
         <ul id="footericon">
           <li class="github" data-icon="1">
-            <img src="./img/svg/github-icon.svg" alt="github" width="50px" height="50px"><a href="https://github.com/e-jieun" target="_blank"></a>
+            <a href="https://github.com/e-jieun">
+              <img src="./img/svg/github-icon.svg" alt="github" width="50px" height="50px">
+            </a>
           </li>
           <li class="notion" data-icon="1">
-            <img src="./img//svg/notion-icon.svg" alt="notion" width="50px" height="50px"><a href="https://www.notion.so/e-jieun-265effdb10cb4a47a248cbf8bfc18445" target="_blank"></a>
+            <a href="https://www.notion.so/e-jieun-265effdb10cb4a47a248cbf8bfc18445">
+              <img src="./img//svg/notion-icon.svg" alt="notion" width="50px" height="50px">
+            </a>
           </li>
         </ul>
         <!-- !img로 바꾸는 편이 크롤링에 걸리지 않는다 -->
