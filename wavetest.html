@@ -29,10 +29,10 @@
       top: 240px;
       width: 3000px;
       /* height: 198px; */
-      animation: waveMove 5s infinite, swell 7s infinite;
+      animation: waveMove 5s infinite;
       /* ?translate을 3d지점으로 조절해주는 것
       transform: translate3d(tx, ty, tz); */
-      transform: translate3d(0,0,0);
+      /* transform: translate3d(0,0,0); */
       overflow: hidden;
     }
     /* ?이어지도록은 해줬는데 계속해서 움직임을 주려면 어떻게 해야할까 고민이다 */
@@ -56,7 +56,7 @@
     /* ?swell */
     @keyframes swell{
       0%{
-        transform: translate3d(0, -10px, 0);
+        /* transform: translate3d(0, -10px, 0); */
       }
       50%{
         transform: translate3d(0, -25px, 0);
