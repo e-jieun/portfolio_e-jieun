@@ -30,12 +30,13 @@ export const setSize = (elem, width = null, height = null) => {
   }
 }
 
-export const setPosition = (elem, position, top = null, bottom = null, left = null, right = null) => {
+export const setPosition = (elem, position, top = null, bottom = null, left = null, right = null, zIndex = null) => {
   if (typeof elem === 'object') {
     elem.style.position = position;
     elem.style.top = top;
     elem.style.bottom = bottom;
     elem.style.left = left;
     elem.style.right = right;
+    elem.style.zIndex = zIndex;
   }
 }
