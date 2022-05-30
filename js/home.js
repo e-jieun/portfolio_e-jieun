@@ -76,31 +76,64 @@ for (let i = 0; i < home.children.length; i++) {
   }
 }
 // *homeChildOne.children에 공통적용할 부분
-for(let i = 0; i < homeChildOne.children.length; i++){
+for (let i = 0; i < homeChildOne.children.length; i++) {
   setDisplay(homeChildOne.children[i], `flex`);
   homeChildOne.children[i].style.width = `${hun}vw`;
 
   // *각각 homeChildOne.children[i]에 세부 적용할 부분
   // *homeChildOne.children[0] > div => Shaka!
-  if(i === 0){
+  if (i === 0) {
     homeChildOne.children[i].innerHTML = `<div>Let's Surf!</div>`;
     // *homeChildOne.children[0].firstElementChild => <div>Shaka!</div>
     homeChildOne.children[i].firstElementChild.setAttribute(`style`, `font-size: 1.5rem; font-weight: 800; color: ${colorObj.colorNa}`);
     console.log(homeChildOne.children[i]);
     // *homeChildOne.children[1] > img => waveline
-  } else if(i === 1){
+  } else if (i === 1) {
     homeChildOne.children[i].innerHTML = `<img src = './img/svg/waveline-retry.svg'></img>`;
     homeChildOne.children[i].firstElementChild.style.width = `${hun/10}vmax`;
     // *homeChildOne.children[2] > img => shaka.svg
-  } else{
+  } else {
     // !현재 shaka.svg 이미지를 변경한 곳
     // ?파도도 면이고 샤카 제스처 면 이미지의 손일 때는 대비도 없고 강조점이 없었어서 눈에 잘 들어오지 않는 구조였었다 -> 샤카 제스처가 선으로 이뤄졌을 때는 분리가 되면서 크기가 훨씬 작음에도 불구하고 개방감이 들고 제스처의 동적인 부분이 좀 더 눈에 들어오는 구조였다
-    
+
     homeChildOne.children[i].innerHTML = `<img src = './img/svg/shaka.svg'></img>`;
     const shakaImg = homeChildOne.children[i].children[0];
     shakaImg.style.width = `250px`;
     shakaImg.style.position = `relative`;
     setPosition(shakaImg, `relative`, `${hun/2}px`);
+
+    // !손 이미지에 마우스 오버하면 움직이는 애니메이션이 필요
+    // ?만들고 나니까 마우스 아웃을 하면 멈춰줄 이벤트가
+    shakaImg.addEventListener('mouseover', shakeMove);
+
+    function shakeMove() {
+      // console.log(event);
+      // 1.움직임
+      const shakaImgMove = [{
+          transform: `rotate(0)`
+        },
+        {
+          transform: `rotate(20deg)`
+        },
+        {
+          transform: `rotate(-20deg)`
+        },
+        {
+          transform: `rotate(0)`
+        }
+      ];
+      // 2.반복과 지속시간 변수
+      const shakaImgTime = {
+        duration: 500,
+        iterations: 2
+      }
+      // 3.shakaImg.animate()에 적용
+      shakaImg.animate(shakaImgMove, shakaImgTime)
+    }
+
+    // !mouseover iterations 조절로 해결을 했다
+    // ?mouseout이벤트로 멈춰줄 필요가 있음
+    // shakaImg.removeEventListener('mouseover', shakeMove);
   }
 }
 
@@ -108,7 +141,6 @@ console.log(homeChildOne.children[1].children);
 // *homeChildOne.children[i] > div+img+img
 // const homeOneChild = homeChildOne.children;
 // console.log(homeOneChild);
-
 
 // 2>waveCon>wave>button#introduce+button#project
 // ?appendChild가 안되고 있다 왜일까?
@@ -125,11 +157,34 @@ setSize(homeChildTwo, ``, `${hun/10*6}vh`);
 const makeWaveCon = document.createElement('img');
 homeChildTwo.appendChild(makeWaveCon);
 // console.log(getAppendName(homeChildTwo));
-const waveCon = homeChildTwo.children[0];
-setSize(waveCon, ``, `${hun}%`);
-waveCon.src = './img/svg/wave.svg';
 
-console.log(waveCon);
+const waveCon = homeChildTwo.children[0];
+// !waveCon이 파도 움직임을 적용해줄 부분
+// waveCon.style.background = `url(./img/svg/wave.svg)`;
+waveCon.src = './img/svg/wave.svg';
+// 맨 마지막 인수
+setPosition(waveCon, `absolute`, ``, ``, ``, ``, `-1`);
+setSize(waveCon, `5000px`, `500px`);
+console.log(waveCon.style);
+// console.log(waveCon);
+
+// !.animate();
+// 웨이브 움직임을 주는 공간
+waveCon.addEventListener('load', () => {
+  const waveMove = [{
+      marginLeft: 0
+    },
+    {
+      marginLeft: '-800px'
+    }
+  ];
+  const waveTime = {
+    duration: 5000,
+    iterations: Infinity // !계속해서 작동하게 해주려면 Infinity로 설정했어야 했음
+  }
+  // !변수를 먼저 사용해서 작동이 안된 것 =>  
+  waveCon.animate(waveMove, waveTime);
+})
 
 // waveCon에 div을 append 해준다
 // *btnCon
@@ -155,8 +210,8 @@ for (let i = 0; i < btn.length; i++) {
 // 1. data-menutext값이 1인 태그라면
 // 1-1. 색 변경(colorObj.colorNa) 
 // 자식요소가 유사배열 for()안에서 적용해줘야 한다
-for(let i = 0; i < btn.length; i++){
-  if(btn[i].firstElementChild.dataset.menutext === '1'){
+for (let i = 0; i < btn.length; i++) {
+  if (btn[i].firstElementChild.dataset.menutext === '1') {
     btn[i].firstElementChild.style.color = `${colorObj.colorNa}`;
   }
 }
