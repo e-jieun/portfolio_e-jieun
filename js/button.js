@@ -1,4 +1,4 @@
-// top button interaction
+// import js
 import {
   setSize,
   setDisplay,
@@ -35,10 +35,7 @@ window.addEventListener('wheel', () => {
   console.log(window.scrollY); //=== pageYoffset
   // 3. if(윈도우 휠 이벤트에서 scrollY값이 20%보다 작으면) 보이지 않도록 해준다 
   // !=> 기본 스타일링이 보이지 않도록 해주는 것이고 20보다 크면 바꿔주는 쪽으로 수정하기
-  if (currentPercent < 20) {
-    console.log(Math.round(returnPercent(window, root.offsetHeight, window.scrollY)));
-    topBtn.style.visibility = 'hidden';
-  } else {
+  if (currentPercent > 20) {
     console.log(Math.round(returnPercent(window, root.offsetHeight, window.scrollY)));
     topBtn.style.visibility = 'visible';
   }
