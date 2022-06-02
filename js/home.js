@@ -16,6 +16,8 @@ const home = document.getElementById('home');
 console.log(home);
 console.log(root.children);
 
+home.style.position = `fixed`;
+
 // root.children요소들의 크기를 화면 100vw, 100vh의 한 페이지씩 설정해주기
 for (let i = 0; i < root.children.length; i++) {
   root.children[i].setAttribute(`style`, `width: ${hun}vw; height: ${hun}vh;`);
