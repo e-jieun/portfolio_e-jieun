@@ -16,15 +16,19 @@ const home = document.getElementById('home');
 console.log(home);
 console.log(root.children);
 
-home.style.position = `fixed`;
+// home.style.position = `fixed`;
 
+console.log(root.children);
+const section = root.children;
+const sectionArr = Array.from(section);
 // root.children요소들의 크기를 화면 100vw, 100vh의 한 페이지씩 설정해주기
-for (let i = 0; i < root.children.length; i++) {
-  root.children[i].setAttribute(`style`, `width: ${hun}vw; height: ${hun}vh;`);
-}
+sectionArr.forEach((element) => {
+  element.setAttribute('style', `width: ${hun}vw; height: ${hun}vh;`);
+})
 
 // home을 2개의 박스로 나눠주고 그 안에 뭘 넣을지
 // 1. 두개의 자식요소를 만들어줘야 한다
+console.log(home.children);
 console.log(home.tagName.toLowerCase());
 // home의 태그이름을 가져오주는 함수를 만들어 준다
 // 1-1. 문서 안에 두 개의 자식요소(section)를 만들어 줄 변수를 만들어주고
@@ -36,7 +40,7 @@ for (let i = 0; i < homeChildArr.length; i++) {
   // 두 자식요소는 다른 아이템들을 감싸는 경우가 많을 것 같으니까 data-set을 붙여준다
   // 첫번째 요소는 data-home = '1', data-home = '2'
   makeHomeChild.setAttribute(`data-home`, homeChildArr[i]);
-  setSize(makeHomeChild, `${hun}%`, ``)
+  setSize(makeHomeChild, `${hun}%`, ``);
   // 1-2. 두 개의 자식요소를 부모요소에 붙여준다
   home.appendChild(makeHomeChild);
 }
@@ -163,7 +167,7 @@ homeChildTwo.appendChild(makeWaveCon);
 const waveCon = homeChildTwo.children[0];
 // !waveCon이 파도 움직임을 적용해줄 부분
 // waveCon.style.background = `url(./img/svg/wave.svg)`;
-waveCon.src = './img/svg/wave.svg';
+waveCon.src = './img/wave.png';
 // 맨 마지막 인수
 setPosition(waveCon, `absolute`, ``, ``, ``, ``, `-1`);
 setSize(waveCon, `5000px`, `500px`);
