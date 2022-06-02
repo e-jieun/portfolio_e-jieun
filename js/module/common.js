@@ -21,3 +21,11 @@ console.log(root);
 root.style.overflowX = `hidden`;
 setDisplay(root, `grid`);
 root.style.fontFamily = `'Roboto Slab', serif`;
+
+console.log(root.children);
+const section = root.children;
+const sectionArr = Array.from(section);
+// root.children요소들의 크기를 화면 100vw, 100vh의 한 페이지씩 설정해주기
+sectionArr.forEach((element) => {
+  element.setAttribute('style', `width: ${hun}vw; height: ${hun}vh;`);
+})
