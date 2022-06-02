@@ -7,9 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     #root {
-      background: linear-gradient(#000, #fff);
+      /* background-color: rgb(187,216,232); */
+      /* *parallax  */
+      background-image: url('./img/svg/wave.svg');
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: 150vh;
+      background-position: bottom;
     }
 
+    /* #bg{
+      background-color: transparent;
+    } */
     .none {
       display: none;
     }
@@ -19,78 +28,53 @@
 
 <body>
   <div id="root">
-    <button id="topbtn">Top</button>
+    <div id="bg">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#5A90BF" fill-opacity="1" d="M0,128L120,106.7C240,85,480,43,720,42.7C960,43,1200,85,1320,106.7L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
+    </div>
   </div>
   <script>
     document.body.setAttribute(`style`, `margin: 0; padding: 0;`);
-
     const root = document.getElementById('root');
+    const bgColor = document.getElementById('bg');
+    const textCon = bgColor.firstElementChild;
+    const img = document.querySelector('svg');
     console.log(root);
+    console.log(bgColor);
+    console.log(img);
+    console.log(textCon);
+    img.style.background = `none`;
     root.setAttribute(`style`,
-      `width: 100vw; height: 300vh; display: flex; align-items: center; justify-content: center;`);
-
-    const topBtn = document.getElementById('topbtn');
-    topBtn.style.position = `fixed`;
-    topBtn.style.bottom = `1vh`;
-    topBtn.style.right = `1vh`;
-
-
+      `width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center;`);
+    // bgColor.setAttribute('style', `width: 100vw; height: 300vh;`);
+    textCon.setAttribute('style',
+      `width: inherit; height: 100vh; position: relative; bottom: -100vh;`);
+    // bgColor.style.background = `none`;
     // root.style.background = ``
-    // 색이 점점 어두워지는 인터랙션을 만들어줄 것
+    // 색이 점점 어두워지는 인터랙션을 만들어줄 것 => 똑같이 설정을 해주고 그 다음에 변화를 
     // 해당 요소는 포트폴리오 세로 스크롤 화면의 바닷 속으로 들어가는 인터랙션에 활용할 예정
 
+    // 
     // 1. 스크롤 위치가 전체 문서의 몇 퍼센트이면 
-    // 2. 색을 점점 어둡게 한다 => rgb 색상 값으로 변화를 줄 것
-
-
-    // if (!topBtn.classList.contains(`none`)) {
-      // topBtn.classList.add(`none`);
-      // }
-    //   console.dir(window);
-    //   window.addEventListener(`scroll`, (event) => {
-    //     let scrollY = this.scrollY;
-    //     root.textContent = scrollY;
-    //     root.style.color = `#fff`;
-    //     // 색이 점점 변하도록 해주는 부분
-    //     // root.style.backgroundColor = `rgb(${root.offsetHeight-scrollY}, ${root.offsetHeight-scrollY}, ${root.offsetHeight-scrollY})`;
-    //     //숫자가 내려갈 수록 색이 옅어지는 부분은 구현을 했다 
-    //     // 
-    //     if (scrollY <= Math.round(root.offsetHeight / 3)) {
-    //       // ?콘솔은 찍힌다
-    //       console.log(topBtn);
-    //       // topBtn.classList.remove(`none`);
-    //     } else {
-    //     console.log('hi');
-    //   }
-
-    // })
-    
-    // 탑버튼의 클릭 이벤트 
-    // 1. 어느 정도 내려오면 나타나도록 => 전체화면의 몇 퍼센트가 지나면 나타나게 해줘
-    // 2. topbtn 클릭이벤트 최상단으로 이동하도록 해준다
-    topBtn.addEventListener('click', () => {
-      console.log(root.offsetHeight);
-      
-      window.scrollTo({
-        top: 0,
-        behavior: `smooth`
-      });
-    });
-    
-    // => 퍼센트를 구하는 공식이 담긴 함수를 사용해줄 것 => 전체값에서 20퍼센트가 되면 나타나도록 해줘야 한다
-    function returnPercent(total, value){
-      let result = (value/total)*100;
-      console.log(result);
+    function returnPercent(total, value) {
+      let result = (value / total) * 100;
+      console.log(Math.round(result));
       return result;
     }
-    console.log(returnPercent(root.offsetHeight, window.scrollY));
-    // 1-1. 화면 전체 크기(root.offsetHeight)의 1/3이 되면 나타나도록 한다 => 퍼센트를 구해줘야 한다, 조건식을 달아서(20퍼센트 이상이면) 나타나도록 해줘야 한다
-    if(returnPercent(root.offsetHeight, window.scrollY) > 20){
-      topBtn.classList.remove('none');
-    } else{
-      topBtn.classList.add('none');
-    }
-    </script>
+    console.log(bgColor.offsetHeight);
+
+    bgColor.addEventListener('click', function () {
+      console.log(window.scrollY);
+      // if (returnPercent(root.offsetHeight, window.scrollY) > 20) {
+        // svg이미지 파일이나 코드는 제어로 스타일링할 수가 없는 건가?
+        console.dir(root);
+        window.scrollTo({
+          top: window.innerWidth,
+          behavior: `smooth`
+        });
+        
+      // }
+    });
+  </script>
 
 </body>
 
