@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- !계속해서 반복되도록 만들어주기 -->
+  <section id="root">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </section>
+  <button id="left">left</button>
+  <button id="right">right</button>
+
+  <script>
+    const root = document.getElementById('root');
+    const pages = root.children;
+    const left = document.getElementById('left');
+    const right = document.getElementById('right');
+    console.log(root);
+    console.log(pages);
+
+    root.style.display = 'flex';
+    root.style.width = `300vw`;
+    // root.style.overflow = 'hidden';
+    
+    const setSize = (elem,width,height) => {
+      elem.setAttribute(`style`,`width: ${width}; height: ${height};`);
+    }
+
+    const projectPage = Array.from(pages);
+    console.log(projectPage);
+    let colorArr = ['#c4c4c4', '#e5e5e5', '#ff0000'];
+    projectPage.forEach((element,index)=>{
+      setSize(element,`100vw`,`30vh`);
+      element.style.backgroundColor = colorArr[index];
+      
+      element.addEventListener('click', ()=>{
+        element.style.position = 'absolute';
+        element.style.left = `-100vw`;
+        // <!--!다시 조건식을 걸어주기-->
+        if(index===projectPage.at(-1)){
+          index = 0;
+        }
+      });
+    });
+    
+    
+    
+
+
+  </script>
+</body>
+</html>
