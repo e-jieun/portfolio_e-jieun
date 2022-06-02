@@ -1,0 +1,11 @@
+.none{
+  display: none;
+}
+
+.border-bk {
+  border: 1px solid #000;
+}
+
+.bg-color {
+  background-color: #fff;
+}
