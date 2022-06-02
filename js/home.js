@@ -14,26 +14,6 @@ let hun = 100;
 // root.children
 const home = document.getElementById('home');
 console.log(home);
-console.log(root.children);
-
-// home을 2개의 박스로 나눠주고 그 안에 뭘 넣을지
-// 1. 두개의 자식요소를 만들어줘야 한다
-console.log(home.tagName.toLowerCase());
-// home의 태그이름을 가져오주는 함수를 만들어 준다
-// 1-1. 문서 안에 두 개의 자식요소(section)를 만들어 줄 변수를 만들어주고
-let homeChildArr = [1, 2];
-console.log(home.children);
-// 두개의 자식요소를 만들어줘야 하니까 두 번 반복해줄 반복문을 만들어 준다
-for (let i = 0; i < homeChildArr.length; i++) {
-  const makeHomeChild = document.createElement(getAppendName(home));
-  console.log(makeHomeChild);
-  // 두 자식요소는 다른 아이템들을 감싸는 경우가 많을 것 같으니까 data-set을 붙여준다
-  // 첫번째 요소는 data-home = '1', data-home = '2'
-  makeHomeChild.setAttribute(`data-home`, homeChildArr[i]);
-  setSize(makeHomeChild, `${hun}%`, ``)
-  // 1-2. 두 개의 자식요소를 부모요소에 붙여준다
-  home.appendChild(makeHomeChild);
-}
 console.log(home.children);
 
 // home.children 식별
@@ -43,6 +23,7 @@ let homeChildTwo;
 
 // data-home 값으로 핸들링하기
 for (let i = 0; i < home.children.length; i++) {
+  setSize(home.children[i], `${hun}%`, ``);
   // *home.children[0].data-home = '1';
   if (home.children[i].dataset.home === '1') {
     console.log(home.children[i].dataset); // data-home = '1'
@@ -58,19 +39,21 @@ for (let i = 0; i < home.children.length; i++) {
 
     // *homeChildOne.children를 append
     // 1. 3개의 자식요소를 1에 덧붙여주고
-    const homeOneChildArr = [1, 2, 3];
+    const homeOneChild = homeChildOne.children;
+    console.log(homeOneChild);
+    const homeOneChildArr = Array.from(homeOneChild);
+    console.log(homeOneChildArr);
     // 우선 3개 자식요소의 태그를 덧붙일 때 순서대로 for문을 돌리도록 해주고
-    for (i = 0; i < homeOneChildArr.length; i++) {
-      const makeHomeOneChild = document.createElement('div');
-      makeHomeOneChild.setAttribute(`data-item`, homeOneChildArr[i]);
+    homeOneChildArr.forEach((elem) => {
+      elem.setAttribute(`data-item`, homeOneChildArr[i]);
       // *homeChildOne.children style
-      makeHomeOneChild.setAttribute(`style`, `width: ${hun/2}%;`);
-      setSize(makeHomeOneChild, `${hun/3}vw`, `${hun}%`);
+      elem.setAttribute(`style`, `width: ${hun/2}%;`);
+      setSize(elem, `${hun/3}vw`, `${hun}%`);
       // 2. 자식요소를 3개 붙여줘야 하는데
-      homeChildOne.append(makeHomeOneChild);
-    }
+    })
   }
 }
+// ! 이곳부터 다시 고쳐보자!
 // *homeChildOne.children에 공통적용할 부분
 for (let i = 0; i < homeChildOne.children.length; i++) {
   setDisplay(homeChildOne.children[i], `flex`);
