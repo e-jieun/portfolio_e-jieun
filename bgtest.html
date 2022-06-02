@@ -37,19 +37,23 @@
     const root = document.getElementById('root');
     const bgColor = document.getElementById('bg');
     const textCon = bgColor.firstElementChild;
-    const img = document.querySelector('svg');
+    const svg = document.querySelector('svg');
     console.log(root);
     console.log(bgColor);
-    console.log(img);
     console.log(textCon);
-    img.style.background = `none`;
+    console.log(svg);
+    console.log(svg.children);
+    svg.children.fill = '#c4c4c4';
+    console.log(svg.children);
+    console.dir(svg.children);
+    // svg.children.setAttribute('fill: #c4c4c4;');
+
+    svg.style.background = `transparent`;
     root.setAttribute(`style`,
       `width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center;`);
     // bgColor.setAttribute('style', `width: 100vw; height: 300vh;`);
     textCon.setAttribute('style',
       `width: inherit; height: 100vh; position: relative; bottom: -100vh;`);
-    // bgColor.style.background = `none`;
-    // root.style.background = ``
     // 색이 점점 어두워지는 인터랙션을 만들어줄 것 => 똑같이 설정을 해주고 그 다음에 변화를 
     // 해당 요소는 포트폴리오 세로 스크롤 화면의 바닷 속으로 들어가는 인터랙션에 활용할 예정
 
