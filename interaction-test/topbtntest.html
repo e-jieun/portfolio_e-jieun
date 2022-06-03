@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #root {
+      background-color: #bbd8f2;
+      color: #fff;
+    }
+
+    .none {
+      display: none;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root">
+    <button id="topbtn">Top</button>
+  </div>
+  <script>
+    document.body.setAttribute(`style`, `margin: 0; padding: 0;`);
+
+    const root = document.getElementById('root');
+    console.log(root);
+    root.setAttribute(`style`,
+      `width: 100vw; height: 300vh; display: flex; align-items: center; justify-content: center;`);
+
+    const topBtn = document.getElementById('topbtn');
+    topBtn.style.position = `fixed`;
+    topBtn.style.bottom = `1vh`;
+    topBtn.style.right = `1vh`;
+
+    topBtn.addEventListener('click', () => {
+      console.log(root.offsetHeight);
+      
+      window.scrollTo({
+        top: 0,
+        behavior: `smooth`
+      });
+    });
+    
+    // <!--*이 부분까지 올라가는 클릭 이벤트까지는 구현을 함-->
+    // => 퍼센트를 구하는 공식이 담긴 함수를 사용해줄 것 => 전체값에서 20퍼센트가 되면 나타나도록 해줘야 한다
+    function returnPercent(total, value){
+      let result = (value/total)*100;
+      console.log(result);
+      return result;
+    }
+    window.addEventListener('wheel', function(){
+      console.log(returnPercent(root.offsetHeight, window.scrollY));
+      // 1-1. 화면 전체 크기(root.offsetHeight)의 1/3이 되면 나타나도록 한다 => 퍼센트를 구해줘야 한다, 조건식을 달아서(20퍼센트 이상이면) 나타나도록 해줘야 한다
+      if(returnPercent(root.offsetHeight, window.scrollY) > 10){
+        // <!--*나타나도록 해줄 부분-->
+        topBtn.style.opacity = 1;
+      } else{
+        // <!--*사라지도록 해줄 부분-->
+        topBtn.style.opacity = 0;
+      }
+
+    })
+    </script>
+
+</body>
+
+</html>
