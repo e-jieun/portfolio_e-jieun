@@ -24,10 +24,10 @@
       /* background: #015871; */
     }
     .wave1{
-      background: url('./img/svg/wave.svg') repeat-x;
+      background: url('/img/svg/wave.svg') repeat-x;
       position: absolute;
       top: 240px;
-      width: 3000px;
+      width: 200vw;
       /* height: 198px; */
       animation: waveMove 5s infinite;
       /* ?translate을 3d지점으로 조절해주는 것
@@ -36,15 +36,15 @@
       overflow: hidden;
     }
     /* ?이어지도록은 해줬는데 계속해서 움직임을 주려면 어떻게 해야할까 고민이다 */
-    /* .wave2{
-      background: url('./img/svg/wave.svg') repeat-x;
+    .wave2{
+      background: url('/img/svg/wave.svg') repeat-x;
       position: relative;
       top: 240px;
       animation: waveMove 10s infinite, swell 7s infinite;
-      width: 3000px;
+      width: 200vw;
       opacity: 0.5;
       transform: translate3d(0,20px,-20px);
-    } */
+    }
     @keyframes waveMove {
       0%{
         margin-left: 0;
@@ -72,6 +72,8 @@
     <div class="wave1"></div>
     <div class="wave2"></div>
   </div>
-  
+  <script>
+    document.body.setAttribute('style',`margin: 0; padding: 0;`)
+  </script>
 </body>
 </html>
