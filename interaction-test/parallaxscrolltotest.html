@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #root>div:first-child{
+      /* !이미지 파일이 하위 폴더에 있지 않고 똑같은 위치에 있어서 생긴 문제였다 */
+      /* 1-2. 이미지를 넣어준다 */
+      background-image: url('/img/svg/wave.svg');
+      background-repeat: no-repeat;
+      background-position: bottom;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body>
+  <!-- scrollTo로 보기 편하도록 클릭하면 한페이지씩 위치가 변하는 패럴랙스 페이지 -->
+  <button>top</button>
+  <div id="root">
+    <div data-page="1">intro
+      <!-- !첫번째 페이지에서 이미지가 들어가고, 배경을 투명으로 해줘야 함 -->
+    </div>
+    <div data-page="2">introduce</div>
+    <div data-page="3">project1</div>
+    <div data-page="4">project2</div>
+    <div data-page="5">project3</div>
+    <div data-page="6">ending</div>
+  </div>
+  <button>next page</button>
+  <script>
+    // variable declaration
+    let colorbk = `rgb(0, 0, 0)`;
+    let colorna = `rgb(000, 051, 102)`;
+    let colormidbl = `rgb(051, 102, 153)`;
+    let colorbl = `rgb(102, 153, 204)`;
+    let colorlightbl = `rgb(153, 204, 255)`;
+    let colore3 = `rgba(227, 227, 227, 1.0)`;
+
+    // root, root.children식별
+    const root = document.getElementById('root');
+    const pages = root.children;
+    const button = document.getElementsByTagName('button');
+    const img = document.querySelector('img');
+    const topB = button[0];
+    const bottomB = button[1];
+    console.log(button);
+    console.log(pages);
+    console.log(topB);
+    console.log(bottomB);
+    
+    let pageColorArr = [`transparent`, colorlightbl, colorbl, colormidbl, colorna, colorbk];
+
+    // button 태그를 좀 잘보이게 해주자
+    const setPosition = (object, position, top, bottom, left, right) => {
+      object.setAttribute('style',`position: ${position}; top: ${top}; bottom: ${bottom}; left: ${left}; right: ${right};`);
+    };
+    setPosition(topB, 'fixed', '0', '', '', '0');
+    setPosition(bottomB, 'fixed', '', '0', '', '0');
+    
+    // 1. root.children은 유사배열이므로 배열로 사용할 수 있도록 만들어 준다
+    const pageArr = Array.from(pages);
+    console.log(pageArr);
+    pageArr.forEach((elem, index)=>{
+      // 1-1. root.children을 한 페이지 크기씩 크기를 만들어주고
+      elem.setAttribute('style',`width: 100vw; height: 100vh;`);
+      elem.style.backgroundColor = pageColorArr[index];
+    })            
+    // 1-3. 이미지 색상을 path.style.fill로 넣어주는 식을 만들어서 넣어준다
+
+    // 2. 클릭하면 넘어가는 페이지를 만들어준다
+    // => 버튼에 클릭이벤트를 넣어준다
+
+    // 2-1. 우선 윈도우 위, 아래에 위치하는 버튼 태그를 하나 만들어서 조절해준다
+    // 3. 윈도우 아래에 위치한 버튼을 페이지를 아래로 이동하도록 하는 클릭 이벤트를 생성해준다 => 반대로 적용하면 될 것
+    // 변수를 하나 만들어서 곱해주도록 해야하나??
+    // <!--!아래로 내려가는 버튼-->
+    let clickValue = 0;
+    // <!--!어떻게 값을 조절해줘야 하지??? 초기화 해주고 더하고 더하고 하고 마지막에 페이지 전체 높이와 스크롤 값이 같아지면 다시 0으로 돌려준다-->
+    bottomB.addEventListener('click', downBtn);
+    function downBtn(){
+      let goTo = window.innerHeight+window.innerHeight*clickValue;
+      window.scrollTo({
+        // !innerHeight이 아니라 width로 작성해서 잘 안됨
+        top: goTo,
+        behavior: `smooth`
+      })
+      // 페이지 수를 곱해줄 부분의 변수를 +1 해준다
+      // 현재 값은 window.innerHeight*clickValue;
+      // 이 부분을 현재 값을 더해주는 형식으로 식을 변화시켜줘야 하나???
+      clickValue++;
+      console.log(clickValue);  //2648
+      console.log(goTo);
+      console.log(root.offsetHeight); //5754
+      // window.scrollY를 
+      // 스크롤을 맨 위로 움직이면 값을 0으로 돌아가도록 바꿔줘야 한다
+      if(goTo >= root.offsetHeight || clickValue === '5'){
+        goTo = 0;
+        clickValue = 0;
+        bottomB.textContent = `see again`;
+      } else{
+        bottomB.textContent = `next`;
+      }
+    }
+    // !문제는 값이 쌓여서 올라갔다가 이 곳으로 내려가려고 하면 갑자기 많이 이동하는 문제가 생긴다 => 값을 초기값으로 재할당 해줘야 하는 문제같음.... 
+    
+    // <!--!위로 올라가는 버튼-->
+    // 4. 윈도우 위에 위치한 버튼을 페이지를 위로 이동하도록 하는 클릭 이벤트를 생성해준다
+    clickValue = 0;
+    goTo = 0;
+    topB.addEventListener('click', upBtn);
+    function upBtn(){
+      window.scrollTo({
+        top: 0,
+        behavior: `smooth`
+      })
+      console.log(goTo);
+    }
+
+    // !부족한 점
+    // 페이지가 몇 페이지 인지 알 수 있도록 해줘야 할 것 같음...
+    // 아주 작은 아이콘 형태로 만들어서 페이지 위치를 알려줄 수 있도록 하면 좋을 것 페이지에 방해되지 않을 정도!
+    </script>
+</body>
+
+</html>
