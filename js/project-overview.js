@@ -97,5 +97,9 @@ menuItemArr.unshift('<div>');
 menuItemArr.push('</div>');
 console.log(menuItemArr);
 
+overviewMenuChild[0].innerHTML = menuItemArr.join('');
+// 자식요소로 잘 붙었다
+console.log(overviewMenuChild[0]);
+// ul id 붙여주기
 
 // 3. 클릭하면 해당 페이지로 연결되어야 함, 혹은 볼 수 있어야 한다
