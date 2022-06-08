@@ -12,7 +12,7 @@ console.log(projectOverview);
 projectOverview.style.width = '100vw';
 projectOverview.style.height = '100vh';
 projectOverview.style.display = 'grid';
-projectOverview.style.gridTemplateRows = '1fr 1fr';
+projectOverview.style.gridTemplateAreas = '1fr 2fr';
 
 // 2개의 컨테이너를 생성해줘야 함 projectOverview의 자식요소로 우선 두개의 자식요소로 넣어주긴 했다
 projectOverview.innerHTML = `<div></div><div></div>`;
@@ -69,7 +69,10 @@ console.log(overviewMenuCon);
 // overviewMenuCon.style.background = 'url(./img/wave.png)';
 overviewMenuCon.setAttribute('style', `background: url(./img/wave.png);
       background-size: cover;
-      background-repeat: no-repeat; background-position: bottom; `);
+      background-repeat: no-repeat; background-position: bottom;`);
+setDisplay(overviewMenuCon, 'flex', 'center', 'center');
+overviewMenuCon.style.gridTemplateColumns = '1fr 5fr';
+
 
 // 2. 개요 텍스트에 마우스 오버할 때마다 색이 변경되어야 함
 overviewMenuCon.innerHTML = `
@@ -81,7 +84,7 @@ console.log(overviewMenuCon.children);
 const overviewMenuChild = Array.from(overviewMenuCon.children);
 console.log(overviewMenuChild);
 const menuItemArr = [];
-const menuItem = ['<div id="line"></div>', '<div id="bg-circle"></div>', '<div id="select-circle"></div>'];
+const menuItem = ['<div id="line"></div>', '<div id="bg-circle"></div>'];
 // menuItemArr에 각각 넣어줄 태그를 배열 안에 넣어야 하고
 // ul 1 라인 1개 -> 가장 밑에 배경으로 깔아두고
 // ul 2 동그라미 6개 -> 기본 동그라미 위치
@@ -97,8 +100,8 @@ console.log(overviewMenuChild[0]);
 
 // ul id 붙여주기
 const barCon = document.getElementById('bar-con');
-setSize(barCon, '10vw', '45vmax');
-barCon.classList.add('border-bk');
+setSize(barCon, '', '45vmax');
+// barCon.classList.add('border-bk');
 setPosition(barCon, 'relative', '2vh', '', '5vh');
 setDisplay(barCon, 'flex', 'center', 'center');
 
@@ -107,7 +110,7 @@ console.log(selectingLine);
 selectingLine.forEach((elem, index) => {
   setSize(elem, 'inherit', 'inherit');
   setPosition(elem, 'absolute');
-  elem.classList.add('border-bk');
+  // elem.classList.add('border-bk');
   // if(elem[index].id === 'line'){
   //   console.log('hi');
   // }
@@ -126,7 +129,7 @@ setDisplay(bgCircle, 'flex', 'center', 'space-between', 'column');
 // bgCircle의 자식요소를 생성해줄 부분
 const bgCircleArr = [];
 const div = '<div data-circle="1"></div>';
-for(let i = 0; i < 5; i++){
+for (let i = 0; i < 5; i++) {
   bgCircleArr.push(div);
   bgCircle.innerHTML = bgCircleArr.join('');
 }
@@ -139,22 +142,51 @@ bgCircleItem.forEach(elem => {
   elem.classList.add('circle');
 });
 
+// *projectname-con
+const projectnameCon = document.getElementById('projectname-con');
+console.log(projectnameCon);
+// projectnameCon.classList.add('border-bk');
+setPosition(projectnameCon, 'relative', '0', '', '', '');
+setSize(projectnameCon, '40vmax', '45vmax');
+setDisplay(projectnameCon, 'grid', 'center', 'center');
+projectnameCon.style.rowGap = '8vh';
+projectnameCon.style.opacity = 0;
+window.addEventListener('load', () => {
+  const projectnameConVisible = setTimeout(() => {
+    projectnameCon.style.opacity = 1;
+    projectnameCon.style.top = '3vh';
+    projectnameCon.style.transition = '1s';
+  }, 700);
+});
 
-// #select-circle
-const selectCircle = document.getElementById('select-circle');
-console.log(selectCircle);
-setDisplay(selectCircle, 'flex', 'center', 'space-between', 'column');
+// *자식요소로 덧붙여주기
+const projectnameArr = [];
+const projectname = ['<a></a>', '<a href="#project-1">보라도라</a>', '<a href="#project-2">가상 문구류</a>', '<a href="#project-3">더 발룬티어스</a>', '<a href="#project-4">토이 프로젝트</a>'];
+projectname.forEach(elem => {
+  projectnameArr.push(elem);
+  projectnameCon.innerHTML = projectnameArr.join('');
+});
 
-const selectCircleArr = [];
-for(let i = 0; i < 5; i++){
-  selectCircleArr.push(div);
-  selectCircle.innerHTML = selectCircleArr.join('');
-}
+// *projectnameItem
+const projectnameItem = Array.from(projectnameCon.children);
 
-const selectCircleItem = Array.from(selectCircle.children);
-console.log(selectCircleItem);
-selectCircleItem.forEach(elem => {
-  setSize(elem, '12px', '12px');
-  elem.style.backgroundColor = '#ff0000';
-  elem.classList.add('circle');
+projectnameItem.forEach((elem, index) => {
+  // elem.style.textDecorationStyle = 'wavy';
+});
+
+// *mouseover event 마우스 오버한 부분만 변할 수 있도록
+document.documentElement.style.scrollBehavior = 'smooth';
+window.addEventListener('hashchange', (event) => {
+  // *이제 여기서 텍스트 위에 올리면 동그라미 위치 색이 변하도록 해주면 될 것 같은데...
+  // *동그라미는 bgCircleItem로 배열로 식별되어있음
+  // *텍스트는 projectnameItem으로 식별이 돼있음
+  const urlTest = location.href;
+  bgCircleItem.forEach(elem => {
+    elem.style.backgroundColor = '#ff0000';
+    // ?조건문을 작성하면 되지 않을까? => 이 둘의 인덱스는 같다, 
+    // ?빨간색으로 변하는 건 완성이 됐다, 그런데 특정 글씨를 클릭해서 동일선상에 있는 위치를 선택해줄 때는 특정 알고리즘을 적용해야할 것
+    // 똑같이 선택했을 때 각 영역에 맞도록 색이 변하도록 변화하도록 해주기
+    
+
+  })
 });
