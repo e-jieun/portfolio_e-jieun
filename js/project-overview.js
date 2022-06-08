@@ -171,7 +171,11 @@ projectname.forEach(elem => {
 const projectnameItem = Array.from(projectnameCon.children);
 
 projectnameItem.forEach((elem, index) => {
-  // elem.style.textDecorationStyle = 'wavy';
+  elem.style.textDecorationLine = 'none';
+  // ?textDecorationLine, textDecorationStyle은 다른 속성
+  // https://hianna.tistory.com/474
+  // ?글씨의 색을 클릭하거나 뭐  방문했거나 그런 것을 바꿀 수  없는 걸까?
+  // https://7942yongdae.tistory.com/119
 });
 
 // *mouseover event 마우스 오버한 부분만 변할 수 있도록
@@ -187,6 +191,5 @@ window.addEventListener('hashchange', (event) => {
     // ?빨간색으로 변하는 건 완성이 됐다, 그런데 특정 글씨를 클릭해서 동일선상에 있는 위치를 선택해줄 때는 특정 알고리즘을 적용해야할 것
     // 똑같이 선택했을 때 각 영역에 맞도록 색이 변하도록 변화하도록 해주기
     
-
   })
 });
