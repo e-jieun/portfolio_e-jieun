@@ -35,8 +35,8 @@ overviewConArr.forEach((elem, index) => {
 });
 
 
-// title이 뜨는 화면
-// overviewCon[0]
+// *title이 뜨는 화면
+// *overviewCon[0]
 const overviewTextCon = document.getElementById('text-con');
 console.log(overviewTextCon);
 overviewTextCon.innerHTML = '<h1>Project</h1>';
@@ -50,7 +50,7 @@ setPosition(textProject, 'relative', '10vh');
 
 // 1. 프로젝트라는 텍스트 상자가 로딩되고 몇 초 후에 올라와야 함
 // 1-1. 로딩되면 실행이 될 이벤트 핸들러를 윈도우에 달아준다
-// text fade-in
+// *text fade-in
 window.addEventListener('load', () => {
   // 1-2. 몇 초를 설정한 setTimeout을 실행되도록 해준다
   let textVisible = setTimeout(() => {
@@ -61,13 +61,9 @@ window.addEventListener('load', () => {
   }, 500);
 })
 
-
-
-
-
 // 프로젝트 개요 화면
-// menuCon
-// overviewCon[1]
+// *menuCon
+// *overviewCon[1]
 const overviewMenuCon = document.getElementById('menu-con');
 console.log(overviewMenuCon);
 // overviewMenuCon.style.background = 'url(./img/wave.png)';
@@ -85,7 +81,7 @@ console.log(overviewMenuCon.children);
 const overviewMenuChild = Array.from(overviewMenuCon.children);
 console.log(overviewMenuChild);
 const menuItemArr = [];
-const menuItem = ['<ul></ul>', '<ul></ul>', '<ul></ul>'];
+const menuItem = ['<div id="line"></div>', '<div id="bg-circle"></div>', '<div id="select-circle"></div>'];
 // menuItemArr에 각각 넣어줄 태그를 배열 안에 넣어야 하고
 // ul 1 라인 1개 -> 가장 밑에 배경으로 깔아두고
 // ul 2 동그라미 6개 -> 기본 동그라미 위치
@@ -93,13 +89,72 @@ const menuItem = ['<ul></ul>', '<ul></ul>', '<ul></ul>'];
 menuItem.forEach((elem) => {
   menuItemArr.push(elem);
 });
-menuItemArr.unshift('<div>');
-menuItemArr.push('</div>');
 console.log(menuItemArr);
 
 overviewMenuChild[0].innerHTML = menuItemArr.join('');
 // 자식요소로 잘 붙었다
 console.log(overviewMenuChild[0]);
-// ul id 붙여주기
 
-// 3. 클릭하면 해당 페이지로 연결되어야 함, 혹은 볼 수 있어야 한다
+// ul id 붙여주기
+const barCon = document.getElementById('bar-con');
+setSize(barCon, '10vw', '45vmax');
+barCon.classList.add('border-bk');
+setPosition(barCon, 'relative', '2vh', '', '5vh');
+setDisplay(barCon, 'flex', 'center', 'center');
+
+const selectingLine = Array.from(barCon.children);
+console.log(selectingLine);
+selectingLine.forEach((elem, index) => {
+  setSize(elem, 'inherit', 'inherit');
+  setPosition(elem, 'absolute');
+  elem.classList.add('border-bk');
+  // if(elem[index].id === 'line'){
+  //   console.log('hi');
+  // }
+});
+
+const line = document.getElementById('line');
+
+setSize(line, '1px', 'inherit');
+line.style.backgroundColor = '#fff';
+line.classList.remove('border-bk');
+
+// #bg-circle
+const bgCircle = document.getElementById('bg-circle');
+setDisplay(bgCircle, 'flex', 'center', 'space-between', 'column');
+
+// bgCircle의 자식요소를 생성해줄 부분
+const bgCircleArr = [];
+const div = '<div data-circle="1"></div>';
+for(let i = 0; i < 5; i++){
+  bgCircleArr.push(div);
+  bgCircle.innerHTML = bgCircleArr.join('');
+}
+
+const bgCircleItem = Array.from(bgCircle.children);
+console.log(bgCircleItem);
+bgCircleItem.forEach(elem => {
+  setSize(elem, '12px', '12px');
+  elem.style.backgroundColor = '#fff';
+  elem.classList.add('circle');
+});
+
+
+// #select-circle
+const selectCircle = document.getElementById('select-circle');
+console.log(selectCircle);
+setDisplay(selectCircle, 'flex', 'center', 'space-between', 'column');
+
+const selectCircleArr = [];
+for(let i = 0; i < 5; i++){
+  selectCircleArr.push(div);
+  selectCircle.innerHTML = selectCircleArr.join('');
+}
+
+const selectCircleItem = Array.from(selectCircle.children);
+console.log(selectCircleItem);
+selectCircleItem.forEach(elem => {
+  setSize(elem, '12px', '12px');
+  elem.style.backgroundColor = '#ff0000';
+  elem.classList.add('circle');
+});
