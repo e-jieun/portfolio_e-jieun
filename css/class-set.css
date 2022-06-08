@@ -9,3 +9,9 @@
 .bg-color {
   background-color: #fff;
 }
+.stroke-font{
+  -webkit-text-stroke: 1px #fff;
+}
+.circle{
+  border-radius: 50%;
+}
