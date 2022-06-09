@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #project-1{
+      width: 100vw; height: 100vh;
+    }
+    #project-1 > section{
+      width: inherit; height: 50%; border: 1px solid black;
+    }
+    #project-1 > section:nth-child(1){
+      display: flex; align-items: center; justify-content: center;
+    }
+    #project-1 > section:last-child{
+      display: flex; justify-content: center; align-items: flex-end;
+    }
+    #project-1 > section:last-child > div{
+      width: 20vh; height: 30vh; border: 1px solid black; position: relative;
+    }
+  </style>
+</head>
+<body>
+  <section id="project-1">
+    <section>
+      <p>project name</p>
+    </section>
+    <section>
+      <div>click</div>
+    </section>
+  </section>
+  
+  <script>
+    const projOne = document.getElementById('project-1');
+    const div = document.querySelector('div');
+    const p = document.querySelector('p');
+    
+    let pSize = 0;
+    let divPosition = 0;
+    window.addEventListener('wheel', () => {
+      console.log('hi');
+      divPosition += 1;
+      pSize += 1;
+      div.style.bottom = `${divPosition}vh`;
+      p.style.fontSize = `${pSize}px`;
+      if(divPosition >= 15){  // 이 부분을 어떻게 더 화면상의 단위로 움직이도록 할지 고쳐보기
+        console.log('over 50%');
+        divPosition = 15;
+      }
+      if(pSize >= 32){
+        pSize = 32;
+      }
+    });
+
+  </script>
+</body>
+</html>
