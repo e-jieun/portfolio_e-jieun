@@ -10,7 +10,7 @@ function xBtnChild() {
   return '<div></div><div></div>'
 }
 
-function img(){
+function img() {
   return `<img>`;
 }
 
@@ -104,13 +104,18 @@ window.addEventListener('wheel', () => {
 
 // *popUp 만들어 줄 부분;
 const appendDiv = document.createElement(makeDiv());
+setDisplay(appendDiv, 'flex', 'center', 'space-evenly', 'column');
 projOne.appendChild(appendDiv);
 
 const popUp = projOne.lastElementChild;
 console.log(popUp);
 setSize(popUp, '100vw', '100vh');
+// setDisplay(popUp, 'flex', 'center', 'space-evenly', 'column');
 // todo: 현재 페이지에 겹치도록 만들어 줄 부분
-setPosition(popUp, 'absolute', projOne.offsetTop);
+console.log(popUp.parentNode.offsetTop);
+console.log(projOne.scrollTop);
+// `${projOne.offsetTop}+px`
+setPosition(popUp, 'absolute', '300vh', '');
 popUp.style.zIndex = 2;
 // popUp.style.position = 'absolute';
 // todo: 프로젝트 페이지의 위치에 겹치도록 해주려면 현재 페이지 위치의 값을 계산해주는 함수를 만들어야겠다
@@ -135,41 +140,43 @@ const popUpItems = popUp.children;
 // *타이틀
 popUpItems[0].textContent = 'Project01. 보라도라';
 // *설명
+setSize(popUpItems[1], '50vw', '');
 popUpItems[1].textContent =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem neque provident possimus quasi! Omnis itaque cum voluptatum optio sit soluta labore necessitatibus non. Suscipit obcaecati esse doloribus ipsa at quasi.';
 
-  // *anchor
-  // todo: 아이콘 부분은 <a></a> 안에 img 넣어주기
-  for (let i = 0; i < popUpItems.length; i++) {
-    // 인덱스가 2번일 때
-    // 인덱스가 4번일 때
-    if (i % 2 === 0 && i <= 4 && i > 0) {
-      // popUpItems
-      console.log(i);
-      // <!--todo: img tag를 넣어줄 부분-->
-      popUpItems[i].innerHTML = img();
-      // img 태그 src로 넣어준 부분 => 크기를 조절해야 함
-      setSize(popUpItems[i].firstElementChild, '100px', '100px');
-      if (i / 2 === 1) {
-        console.dir(popUpItems[i]);
-        popUpItems[i].href = 'https://www.notion.so/e-jieun-265effdb10cb4a47a248cbf8bfc18445';
-        popUpItems[i].firstElementChild.src = "/img/svg/notion-icon.svg";
-      } else {
-        console.dir(popUpItems[i]);
-        popUpItems[i].href = 'https://github.com/e-jieun';
-        popUpItems[i].firstElementChild.src = "/img/svg/github-icon.svg";
-      }
+// *anchor
+// todo: 아이콘 부분은 <a></a> 안에 img 넣어주기
+for (let i = 0; i < popUpItems.length; i++) {
+  // 인덱스가 2번일 때
+  // 인덱스가 4번일 때
+  if (i % 2 === 0 && i <= 4 && i > 0) {
+    // popUpItems
+    console.log(i);
+    // <!--todo: img tag를 넣어줄 부분-->
+    popUpItems[i].innerHTML = img();
+    // img 태그 src로 넣어준 부분 => 크기를 조절해야 함
+    setSize(popUpItems[i].firstElementChild, '50px', '50px');
+    if (i / 2 === 1) {
+      console.dir(popUpItems[i]);
+      popUpItems[i].href = 'https://www.notion.so/e-jieun-265effdb10cb4a47a248cbf8bfc18445';
+      popUpItems[i].firstElementChild.src = "/img/svg/notion-icon.svg";
+    } else {
+      console.dir(popUpItems[i]);
+      popUpItems[i].href = 'https://github.com/e-jieun';
+      popUpItems[i].firstElementChild.src = "/img/svg/github-icon.svg";
     }
   }
+}
 
 // *pop-up 적용해줄 부분
 // todo: click event -> projOneChildLastChild
 popUp.classList.add('display-none');
 let isStatus;
 projOneChildLastChild.addEventListener('click', makePopUp);
-function makePopUp(){
+
+function makePopUp() {
   isStatus = true;
-  if(isStatus === true){
+  if (isStatus === true) {
     console.log('make pop-up');
     popUp.classList.remove('display-none');
     // isStatus = false;
@@ -182,18 +189,18 @@ xBtn.innerHTML = xBtnChild();
 console.log(xBtn);
 
 const xBtnChildArr = Array.from(xBtn.children);
-    console.log(xBtnChildArr);
+console.log(xBtnChildArr);
 
-    let deg = 45;
-    // x만들어 줄 부분
-    xBtnChildArr.forEach((elem, index) => {
-      setSize(elem, '30px', '1px');
-      elem.classList.add('x-bg');
-      index = index === 0 ? elem.style.transform = `rotate(${deg}deg)` : elem.style.transform =
-      `rotate(-${deg}deg)`;
-    });
+let deg = 45;
+// x만들어 줄 부분
+xBtnChildArr.forEach((elem, index) => {
+  setSize(elem, '30px', '1px');
+  elem.classList.add('x-bg');
+  index = index === 0 ? elem.style.transform = `rotate(${deg}deg)` : elem.style.transform =
+    `rotate(-${deg}deg)`;
+});
 
-    xBtn.addEventListener('click', () => {
-      console.log(projOne.lastElementChild);
-      popUp.classList.add('display-none');
-    });
+xBtn.addEventListener('click', () => {
+  console.log(projOne.lastElementChild);
+  popUp.classList.add('display-none');
+});
