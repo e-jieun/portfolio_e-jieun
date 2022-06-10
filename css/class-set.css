@@ -1,4 +1,4 @@
-.none{
+.none {
   display: none;
 }
 
@@ -9,12 +9,27 @@
 .bg-color {
   background-color: #fff;
 }
-.stroke-font{
+
+.stroke-font {
   -webkit-text-stroke: 1px #fff;
 }
-.circle{
+
+.circle {
   border-radius: 50%;
 }
-.select-font{
+
+.select-font {
   color: blue;
+}
+
+.popup-bg {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.x-bg {
+  background-color: #fff;
+}
+
+.display-none {
+  display: none;
 }
