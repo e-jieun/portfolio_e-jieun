@@ -1,4 +1,4 @@
-export const colorObj = {
+const colorObj = {
   colorBk: `#000`,
   colorC4: `#c4c4c4`,
   color33: `#333`, 

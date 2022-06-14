@@ -1,1 +1,3 @@
-export const hun = 100;
+let hun = 100;
+
+export default hun;
