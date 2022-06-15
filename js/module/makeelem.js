@@ -1,5 +1,5 @@
-const makeElem = (tagName, id = '') => {
-  const makeElem = `<${tagName} id="${id}"></${tagName}>`;
+const makeElem = (tagName, id = '', textContent = '') => {
+  const makeElem = `<${tagName} id="${id}">${textContent}</${tagName}>`;
   return makeElem;
 }
 
