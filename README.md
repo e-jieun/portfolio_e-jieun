@@ -1,6 +1,16 @@
 # portfolio_e-jieun
 
 ## 레이아웃 구성에 따른 마크업 포인트
+
+## design
+- Typography
+- Montserrat
+- https://fonts.google.com/specimen/Montserrat?query=monts
+
+## used img files
+- shakahand.svg
+- wave.svg
+
 ## code
 > 인트로 페이지
 - [ ] 동그라미의 애니메이션 움직임을 어떻게 서퍼처럼 표현할 것인지 고안 => animate를 우선 사용해보고 자연스러운 움직임을 구현해보자
