@@ -117,3 +117,11 @@ qnaDataArr.forEach(elem => {
   makePage(qna, 'ul');
 });
 // makePage();
+// *li 만들어 줄 부분
+const qnaCon = Array.from(qna.children);
+console.log(qnaCon);
+
+qnaCon.forEach(elem => {
+
+})
+
