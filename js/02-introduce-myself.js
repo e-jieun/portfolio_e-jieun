@@ -118,10 +118,9 @@ qnaDataArr.forEach(elem => {
 });
 // makePage();
 // *li 만들어 줄 부분
-const qnaCon = Array.from(qna.children);
+const qnaCon = qna.children;
 console.log(qnaCon);
 
-qnaCon.forEach(elem => {
-
-})
-
+qnaCon.forEach((elem, index) => {
+  elem.setAttribute('data-qna', qnaDataArr[index]);
+});
