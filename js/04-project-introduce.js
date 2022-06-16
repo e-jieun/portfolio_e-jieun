@@ -37,9 +37,11 @@ projPageArr.forEach(elem => {
 const pages = document.getElementsByTagName('article');
 const pagesArr = Array.from(pages);
 pagesArr.forEach((elem, index) => {
-  elem.style.padding = `${hun/2}px`
+  elem.style.padding = `${hun/2}px`;
+  projPageModule(pages[index]);
 });
-projPageModule(pages[0]);
-projPageModule(pages[1]);
-projPageModule(pages[2]);
-projPageModule(pages[3]);
+
+// projPageModule(pages[0]);
+// projPageModule(pages[1]);
+// projPageModule(pages[2]);
+// projPageModule(pages[3]);
