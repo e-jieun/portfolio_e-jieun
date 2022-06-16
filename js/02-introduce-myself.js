@@ -30,7 +30,7 @@ myselfChildArr.forEach((elem, index) => {
 
 // *레이아웃 구분을 위해 섹션별 보더값을 적용, section 넓이값 적용
 const section = Array.from(myselfPage.children);
-console.log(section);
+// console.log(section);
 
 section.forEach(elem => {
   elem.classList.add('border-bk');
@@ -71,7 +71,7 @@ const myselfFont = document.getElementById('myself-font');
 makePage(myselfFont, 'h1');
 // console.log(myselfFont);
 const myselfFontH1 = myselfFont.firstElementChild;
-console.log(myselfFontH1);
+// console.log(myselfFontH1);
 myselfFontH1.innerHTML = `<div>안녕하세요</div>
 <div>더 나은 서비스 흐름을 만들기 위해
 <span>새로운 시도</span>를 멈추지 않는</div>
@@ -97,7 +97,7 @@ myselfFontH1.innerHTML = `<div>안녕하세요</div>
 // *fontExplain
 // *div > div*2
 const fontExplain = document.getElementById('font-explain');
-console.log(fontExplain);
+// console.log(fontExplain);
 fontExplain.innerHTML = `${makeElem('div', 'explain-box', `${makeElem('div', '', 'Lorem, ipsum dolor.')}${makeElem('div', '', `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat nulla fugit sequi, ut placeat vitae?
 Quasi perferendis recusandae facilis eaque vero omnis eum, iusto architecto voluptates. Ex sint aperiam sed.
 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla aspernatur facilis ratione a culpa dolorem
@@ -106,7 +106,7 @@ blanditiis quas nisi quia quae. Porro maxime amet tenetur dolorum saepe delectus
 
 // *qna
 const qna = myselfPage.lastElementChild;
-console.log(qna);
+// console.log(qna);
 
 const qnaDataArr = [1, 2, 3];
 const qTextArr = ['1.', '2.', '3.'];
@@ -125,7 +125,7 @@ qna.style.gridTemplateRows = '2fr 2fr 2fr';
 // makePage();
 // todo: ul data-qna = qnaDataArr[index];
 const qnaCon = Array.from(qna.children);
-console.log(qnaCon);
+// console.log(qnaCon);
 qnaCon.forEach((elem, index) => {
   elem.setAttribute('data-qna', qnaDataArr[index]);
   setSize(elem, `${hun}vw`, ``);
@@ -135,13 +135,13 @@ qnaCon.forEach((elem, index) => {
   
   // todo: 계단식으로 구조를 변경해줄 부분
   if(index === 0){
-    console.log(elem);
+    // console.log(elem);
     setDisplay(elem, 'flex', 'center', 'flex-start');
   } else if(index === 1){
-    console.log(elem);
+    // console.log(elem);
     setDisplay(elem, 'flex', 'center', 'center');
   } else{
-    console.log(elem);
+    // console.log(elem);
     setDisplay(elem, 'flex', 'center', 'flex-end');
   }
   
@@ -153,7 +153,7 @@ qnaCon.forEach((elem, index) => {
   
   // *ul > div > li*2(li태그)
   const textItems = Array.from(textBox.children);
-  console.log(textItems);
+  // console.log(textItems);
   textItems.forEach(elem => {elem.style.listStyleType = `none`;});
 
 
