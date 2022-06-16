@@ -109,18 +109,57 @@ const qna = myselfPage.lastElementChild;
 console.log(qna);
 
 const qnaDataArr = [1, 2, 3];
-const qTextArr = ['', '', ''];
-const aTextArr = ['a1', 'a2', 'a3'];
+const qTextArr = ['1.', '2.', '3.'];
+const aTextArr = ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatem.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatem.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatem.'];
 
-// *qna  3개 만들어주기 (ul > li*2)*3
+
+// todo: 3개 만들어주기 (ul > li*2)*3
 qnaDataArr.forEach(elem => {
   makePage(qna, 'ul');
 });
-// makePage();
-// *li 만들어 줄 부분
-const qnaCon = qna.children;
-console.log(qnaCon);
+// todo: ul을 그리드로 높이값을 정해주기
+setDisplay(qna, 'grid');
+qna.style.gridTemplateRows = '2fr 2fr 2fr';
 
+
+// makePage();
+// todo: ul data-qna = qnaDataArr[index];
+const qnaCon = Array.from(qna.children);
+console.log(qnaCon);
 qnaCon.forEach((elem, index) => {
   elem.setAttribute('data-qna', qnaDataArr[index]);
+  setSize(elem, `${hun}vw`, ``);
+  elem.classList.add('border-bk');
+  // todo: ul마다 각각 > div > li*2
+  elem.innerHTML = `${makeElem('div', '', `${makeElem('li', '', `${qTextArr[index]}`)}${makeElem('li', '', `${aTextArr[index]}`)}`)}`;
+  
+  // todo: 계단식으로 구조를 변경해줄 부분
+  if(index === 0){
+    console.log(elem);
+    setDisplay(elem, 'flex', 'center', 'flex-start');
+  } else if(index === 1){
+    console.log(elem);
+    setDisplay(elem, 'flex', 'center', 'center');
+  } else{
+    console.log(elem);
+    setDisplay(elem, 'flex', 'center', 'flex-end');
+  }
+  
+  // *ul >div
+  const textBox = elem.firstElementChild;
+  // console.log(textBox);
+  textBox.classList.add('border-bk');
+  setSize(textBox, `${elem.offsetWidth/3}px`, '');
+  
+  // *ul > div > li*2(li태그)
+  const textItems = Array.from(textBox.children);
+  console.log(textItems);
+  textItems.forEach(elem => {elem.style.listStyleType = `none`;});
+
+
 });
+// console.log(qna);
+
+
+
+
