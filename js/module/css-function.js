@@ -32,3 +32,9 @@ export const setPosition = (elem, position, top = null, bottom = null, left = nu
     elem.style.zIndex = zIndex;
   }
 }
+
+export const borderBk = (elem, px = 1, style = 'solid', color = '#000') => {
+  elem.style.border = `${px}px ${style} ${color}`; 
+}
+
+export default borderBk;
