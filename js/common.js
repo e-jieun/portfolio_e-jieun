@@ -14,6 +14,7 @@ console.log(root);
 
 // *root style
 // todo: overflowX: hidden; => 가로 overflow를 컨트롤
-root.style.overflowX = `hidden`;
-setDisplay(root, `grid`);
+// todo: border-box를 만들어주기
+// root.style.overflowX = `hidden`;
+// setDisplay(root, `grid`);
 // root.style.fontFamily = `'Roboto Slab', serif`;
