@@ -21,7 +21,7 @@ const introPage = document.getElementById('intro');
 
 setSize(introPage, `${hun}vw`, `${hun}vh`);
 introPage.classList.add('border-bk');
-setDisplay(introPage, 'flex', 'center', 'spave-between', 'column');
+setDisplay(introPage, 'flex', 'center', 'space-between', 'column');
 // introPage.style.gridTemplateRows = '1fr 1fr';
 
 // todo: introPage의 자식으로 두개의 div를 자식요소로 붙여줘야 함
