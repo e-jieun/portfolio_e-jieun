@@ -11,7 +11,7 @@ import hun from "./module/reset.js";
 import makeCanvas from "./module/makecanvas.js";
 
 const projPageModule = (page) => {
-  console.log('hi');
+  // console.log('hi');
 
   // *title, contents, link
   // 반복문으로 만들어서 돌려주면 문자열에 넣어줄 부분
@@ -20,13 +20,13 @@ const projPageModule = (page) => {
   projSectionArr.forEach((elem, index) => {
     makeSection += `${makeElem('div',`${projSectionArr[index]}`)}`;
   })
-  console.log(makeSection);
+  // console.log(makeSection);
   page.innerHTML = `${makeSection}`;
-  console.log(page);
+  // console.log(page);
 
   // *title
   const projTitle = page.firstElementChild;
-  console.log(projTitle);
+  // console.log(projTitle);
 
   // *title>div*2
   const titleTextArr = ['Lorem, ipsum dolor.', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo, atque.'];
@@ -36,31 +36,31 @@ const projPageModule = (page) => {
 
   // *contents
   const projContents = page.firstElementChild.nextElementSibling;
-  console.log(projContents);
+  // console.log(projContents);
   setDisplay(projContents, 'flex');
 
   // *contents>img
   makePage(projContents, 'img');
-  console.log(projContents.children);
+  // console.log(projContents.children);
   const projThumnail = projContents.firstElementChild;
   projThumnail.src = './img/보라도라 포트폴리오 썸네일 이미지.jpg'
   setSize(projThumnail, `${hun/2}vw`, 'inherit');
   // *contents>div
   makePage(projContents, 'div');
   const projExplainText = projContents.lastElementChild;
-  console.log(projExplainText);
+  // console.log(projExplainText);
   projExplainText.textContent = `${titleTextArr[1]}`;
 
 
 
   // *link
   const projLink = page.lastElementChild;
-  console.log(projLink);
+  // console.log(projLink);
   setDisplay(projLink, 'flex', '', 'space-between');
 
   // *link > div*2
   projLink.innerHTML = `${makeElem('div', 'link')}${makeElem('div', 'page-number')}`;
-  console.log(projLink.children);
+  // console.log(projLink.children);
 
   // *link > div[0] > a*2
   const anchorCon = projLink.firstElementChild;
@@ -70,19 +70,19 @@ const projPageModule = (page) => {
   hrefArr.forEach((elem, index) => {
     makeAnchor += `${makeElem('a', '', `${aName[index]}`)}`;
   })
-  console.log(makeAnchor);
+  // console.log(makeAnchor);
   anchorCon.innerHTML = makeAnchor;
 
   // *link > div[1] => #page-number
   const pageNumCon = projLink.lastElementChild;
-  console.log(pageNumCon);
+  // console.log(pageNumCon);
   // pageNumCon.innerHTML = 
   let pageNumItemArr = [1, 2, 3, 4];
   let makeNumItem = '';
   pageNumItemArr.forEach((elem, index) => {
     makeNumItem += `${makeElem('li', '', `${pageNumItemArr[index]}`)}`;
   })
-  console.log(makeNumItem);
+  // console.log(makeNumItem);
   pageNumCon.innerHTML = makeNumItem;
 
 };
