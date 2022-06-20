@@ -1,10 +1,10 @@
 const colorObj = {
   colorBk: `#000`,
-  colorC4: `#c4c4c4`,
-  color33: `#333`, 
-  colorNa: '#3773A5',
-  colorFf: `#fff`,
-  colorSb: `#BAD8F2`
+  colorLb: `#e8f2fb`,
+  colorGb: `#bbd8f2`, 
+  colorSb: '#bad8f2',
+  colorFf: `#ffffff`,
+  colorNa: `#3773a5`
 }
 
 export default colorObj;
