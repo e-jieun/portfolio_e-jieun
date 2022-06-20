@@ -40,16 +40,19 @@ const makeWaterBg = () => {
   const randomNum = (min = 0, max) => {
     return Math.floor(Math.random() * (max - min) + min);
   }
-  // ?물 배경이 로드 될 때마다
-  waterBg.addEventListener('wheel', () => {
+  // ?물 배경이 아래에 fixed로 고정되어 있음, 패럴랙스로 사용하기 위해서
+  window.addEventListener('wheel', () => {
     // ?물방울이 생기도록 요소가 랜덤의 숫자로 반복해서 자식요소로 덧붙여지도록 해준다
     // ?요소마다 크기를 정해주고
     // ?짝수는 stroke, 홀수는 fill로 채워준다
     // ?그리고 요소마다 간격을 두로 animate()로 움직임을 부여해준다
-    console.log('loaded');
-    console.log(randomNum(1, 50));
+    // console.log('loaded');
+    // console.log(randomNum(1, 50));
+    // *물방울들을 정렬
+    setDisplay(waterBg, 'flex', 'space-around', 'flex-end');
 
-    
+    // *waterBg에 물방울이 될 요소들을 자식요소로 넣어줌
+    waterBg.innerHTML += `${makeBubble(2, 'div', '')}`;    
   })
 }
 
