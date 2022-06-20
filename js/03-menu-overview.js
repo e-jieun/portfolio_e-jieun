@@ -9,6 +9,7 @@ import makePage from "./module/makepage.js";
 import makeElem from "./module/makeelem.js"
 import hun from "./module/reset.js";
 import makeCanvas from "./module/makecanvas.js";
+import colorObj from "./module/color.js";
 
 const root = document.getElementById('root');
 // *03-menu-overview page 만들어 줄 부분
@@ -20,10 +21,10 @@ const overviewPage = document.getElementById('menu-overview');
 // console.log(overviewPage);
 setSize(overviewPage, `${hun}vw`, `${hun}vh`);
 borderBk(overviewPage);
+overviewPage.style.color = `${colorObj.colorFf}`;
 
 // todo: overviewSection sizing
-setDisplay(overviewPage, 'flex', 'center', 'space-between');
-
+setDisplay(overviewPage, 'flex', 'center', 'center');
 
 // *div data-section = index*2
 overviewPage.innerHTML = `${makeElem('div')}${makeElem('div')}`;
@@ -33,12 +34,12 @@ const overviewSection = Array.from(overviewPage.children);
 // todo: set data-section = index+1;
 overviewSection.forEach((elem, index) => {
   borderBk(elem);
-  setSize(elem, `${hun/2}vw`, 'inherit');
+  setSize(elem, `45vw`, 'inherit');
   if (index === 0) {
     index += 1;
     elem.setAttribute('data-section', index);
     // makeElem('div', 'project-stroke', 'Project');
-    makeCanvas(elem, 'project-stroke', 200, 800);
+    makePage(elem, 'div', 'project-stroke');
   } else {
     index += 1;
     elem.setAttribute('data-section', index);
@@ -52,26 +53,23 @@ const projText = document.getElementById('project-stroke');
 borderBk(projText);
 // console.dir(projText);
 
-// projText.width = ``;
-// if (projText.getContext) {
-  // ?getContext() 메서드는 렌더링 컨텍스트 타입을 지정하는 하나의 파라메터를 가집니다. 본 튜토리얼에서 다루고 있는 2D 그래픽의 경우, CanvasRenderingContext2D (en-US)을 얻기위해 "2d"로 지정합니다.
-  const context = projText.getContext('2d');
-  context.font = '2rem sans';
-  context.strokeText('PROJECT', 0, 100);
-  // ?회전하는 부분 => Math.PI는 원주율이다, 원주율을 계산해서 회전을 시키는 .rotate()라는 메서드를 사용해서 만든다
-  // ?https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate
-  context.rotate(-90 * Math.PI / 180); //pi가 원주율이고 90을 원주율로 곱해서 / 180도로 나눔 ==> 그러면 각도가 이동을 해야한다
-  // console.log(context);
+// *bigTxtCon
+const bigTxtCon = overviewPage.firstElementChild;
+console.log(bigTxtCon);
+bigTxtCon.innerHTML = makeElem('div', '', 'PROJECT');
 
-  // x, y, width, height
-  // context.fillRect(10, 10, 20, 20);
-  // translate(x, y); => move
-  // context.translate(150, 75);
-  // context.rotate(Math.PI / 2);
-  // context.translate(-150, -75);
-// }
-// projText.style.transform = `rotate(${hun/10*9}deg)`;
-// setDisplay(projText, 'inline-block');
+const bigTxt = bigTxtCon.firstElementChild;
+console.log(bigTxt);
+bigTxt.style.transform = `rotate(-90deg)`;
+bigTxt.style.fontSize = '15rem';
+bigTxt.style.fontWeight = '800';
+bigTxt.style.position = 'relative';
+bigTxt.style.bottom = `-55vh`;
+bigTxt.style.left = '-20vh';
+
+// bigTxt.style.overflow = `hidden`;
+bigTxt.classList.add('stroke-font');
+
 
 // *menu con -> overviewPage.children[1];
 const overviewMenuCon = overviewPage.lastElementChild;
@@ -87,7 +85,7 @@ const projNameArr = ['프로젝트 보라도라', '프로젝트 다닥', 'The Vo
 
 // *li*8 추가
 let li = '';
-for(let i = 0; i < 8; i++){
+for (let i = 0; i < 8; i++) {
   li += makeElem('li');
 }
 // console.log(li);
@@ -107,11 +105,11 @@ menuTextItem.forEach((elem, index) => {
   elem.style.textAlign = 'end';
   elem.style.listStyleType = 'none';
   // todo: text 넣어주기
-  let dataValue = index/2;
-  if(index%2 === 0){
+  let dataValue = index / 2;
+  if (index % 2 === 0) {
     elem.textContent = projNameArr[dataValue];
-  } else{
-    elem.setAttribute('data-wave', Math.round(dataValue));  // 홀수인 경우 나머지 값이 아니다 보니 dataValue가 소수점으로 결과값이 나와서 0.5이상이면 보다 높은 정수값으로 반올림이 되므로 Math.round()를 사용해서 data-wave 값을 줬다
-    elem.style.borderTop = '1px solid black';
+  } else {
+    elem.setAttribute('data-wave', Math.round(dataValue)); // 홀수인 경우 나머지 값이 아니다 보니 dataValue가 소수점으로 결과값이 나와서 0.5이상이면 보다 높은 정수값으로 반올림이 되므로 Math.round()를 사용해서 data-wave 값을 줬다
+    elem.style.borderTop = `1px solid ${colorObj.colorFf}`;
   }
 });
