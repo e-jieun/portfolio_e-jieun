@@ -8,6 +8,7 @@ import {
 } from "./module/css-function.js";
 import hun from "./module/reset.js";
 import makeElem from "./module/makeelem.js";
+import colorObj from "./module/color.js";
 
 const root = document.getElementById('root');
 
@@ -20,7 +21,7 @@ const introPage = document.getElementById('intro');
 // console.log(introPage); //잘 생성됨
 
 setSize(introPage, `${hun}vw`, `${hun}vh`);
-introPage.classList.add('border-bk');
+// introPage.classList.add('border-bk');
 setDisplay(introPage, 'flex', 'center', 'space-between', 'column');
 // introPage.style.gridTemplateRows = '1fr 1fr';
 
@@ -32,31 +33,40 @@ const menuCon = introPage.firstElementChild;
 // *menuCon children
 menuCon.innerHTML = `${makeElem('div')}${makeElem('div')}`;
 setDisplay(menuCon, 'flex', 'flex-end', 'flex-start');
+setPosition(menuCon, 'relative', '30vh', '', '10vh');
 
 const menuConText = menuCon.children;
 const menuConTextArr = Array.from(menuConText);
+menuCon.style.opacity = 0;
 // console.log(menuConTextArr);
 
 // !자바스크립트에서는 백슬래시를 사용하고 특수문자를 사용할 수가 있다, html과는 다른 방식, c언어 방식인건가
 const textArr = ['Shaka!', `Let\'s Start Surf!`];
 menuConTextArr.forEach((elem, index) => {
   // console.log(elem);
-  elem.classList.add('border-bk');
+  // elem.classList.add('border-bk');
   // todo: shaka img 태그 추가할 부분
-  if(index === 0){
+  if (index === 0) {
     elem.innerHTML = makeElem('img', 'shaka');
-    const shaka = document.getElementById('shaka');    
+    const shaka = document.getElementById('shaka');
     shaka.src = './img/svg/shakahand.svg';
     setSize(elem, '10vmax', '10vmax');
-  // todo: 인사말 text 태그 추가할 부분
-  } else{
+    // todo: 인사말 text 태그 추가할 부분
+  } else {
     makePage(elem, 'div');
     makePage(elem, 'div');
     setDisplay(elem, 'grid');
-    const shakaText = elem.firstElementChild;
-    shakaText.textContent = textArr[0];
-    const letText = elem.lastElementChild;
-    letText.textContent = textArr[1];
+
+    const textChild = Array.from(elem.children);
+    textChild.forEach((elem, index) => {
+      index === 0 ? elem.textContent = textArr[index] : elem.textContent = textArr[index];
+      elem.style.fontSize = `2rem`;
+      elem.style.color = `${colorObj.colorNa}`;
+    });
+    // const shakaText = elem.firstElementChild;
+    // shakaText.textContent = textArr[0];
+    // const letText = elem.lastElementChild;
+    // letText.textContent = textArr[1];
   }
 });
 
@@ -68,7 +78,7 @@ const waveCon = introPage.lastElementChild;
 const introPageChild = Array.from(introPage.children);
 // console.log(introPageChild);
 introPageChild.forEach(elem => {
-  elem.classList.toggle('border-bk');
+  // elem.classList.toggle('border-bk');
   setSize(elem, 'inherit', '50%');
 })
 
@@ -78,38 +88,111 @@ setDisplay(waveCon, 'flex', 'center', 'end', 'column');
 
 // *circle
 const introCircle = waveCon.firstElementChild;
-setBgColor(introCircle, '#ccc');
+setBgColor(introCircle, `${colorObj.colorSb}`);
 setSize(introCircle, `${hun/2}px`, `${hun/2}px`);
+// todo: 동그라미 움직여줄 부분
 introCircle.classList.add('circle');
 // *circle의 첫 시작 포인트
-setPosition(introCircle, 'absolute', '', '120px', '', '90px');
+setPosition(introCircle, 'absolute', '', '15vh', '', '15vh');
+// 바다 아래로 내려가도록 해주는 부분
+introCircle.style.zIndex = -1;
+
 // todo: animate()를 활용해서 움직임 넣어주기
+// ?움직임이 자연스럽지가 않음
+// 1. 움직임을 넣어줄 부분을 만들어주고
+const ballMoving = [{
+    transform: `translate(0, 0)`
+  },
+  {
+    transform: `translate(-60vw, 13vh)`
+  },
+  {
+    // transform: `translate(-60vw, vh)`
+  },
+  {
+    transform: `translate(-60vw, 5vh)`
+  }
+];
+const diveinBall = [
+  {
+    transform: `translate(-60vw, 5vh)`
+
+  },
+  {
+    transform: `translate(-60vw, 20vh)`
+  }
+];
+// 2. 타이밍을 제어할 부분을 만들어 준다
+const ballTiming = {
+  duration: 2000,
+  // ?이걸 실행한 다음에 그 위치에 멈추도록 하는 방법은 없을까...?
+  // !마지막 실행위치에 고정되게 해주는 방법
+  // !css에서는 animation-fill-mode: forwards, js에서는 fill 속성을 forwards로 실행하면 된다
+  fill: `forwards`
+}
+const diving = {
+  duration: 500,
+  fill: `forwards`,
+  easing: `ease-out`
+}
+// 3. 식별한 부분에 이벤트를 달고 위에서 만들어 준 것을 매개변수로 넣어준다
+window.addEventListener('mouseover', function () {
+  // introCircle.animate(ballMoving, ballTiming);
+  // let firstAnimate = setTimeout(() => {
+  //   introCircle.animate(ballMoving, ballTiming);
+
+  // }, 1000);
+  // let secondAnimate = setTimeout(() => {
+  //   menuCon.style.opacity = 1;
+  // }, 1000);
+  // !promise()를 활용해보자
+  // ?공 움직임이 실행되고 나서 ball 모양이 특정 지점에 도달한 다음에 나타나도록 하기 위해서
+  // *동그라미가 미끄러져 내려가는 부분
+  const first = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        introCircle.animate(ballMoving, ballTiming);
+        resolve();
+      }, 1000);
+    })
+  }
+  // promise를 리턴
+  // *동그라미가 특정 지점에 도달했을 때 텍스트가 나타나도록 해주는 부분
+  first().then(() => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        menuCon.style.opacity = 1;
+        menuCon.style.transition = `1s`;
+        resolve();
+      }, 1000);
+    })
+  })
+  // *동그라미가 물로 다이빙
+  .then(() => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        introCircle.animate(diveinBall, diving);
+        menuCon.style.opacity = 0;
+        menuCon.style.transition = `1s`;
+        resolve();
+      }, 1000);
+    })
+  })
+  // *동그라미가 사라지도록 해주는 부분
+  .then(() => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        introCircle.style.opacity = 0;
+        resolve();
+      }, 500);
+    })
+  })
+});
+
 
 // todo: 이 부분은 오목한 부분에 도달했을 때 적용해주기, 오목한 부분에 도달하면 글씨도 적용해주기
-// const bounce = [
-//   {bottom: '120px', right: '90px'},
-//   {bottom: '0px', right: '90px'},
-//   {bottom: '120px', right: '90px'}
-// ];
-// const bounceTime = {
-//   duration: 500,
-//   iterations: Infinity
-// }
-// introCircle.addEventListener('mouseover', () => {
-//   introCircle.animate(bounce, bounceTime);
-// });
 
-// window.addEventListener('click', () => {
-//   // console.log(window.clientX);
-//   console.dir(window.page);
-// })
 
-// 
-// const moveDown = [
-
-// ]
-
-// console.log(introCircle);
 
 // *waveBg
 const waveBg = waveCon.lastElementChild;
