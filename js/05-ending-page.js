@@ -33,7 +33,7 @@ const endingSection = {
 // *#ending-title
 makePage(endingPage, 'div', `${endingSection.sectionOne}`);
 const endingTitle = endingPage.firstElementChild;
-console.log(endingTitle);
+// console.log(endingTitle);
 setDisplay(endingPage, 'grid');
 endingPage.style.gridTemplateRows = '1fr 4fr 1fr';
 
@@ -43,34 +43,34 @@ for(let i = 0; i < 2; i++){
   makeTitleItem += `${makeElem('div')}`;
 }
 endingTitle.innerHTML = makeTitleItem;
-console.log(endingTitle.children);
+// console.log(endingTitle.children);
 setDisplay(endingTitle, 'flex', '', 'space-between');
 
 // *div[0]
 const endingTitleText = endingTitle.firstElementChild;
-console.log(endingTitleText);
+// console.log(endingTitleText);
 endingTitleText.textContent = 'Web Designer E-JIEUN';
 
 // *div[1] > div#top-btn+img#shakahand
 const topBtn = endingTitle.lastElementChild;
-console.log(topBtn);
+// console.log(topBtn);
 topBtn.innerHTML = `${makeElem('div', 'top-btn', 'Surfing Again')}${makeElem('img', 'shakahand')}`;
-console.log(topBtn);
+// console.log(topBtn);
 
 // *#top-btn
 const topBtnItem = document.getElementById('top-btn');
-console.log(topBtnItem);
+// console.log(topBtnItem);
 
 // *#shakahand
 const topShakahand = document.getElementById('shakahand');
-console.log(topShakahand);
+// console.log(topShakahand);
 topShakahand.src = './img/svg/shakahand.svg';
 setSize(topShakahand, `${hun/10*8}px`, `${hun/10*8}px`);
 
 // *#ending-inform
 makePage(endingPage, 'div', `${endingSection.sectionTwo}`);
 const endingInform = endingTitle.nextElementSibling;
-console.log(endingInform);
+// console.log(endingInform);
 
 // *#ending-inform > ul*3
 let makeUl = '';
@@ -78,11 +78,11 @@ for(let i = 0; i < 3; i++){
   makeUl += `${makeElem('ul')}`;
 }
 endingInform.innerHTML = makeUl;
-console.log(endingInform);
+// console.log(endingInform);
 
 const informCon = endingInform.children;
 const informConArr = Array.from(endingInform.children);
-console.log(informCon);
+// console.log(informCon);
 // *ul > li
 // *#ul[0] > li+a href=notion
 // *#ul[1] > li+a href=github
@@ -117,14 +117,14 @@ informConArr.forEach((elem, index) => {
 const contact = informConArr.at(-1);
 const removeA = contact.lastElementChild;
 const makeImg = document.createElement('img');
-console.log(removeA);
+// console.log(removeA);
 const contactItem = contact.replaceChild(makeImg, removeA);
-console.log(contact);
+// console.log(contact);
 
 // *#ending-msg
 makePage(endingPage, 'div', `${endingSection.sectionThree}`);
 const endingMsg = endingPage.lastElementChild;
-console.log(endingMsg);
+// console.log(endingMsg);
 
 // *#ending-msg > div
 makePage(endingMsg, 'div');
@@ -135,7 +135,7 @@ setDisplay(endingMsg, 'flex', '', 'flex-end');
 // *#ending-page.children
 const endingChildArr = Array.from(endingPage.children);
 // console.log(endingPage.children);
-console.log(endingChildArr);
+// console.log(endingChildArr);
 endingChildArr.forEach(elem => {
   elem.style.width = `${hun}vw`;
 });
