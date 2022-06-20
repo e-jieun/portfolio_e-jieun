@@ -12,6 +12,11 @@
 
 .stroke-font {
   -webkit-text-stroke: 1px #fff;
+  color: transparent;
+}
+
+.fill-font {
+  color: #fff;
 }
 
 .circle {
