@@ -64,10 +64,6 @@ menuConTextArr.forEach((elem, index) => {
       elem.style.fontSize = `2rem`;
       elem.style.color = `${colorObj.colorNa}`;
     });
-    // const shakaText = elem.firstElementChild;
-    // shakaText.textContent = textArr[0];
-    // const letText = elem.lastElementChild;
-    // letText.textContent = textArr[1];
   }
 });
 
@@ -137,14 +133,6 @@ const diving = {
 let mouseoverValue = 0;
 window.addEventListener('mouseover', function () {
   mouseoverValue++;
-  // introCircle.animate(ballMoving, ballTiming);
-  // let firstAnimate = setTimeout(() => {
-    //   introCircle.animate(ballMoving, ballTiming);
-
-    // }, 1000);
-    // let secondAnimate = setTimeout(() => {
-      //   menuCon.style.opacity = 1;
-      // }, 1000);
       // ?공 움직임이 실행되고 나서 ball 모양이 특정 지점에 도달한 다음에 나타나도록 하기 위해서
       // !promise()를 활용해보자
       // *동그라미가 미끄러져 내려가는 부분
