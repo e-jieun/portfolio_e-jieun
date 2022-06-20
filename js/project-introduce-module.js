@@ -13,6 +13,7 @@ import makeCanvas from "./module/makecanvas.js";
 const projPageModule = (page) => {
   // console.log('hi');
 
+  setDisplay(page, 'flex', 'center', 'space-around', 'column');
   // *title, contents, link
   // 반복문으로 만들어서 돌려주면 문자열에 넣어줄 부분
   let projSectionArr = ['title', 'contents', 'link'];
@@ -24,20 +25,31 @@ const projPageModule = (page) => {
   page.innerHTML = `${makeSection}`;
   // console.log(page);
 
+  // *page.children
+  const pageCon = Array.from(page.children);
+  console.log(pageCon);
+  pageCon.map(elem => {
+    elem.style.width = `${hun/10*9}vw`;
+  });
+
   // *title
   const projTitle = page.firstElementChild;
   // console.log(projTitle);
 
   // *title>div*2
-  const titleTextArr = ['Lorem, ipsum dolor.', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo, atque.'];
+  const titleTextArr = ['프로젝트 보라도라', `프로젝트 보라도라는 일본 드라마 감상으로 일본어를 학습할 수 있는 드라마 스트리밍 서비스 입니다`];
   projTitle.innerHTML = `${makeElem('div', '', `${titleTextArr[0]}`)}${makeElem('div', '', `${titleTextArr[1]}`)}`;
-  setSize(projTitle, `${hun}vw`);
   setDisplay(projTitle, 'flex', '', 'space-between');
+
+  // *title>div:nth-child(1)
+  const projTitleTextOne = projTitle.firstElementChild;
+  console.log(projTitleTextOne);
+  projTitleTextOne.style.fontSize = '1.5rem';
 
   // *contents
   const projContents = page.firstElementChild.nextElementSibling;
   // console.log(projContents);
-  setDisplay(projContents, 'flex');
+  setDisplay(projContents, 'flex', 'center', 'space-between');
 
   // *contents>img
   makePage(projContents, 'img');
@@ -50,8 +62,7 @@ const projPageModule = (page) => {
   const projExplainText = projContents.lastElementChild;
   // console.log(projExplainText);
   projExplainText.textContent = `${titleTextArr[1]}`;
-
-
+  setSize(projExplainText, '30vw');
 
   // *link
   const projLink = page.lastElementChild;
@@ -64,6 +75,8 @@ const projPageModule = (page) => {
 
   // *link > div[0] > a*2
   const anchorCon = projLink.firstElementChild;
+  setSize(anchorCon, `${hun/5}vw`);
+  setDisplay(anchorCon, 'flex', '', 'space-around');
   const aName = ['Process', 'Github'];
   const hrefArr = ['', ''];
   let makeAnchor = '';
@@ -80,11 +93,10 @@ const projPageModule = (page) => {
   let pageNumItemArr = [1, 2, 3, 4];
   let makeNumItem = '';
   pageNumItemArr.forEach((elem, index) => {
-    makeNumItem += `${makeElem('li', '', `${pageNumItemArr[index]}`)}`;
+    makeNumItem += `${makeElem('li', `${pageNumItemArr[index]}`, `${pageNumItemArr[index]}`)}`;
   })
   // console.log(makeNumItem);
   pageNumCon.innerHTML = makeNumItem;
-
 };
 
 export default projPageModule;
