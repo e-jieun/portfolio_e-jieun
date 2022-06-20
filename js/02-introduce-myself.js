@@ -1,6 +1,7 @@
 import {
   setDisplay,
-  setSize
+  setSize,
+  setPosition
 } from "./module/css-function.js";
 import makePage from "./module/makepage.js";
 import makeElem from "./module/makeelem.js"
@@ -75,10 +76,11 @@ const myselfFont = document.getElementById('myself-font');
 makePage(myselfFont, 'h1');
 // console.log(myselfFont);
 const myselfFontH1 = myselfFont.firstElementChild;
+
 // console.log(myselfFontH1);
 myselfFontH1.innerHTML = `<div>안녕하세요</div>
-<div>더 나은 서비스 흐름을 만들기 위해
-<span>새로운 시도</span>를 멈추지 않는</div>
+<div>더 나은 서비스 흐름을 만들기 위해</div>
+<div><span>새로운 시도</span>를 멈추지 않는</div>
 <div>웹 디자이너 <span>이지은</span>입니다</div>`;
 
 // todo: span을 제외한 부분에 classList .stroke font 적용 혹은 반대로
@@ -86,7 +88,7 @@ const strokeText = Array.from(myselfFontH1.children);
 console.log(strokeText);
 strokeText.map(elem => {
   elem.classList.add('stroke-font');
-  elem.style.fontSize = `3rem`;
+  elem.style.fontSize = `6rem`;
   elem.style.fontWeight = '800';
 });
 
@@ -116,6 +118,14 @@ const fontExplain = document.getElementById('font-explain');
 // console.log(fontExplain);
 fontExplain.innerHTML = `${makeElem('div', 'explain-box', `${makeElem('div', '', `${fontExplainTextObj.textOne}`)}${makeElem('div', '', `${fontExplainTextObj.textTwo}`)}`)}`;
 fontExplain.style.color = `${colorObj.colorFf}`;
+setDisplay(fontExplain, `flex`, ``, `flex-end`);
+setPosition(fontExplain, `relative`, `${-hun/5}vh`, ``, `${hun/20}vw`, ``);
+
+// 
+const explainTxtCon = fontExplain.firstElementChild;
+console.log(explainTxtCon);
+setDisplay(explainTxtCon, `flex`, `flex-start`, `flex-end`, `column`);
+setSize(explainTxtCon, `${hun/5}vw`);
 
 
 // *qna
@@ -123,14 +133,14 @@ const qna = myselfPage.lastElementChild;
 // console.log(qna);
 
 const qnaDataArr = [1, 2, 3];
-const qTextArr = ['1.', '2.', '3.'];
+const qTextArr = ['제가 생각하는 디자인은 이렇습니다', '일하는 것에 있어 중요하게 생각하는 부분', '개인적으로 흥미를 가지고 있는 부분'];
 const aTextArr = ['Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatem.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatem.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatem.'];
 
 
 // todo: 3개 만들어주기 (ul > li*2)*3
 qnaDataArr.forEach(elem => {
   makePage(qna, 'ul');
-  
+
 });
 // todo: ul을 그리드로 높이값을 정해주기
 setDisplay(qna, 'grid');
@@ -143,7 +153,7 @@ const qnaCon = Array.from(qna.children);
 // console.log(qnaCon);
 qnaCon.forEach((elem, index) => {
   elem.setAttribute('data-qna', qnaDataArr[index]);
-  setSize(elem, `${hun}vw`, ``);
+  setSize(elem, `${hun/10*9}vw`, ``);
   elem.classList.add('border-bk');
   // todo: ul마다 각각 > div > li*2
   elem.innerHTML = `${makeElem('div', '', `${makeElem('li', '', `${qTextArr[index]}`)}${makeElem('li', '', `${aTextArr[index]}`)}`)}`;
@@ -164,7 +174,7 @@ qnaCon.forEach((elem, index) => {
   const textBox = elem.firstElementChild;
   // console.log(textBox);
   textBox.classList.add('border-bk');
-  setSize(textBox, `${elem.offsetWidth/3}px`, '');
+  setSize(textBox, `${elem.offsetWidth/3}px`, `${elem.offsetHeight/4}vh`);
 
   // *ul > div > li*2(li태그)
   const textItems = Array.from(textBox.children);
@@ -172,4 +182,12 @@ qnaCon.forEach((elem, index) => {
   textItems.forEach(elem => {
     elem.style.listStyleType = `none`;
   });
+});
+
+// *myselfPage.children
+const myselfCon = Array.from(myselfPage.children);
+console.log(myselfCon);
+myselfCon.map(elem => {
+  elem.style.width = `${hun/10*9}vw`;
+  elem.style.color = `${colorObj.colorFf}`;
 });
