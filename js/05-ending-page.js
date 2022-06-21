@@ -8,6 +8,7 @@ import {
 } from "./module/css-function.js";
 import hun from "./module/reset.js";
 import makeElem from "./module/makeelem.js";
+import colorObj from "./module/color.js";
 
 const root = document.getElementById('root');
 
@@ -21,6 +22,7 @@ const endingPage = document.getElementById('ending-page');
 setSize(endingPage, `${hun}vw`, `${hun}vh`);
 endingPage.classList.add('border-bk');
 endingPage.style.padding = `${hun/5}px`;
+endingPage.style.color = `${colorObj.colorFf}`;
 
 // *#ending-page > div*3
 const endingSection = {
@@ -39,7 +41,7 @@ endingPage.style.gridTemplateRows = '1fr 4fr 1fr';
 
 // *#ending-title > div*2
 let makeTitleItem = '';
-for(let i = 0; i < 2; i++){
+for (let i = 0; i < 2; i++) {
   makeTitleItem += `${makeElem('div')}`;
 }
 endingTitle.innerHTML = makeTitleItem;
@@ -50,6 +52,7 @@ setDisplay(endingTitle, 'flex', '', 'space-between');
 const endingTitleText = endingTitle.firstElementChild;
 // console.log(endingTitleText);
 endingTitleText.textContent = 'Web Designer E-JIEUN';
+endingTitleText.style.fontSize = `5rem`;
 
 // *div[1] > div#top-btn+img#shakahand
 const topBtn = endingTitle.lastElementChild;
@@ -67,6 +70,22 @@ const topShakahand = document.getElementById('shakahand');
 topShakahand.src = './img/svg/shakahand.svg';
 setSize(topShakahand, `${hun/10*8}px`, `${hun/10*8}px`);
 
+// *#shakahand -> topBtn
+const shakehand = [
+  {transform: `rotate(${hun/10}deg)`},
+  {transform: `rotate(${-hun/10}deg)`}
+]
+const shaketiming = {
+  duration: 2000,
+  iterations: 2
+}
+topShakahand.addEventListener('mouseover', () => {
+
+});
+topShakahand.addEventListener('click', () => {
+  window.scrollTo(0, 0);
+});
+
 // *#ending-inform
 makePage(endingPage, 'div', `${endingSection.sectionTwo}`);
 const endingInform = endingTitle.nextElementSibling;
@@ -74,7 +93,7 @@ const endingInform = endingTitle.nextElementSibling;
 
 // *#ending-inform > ul*3
 let makeUl = '';
-for(let i = 0; i < 3; i++){
+for (let i = 0; i < 3; i++) {
   makeUl += `${makeElem('ul')}`;
 }
 endingInform.innerHTML = makeUl;
@@ -89,26 +108,42 @@ const informConArr = Array.from(endingInform.children);
 const addli = informConArr.map(elem => elem.innerHTML = `${makeElem('li')}${makeElem('a')}`);
 
 // todo: textContent informConArr > li
-const informTitleArr = {
+const informTitleObj = {
   titleOne: 'Personal Page',
   titleTwo: 'My Github Page',
   titleThree: 'If You Wanna Contact Me'
 }
-const anchorHrefArr = {
+const anchorHrefObj = {
   hrefOne: 'https://www.notion.so/Shaka-265effdb10cb4a47a248cbf8bfc18445',
-  hrefTwo: 'https://github.com/e-jieun'
+  hrefTwo: 'https://github.com/e-jieun',
+  hrefThree: 'liz950827@gmail.com'
 }
 informConArr.forEach((elem, index) => {
-  if(index === 0){
-    elem.firstElementChild.textContent = informTitleArr.titleOne;
-    elem.lastElementChild.href = anchorHrefArr.hrefOne;
-    elem.lastElementChild.textContent = anchorHrefArr.hrefOne;
-  } else if(index === 1){
-    elem.firstElementChild.textContent = informTitleArr.titleTwo;
-    elem.lastElementChild.href = anchorHrefArr.hrefTwo;
-    elem.lastElementChild.textContent = anchorHrefArr.hrefTwo;
-  } else{
-    elem.firstElementChild.textContent = informTitleArr.titleThree;
+  elem.firstElementChild.style.fontSize = '2rem';
+  elem.style.listStyleType = 'none';
+  elem.lastElementChild.style.borderTop = `1px solid ${colorObj.colorFf}`;
+  setPosition(elem, 'relative', '', '', '-10vh', '');
+  setSize(elem, `${hun/2}vw`);
+  // *personal page
+  if (index === 0) {
+    elem.firstElementChild.style.fontSize = '2rem';
+    elem.firstElementChild.textContent = informTitleObj.titleOne;
+    elem.lastElementChild.href = anchorHrefObj.hrefOne;
+    elem.lastElementChild.style.paddingTop = `${hun/10}px`;
+    elem.lastElementChild.textContent = anchorHrefObj.hrefOne;
+    setPosition(elem.lastElementChild, 'relative');
+    // *my github page
+  } else if (index === 1) {
+    elem.firstElementChild.textContent = informTitleObj.titleTwo;
+    elem.lastElementChild.href = anchorHrefObj.hrefTwo;
+    elem.lastElementChild.style.paddingTop = `${hun/10}px`;
+    elem.lastElementChild.textContent = anchorHrefObj.hrefTwo;
+    setPosition(elem.lastElementChild, 'relative');
+    // *if you wanna contact me
+  } else {
+    elem.firstElementChild.textContent = informTitleObj.titleThree;
+    elem.lastElementChild.textContent = anchorHrefObj.hrefThree;
+    console.log(elem.lastElementChild);
   }
 })
 
@@ -129,7 +164,8 @@ const endingMsg = endingPage.lastElementChild;
 // *#ending-msg > div
 makePage(endingMsg, 'div');
 const endingMsgItem = endingMsg.firstElementChild;
-endingMsgItem.innerHTML= '지금까지 이지은을<br>서핑해주셔서 감사합니다.';
+endingMsgItem.innerHTML = '지금까지 이지은을<br>서핑해주셔서 감사합니다';
+endingMsgItem.style.fontSize = `2rem`;
 setDisplay(endingMsg, 'flex', '', 'flex-end');
 
 // *#ending-page.children
@@ -137,5 +173,8 @@ const endingChildArr = Array.from(endingPage.children);
 // console.log(endingPage.children);
 // console.log(endingChildArr);
 endingChildArr.forEach(elem => {
-  elem.style.width = `${hun}vw`;
+  elem.style.width = `${hun/10*9}vw`;
 });
+
+const contactCon = endingPage.children[1];
+console.log(contactCon);
