@@ -7,6 +7,7 @@ import {
 } from "./module/css-function.js";
 import makePage from "./module/makepage.js";
 import makeElem from "./module/makeelem.js"
+import makeBubble from "./module/makebubble.js"
 import hun from "./module/reset.js";
 import makeCanvas from "./module/makecanvas.js";
 
@@ -37,7 +38,7 @@ const projPageModuleFour = (page) => {
   // console.log(projTitle);
 
   // *title>div*2
-  const titleTextArr = ['프로젝트 보라도라', `프로젝트 보라도라는 일본 드라마 감상으로 일본어를 학습할 수 있는 드라마 스트리밍 서비스 입니다`];
+  const titleTextArr = [`개인 프로젝트`, ``, `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).`];
   projTitle.innerHTML = `${makeElem('div', '', `${titleTextArr[0]}`)}${makeElem('div', '', `${titleTextArr[1]}`)}`;
   setDisplay(projTitle, 'flex', '', 'space-between');
 
@@ -51,26 +52,20 @@ const projPageModuleFour = (page) => {
   // console.log(projContents);
   setDisplay(projContents, 'flex', 'center', 'space-between');
 
-  // *contents>img
-  makePage(projContents, 'img');
+  // *contents>img 
+  projContents.innerHTML = makeBubble(4, 'div', `${titleTextArr[2]}`);
+  // makePage(projContents, 'img');
   // console.log(projContents.children);
-  const projThumnail = projContents.firstElementChild;
-  projThumnail.src = './img/보라도라 포트폴리오 썸네일 이미지.jpg'
-  setSize(projThumnail, `${hun/2}vw`, 'inherit');
-  // *contents>div
-  makePage(projContents, 'div');
-  const projExplainText = projContents.lastElementChild;
-  // console.log(projExplainText);
-  projExplainText.textContent = `${titleTextArr[1]}`;
-  setSize(projExplainText, '30vw');
-
+  const projText = projContents.children;
+  setSize(projText, `${hun/5}vw`, 'inherit');
+  
   // *link
   const projLink = page.lastElementChild;
   // console.log(projLink);
   setDisplay(projLink, 'flex', '', 'space-between');
 
   // *link > div*2
-  projLink.innerHTML = `${makeElem('div', 'link')}${makeElem('div', 'page-number')}`;
+  projLink.innerHTML = `${makeElem('div', 'link')}`;
   // console.log(projLink.children);
 
   // *link > div[0] > a*2

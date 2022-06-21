@@ -72,7 +72,7 @@ const projPageModuleTwo = (page) => {
   setDisplay(projLink, 'flex', '', 'space-between');
 
   // *link > div*2
-  projLink.innerHTML = `${makeElem('div', 'link')}${makeElem('div', 'page-number')}`;
+  projLink.innerHTML = `${makeElem('div', 'link')}`;
   // console.log(projLink.children);
 
   // *link > div[0] > a*2
