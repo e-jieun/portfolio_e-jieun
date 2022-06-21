@@ -22,7 +22,7 @@ const root = document.getElementById('root');
 
 makePage(root, 'section', 'project-container');
 
-const projCon= document.getElementById('project-container');
+const projCon = document.getElementById('project-container');
 console.log(projCon);
 
 for (let i = 0; i < 4; i++) {
@@ -55,46 +55,56 @@ pagesArr.forEach((elem, index) => {
 
 // *link nav
 // ------------------------------------------------------------------
-  // *link
-  makePage(projCon, 'nav', 'project-link');
+// *link
+makePage(projCon, 'nav', 'project-link');
 
-  // *link > div[1] => #page-number
-  const pageNumCon = projCon.lastElementChild;
-  console.log(pageNumCon);
-  setDisplay(pageNumCon, 'grid');
+// *link > div[1] => #page-number
+const pageNumCon = projCon.lastElementChild;
+console.log(pageNumCon);
+setDisplay(pageNumCon, 'grid');
 
-  // pageNumCon.innerHTML = 
-  let pageNumItemArr = ['01', '02', '03', '04'];
-  let makeNumItem = '';
-  pageNumItemArr.forEach((elem, index) => {
-    makeNumItem += `${makeElem('a', ``, `${pageNumItemArr[index]}`)}`;
-  })
-  // console.log(makeNumItem);
-  pageNumCon.innerHTML = makeNumItem;
+// pageNumCon.innerHTML = 
+let pageNumItemArr = ['01', '02', '03', '04'];
+let makeNumItem = '';
+pageNumItemArr.forEach((elem, index) => {
+  makeNumItem += `${makeElem('a', ``, `${pageNumItemArr[index]}`)}`;
+})
+// console.log(makeNumItem);
+pageNumCon.innerHTML = makeNumItem;
 
-  const pageNum = Array.from(pageNumCon.children);
-  console.log(pageNum);
-  pageNum.forEach((elem, index) => {
-    elem.href = `#num-${index+1}`;
-    elem.style.fontSize = `5rem`;
-    elem.classList.add('stroke-font');
-    elem.style.fontWeight = `${hun*9}`;
-    // todo: 밑줄 없애주고, 클릭할 때마다 색도 변하지 않도록 해주기
-    // todo: 클릭 이벤트 달아주고 선택된 페이지에 따라서 크기와 정렬 부분 제어하기
-    console.log(elem);
-  }) 
-  setPosition(pageNumCon, 'fixed', '', '0', '', '0');
+const pageNum = Array.from(pageNumCon.children);
+console.log(pageNum);
+pageNum.forEach((elem, index) => {
+  elem.href = `#num-${index+1}`;
+  elem.setAttribute('data-select', `${index+1}`);
+  elem.style.fontSize = `2rem`;
+  elem.classList.add('stroke-font');
+  elem.style.fontWeight = `${hun*9}`;
+  elem.style.textDecoration = 'none';
+  // todo: 밑줄 없애주고, 클릭할 때마다 색도 변하지 않도록 해주기
+  // todo: 클릭 이벤트 달아주고 선택된 페이지에 따라서 크기와 정렬 부분 제어하기
+  console.log(elem);
+})
+// *3700px보다 pageY값이 낮으면 보이지 않도록 해줄 부분 => 프로젝트 페이지에서만 페이지 이동을 위해 필요한 부분이므로
+window.addEventListener('wheel', (event) => {
+  // console.log(event.pageY);
+  // console.log(root.offsetHeight);
+  if (event.pageY < 3700 || event.pageY > 7500) {
+    setDisplay(pageNumCon, 'none');
+  } else {
+    setDisplay(pageNumCon, 'grid');
+    setPosition(pageNumCon, 'fixed', '', '0', '', '0');
+  }
+})
+
 // ------------------------------------------------------------------
 
 // *hash로 페이지 이동하도록 해주는 부분
-window.addEventListener('hashchange', function() {
+window.addEventListener('hashchange', function () {
   const urlTest = location.href;
   // console.log("href :" + urlTest);
   // console.log("hash :" + hashTest);
   // console.log("hash :" + hashTest.substring(1));
-})
-window.addEventListener('wheel', () => {
-  console.log();
 })
 
 
@@ -103,3 +113,12 @@ projPageModuleOne(pages[0]);
 projPageModuleTwo(pages[1]);
 projPageModuleThree(pages[2]);
 projPageModuleFour(pages[3]);
+
+// *img
+const projImg = Array.from(projCon.getElementsByTagName('img'));
+console.log(projImg);
+projImg.map(elem => {
+  elem.addEventListener('mouseover', () => {
+    elem.classList.toggle('img-change');
+  })
+})
