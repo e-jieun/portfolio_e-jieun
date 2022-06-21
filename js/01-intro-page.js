@@ -183,8 +183,8 @@ window.addEventListener('mouseover', function () {
       .then(() => {
         return new Promise((resolve) => {
           setTimeout(() => {
-            console.log(this);
-            this.addEventListener('click', () => {
+            // console.log(this);
+            waveCon.addEventListener('click', () => {
               // ?계속 이 부분에서 걸려서 다음으로 스크롤이 되지 않음
               // !변수 선언으로 해결
               let scrollValue = true;
