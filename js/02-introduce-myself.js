@@ -88,8 +88,7 @@ const strokeText = Array.from(myselfFontH1.children);
 console.log(strokeText);
 strokeText.map(elem => {
   elem.classList.add('stroke-font');
-  elem.style.fontSize = `6rem`;
-  elem.style.fontWeight = '800';
+  elem.setAttribute('style',`font-size: 5.5rem; font-weight: ${hun*8};`);
 });
 
 const fillText = document.querySelectorAll('span');
@@ -119,7 +118,8 @@ const fontExplain = document.getElementById('font-explain');
 fontExplain.innerHTML = `${makeElem('div', 'explain-box', `${makeElem('div', '', `${fontExplainTextObj.textOne}`)}${makeElem('div', '', `${fontExplainTextObj.textTwo}`)}`)}`;
 fontExplain.style.color = `${colorObj.colorFf}`;
 setDisplay(fontExplain, `flex`, ``, `flex-end`);
-setPosition(fontExplain, `relative`, `${-hun/5}vh`, ``, `${hun/20}vw`, ``);
+console.dir();
+setPosition(fontExplain, `relative`, ``, `20vh`, ``, ``);
 
 // 
 const explainTxtCon = fontExplain.firstElementChild;
