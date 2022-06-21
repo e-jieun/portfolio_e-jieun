@@ -38,3 +38,8 @@
 .display-none {
   visibility: hidden;
 }
+
+.img-change{
+  filter: contrast(50%);
+  filter: saturate(0%);
+}
