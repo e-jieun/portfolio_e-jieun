@@ -87,28 +87,6 @@ const projPageModuleOne = (page) => {
   })
   // console.log(makeAnchor);
   anchorCon.innerHTML = makeAnchor;
-
-  // *link > div[1] => #page-number
-  const pageNumCon = projLink.lastElementChild;
-  // console.log(pageNumCon);
-  // pageNumCon.innerHTML = 
-  let pageNumItemArr = [1, 2, 3, 4];
-  let makeNumItem = '';
-  pageNumItemArr.forEach((elem, index) => {
-    makeNumItem += `${makeElem('a', ``, `${pageNumItemArr[index]}`)}`;
-  })
-  // console.log(makeNumItem);
-  pageNumCon.innerHTML = makeNumItem;
-
-  const pageNum = Array.from(pageNumCon.children);
-  console.log(pageNum);
-  pageNum.forEach((elem, index) => {
-    elem.href = `num-${index+1}`;
-    console.log(elem);
-  }) 
-
-  // todo: 선택하면 페이지 이동을 하도록 만들어줘야 한다
-  // todo: 이미지도 마우스오버하면 constrast와 saturation을 조절해줘야 함
 };
 
 export default projPageModuleOne;

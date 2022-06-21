@@ -85,25 +85,6 @@ const projPageModuleFour = (page) => {
   })
   // console.log(makeAnchor);
   anchorCon.innerHTML = makeAnchor;
-
-  // *link > div[1] => #page-number
-  const pageNumCon = projLink.lastElementChild;
-  // console.log(pageNumCon);
-  // pageNumCon.innerHTML = 
-  let pageNumItemArr = [1, 2, 3, 4];
-  let makeNumItem = '';
-  pageNumItemArr.forEach((elem, index) => {
-    makeNumItem += `${makeElem('a', ``, `${pageNumItemArr[index]}`)}`;
-  })
-  // console.log(makeNumItem);
-  pageNumCon.innerHTML = makeNumItem;
-
-  const pageNum = Array.from(pageNumCon.children);
-  console.log(pageNum);
-  pageNum.forEach((elem, index) => {
-    elem.href = `num-${index+1}`;
-    console.log(elem);
-  })
 };
 
 export default projPageModuleFour;
