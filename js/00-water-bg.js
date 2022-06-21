@@ -87,14 +87,15 @@ const makeWaterBg = () => {
     });
     bubbleItem.forEach((elem, index) => {
       // ?테스트 했던 것보다 위치가 잘 안 움직여진다, 계속 바닥에만 물방울이 가로로 움직여지는 부분 해결하기 
+      elem.style.border = '5px solid #fff';
       if (index % 2 === 0) {
-        elem.style.opacity = 0.2;
+        elem.style.opacity = 0.1;
         elem.animate(bubbleMoving, bubbleTiming);
       } else if (index % 3 === 0) {
-        elem.style.opacity = 0.5;
+        elem.style.opacity = 0.2;
         elem.animate(bubbleMovingReverse, bubbleTiming);
       } else {
-        elem.style.opacity = 0.7;
+        elem.style.opacity = 0.3;
         elem.animate(bubbleMovingHorizonal, bubbleTiming);
       }
     });
