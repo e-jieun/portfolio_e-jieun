@@ -10,7 +10,7 @@ import makeElem from "./module/makeelem.js"
 import hun from "./module/reset.js";
 import makeCanvas from "./module/makecanvas.js";
 
-const projPageModule = (page) => {
+const projPageModuleOne = (page) => {
   // console.log('hi');
 
   setDisplay(page, 'flex', 'center', 'space-around', 'column');
@@ -37,7 +37,9 @@ const projPageModule = (page) => {
   // console.log(projTitle);
 
   // *title>div*2
-  const titleTextArr = ['프로젝트 보라도라', `프로젝트 보라도라는 일본 드라마 감상으로 일본어를 학습할 수 있는 드라마 스트리밍 서비스 입니다`];
+  const titleTextArr = ['프로젝트 보라도라', `프로젝트 보라도라는 일본 드라마 감상으로 일본어를 학습할 수 있는 드라마 스트리밍 서비스 입니다`, `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget commodo, augue dis habitant viverra odio amet. Nec, amet, nisi hendrerit pellentesque nisl neque etiam laoreet morbi. Diam tempus placerat consectetur et. Ultrices vel ultrices condimentum sed nisi, blandit. Sed nunc fringilla senectus nunc sed. 
+
+  Consectetur ultricies lorem posuere ullamcorper morbi nulla. Tellus nunc felis tortor dolor elementum mauris morbi. Auctor amet ut nullam dolor nunc. Faucibus dictum cras a nunc, vel, non sed elementum. Enim neque pharetra, pellentesque id ultrices convallis urna diam, urna. Mattis lectus fringilla ut semper nam dignissim in. Facilisis cras mauris in vitae eu mi ultrices aenean cursus. Ac nunc ut ut turpis.`];
   projTitle.innerHTML = `${makeElem('div', '', `${titleTextArr[0]}`)}${makeElem('div', '', `${titleTextArr[1]}`)}`;
   setDisplay(projTitle, 'flex', '', 'space-between');
 
@@ -61,7 +63,7 @@ const projPageModule = (page) => {
   makePage(projContents, 'div');
   const projExplainText = projContents.lastElementChild;
   // console.log(projExplainText);
-  projExplainText.textContent = `${titleTextArr[1]}`;
+  projExplainText.textContent = `${titleTextArr[2]}`;
   setSize(projExplainText, '30vw');
 
   // *link
@@ -93,10 +95,20 @@ const projPageModule = (page) => {
   let pageNumItemArr = [1, 2, 3, 4];
   let makeNumItem = '';
   pageNumItemArr.forEach((elem, index) => {
-    makeNumItem += `${makeElem('li', `${pageNumItemArr[index]}`, `${pageNumItemArr[index]}`)}`;
+    makeNumItem += `${makeElem('a', ``, `${pageNumItemArr[index]}`)}`;
   })
   // console.log(makeNumItem);
   pageNumCon.innerHTML = makeNumItem;
+
+  const pageNum = Array.from(pageNumCon.children);
+  console.log(pageNum);
+  pageNum.forEach((elem, index) => {
+    elem.href = `num-${index+1}`;
+    console.log(elem);
+  }) 
+
+  // todo: 선택하면 페이지 이동을 하도록 만들어줘야 한다
+  // todo: 이미지도 마우스오버하면 constrast와 saturation을 조절해줘야 함
 };
 
-export default projPageModule;
+export default projPageModuleOne;
