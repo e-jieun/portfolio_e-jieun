@@ -15,4 +15,4 @@ console.log(root);
 // *root style
 root.style.boxSizing = 'border-box';
 root.style.overflow = 'hidden';
-// root.style.fontFamily = `'Roboto Slab', serif`;
+root.style.fontFamily = `'Montserrat', Noto Sans`;
