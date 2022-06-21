@@ -56,18 +56,14 @@ borderBk(projText);
 // *bigTxtCon
 const bigTxtCon = overviewPage.firstElementChild;
 console.log(bigTxtCon);
-bigTxtCon.innerHTML = makeElem('div', '', 'PROJECT');
 
+
+// *bigTxt
+bigTxtCon.innerHTML = makeElem('div', '', 'PROJECT');
 const bigTxt = bigTxtCon.firstElementChild;
 console.log(bigTxt);
-bigTxt.style.transform = `rotate(-90deg)`;
-bigTxt.style.fontSize = '15rem';
-bigTxt.style.fontWeight = '800';
-bigTxt.style.position = 'relative';
-bigTxt.style.bottom = `-55vh`;
-bigTxt.style.left = '-20vh';
-
-// bigTxt.style.overflow = `hidden`;
+bigTxt.setAttribute('style', `transform: rotate(${-hun/10*9}deg); font-size: 16rem; font-weight: ${hun*8}`);
+setPosition(bigTxt, 'relative', '', '-42vh', '-20vh', '');
 bigTxt.classList.add('stroke-font');
 
 
@@ -76,8 +72,14 @@ const overviewMenuCon = overviewPage.lastElementChild;
 // console.log(overviewMenuCon);
 
 // *div -> small text<ul>, menu text con<ul>을 감싸줄 부분들
-overviewMenuCon.innerHTML = `${makeElem('div', '', `${makeElem('ul', 'small-text', 'Project')}${makeElem('ul', 'menu-text')}`)}`;
+overviewMenuCon.innerHTML = `${makeElem('div', '', `${makeElem('ul', 'small-text', 'Project Overview')}${makeElem('ul', 'menu-text')}`)}`;
 // console.log(overviewMenuCon.children);
+
+// *#small-text
+const smallTxt = document.getElementById('small-text');
+console.log(smallTxt);
+smallTxt.style.textAlign = `center`;
+smallTxt.style.fontSize = `0.8rem`;
 
 // *ul > li
 const menuTextCon = document.getElementById('menu-text');
@@ -94,7 +96,7 @@ menuTextCon.innerHTML = li;
 
 // *li rowGap
 setSize(menuTextCon, `inherit`, `${hun/2}vh`);
-setDisplay(menuTextCon, 'grid', 'flex-end', 'flex-end');
+setDisplay(menuTextCon, 'flex', 'flex-end', 'space-around', 'column');
 borderBk(menuTextCon);
 
 // todo: 프로젝트명은 data-wave가 없는 곳에 들어감
@@ -102,14 +104,60 @@ const menuTextItem = Array.from(menuTextCon.children);
 // console.log(menuTextItem);
 menuTextItem.forEach((elem, index) => {
   // console.log(elem);
+  elem.style.fontSize = `0.8rem`;
+
   elem.style.textAlign = 'end';
   elem.style.listStyleType = 'none';
   // todo: text 넣어주기
   let dataValue = index / 2;
   if (index % 2 === 0) {
     elem.textContent = projNameArr[dataValue];
+    elem.setAttribute('data-wave', 0);
+    console.log(elem);
   } else {
     elem.setAttribute('data-wave', Math.round(dataValue)); // 홀수인 경우 나머지 값이 아니다 보니 dataValue가 소수점으로 결과값이 나와서 0.5이상이면 보다 높은 정수값으로 반올림이 되므로 Math.round()를 사용해서 data-wave 값을 줬다
+    setSize(elem, 'width', 'height');
     elem.style.borderTop = `1px solid ${colorObj.colorFf}`;
   }
+
 });
+console.log(menuTextItem);
+
+// todo: 마우스 오버하면 선이 늘어나도록 구성,
+// todo: 1. mouse over event
+
+const menuText = Array.from(menuTextCon.children);
+console.log(menuText); //0-7까지
+// innerHTML에 프로젝트명이 들어가 있다 => 짝수번 마다
+menuText.forEach((elem, index) => {
+  index % 2 === 0 ? elem.style.letterSpacing = `0.5rem` : elem.style.width = `${hun*elem.dataset.wave}px`;
+  // todo: 순서대로 잘 늘어났다, 그러나 정렬이 틀어졌고 텍스트 정렬도 갑자기 세로 정렬이 되버렸다
+  
+})
+// ? 왜 세로로 나오는 건지 잘 모르겠음
+
+// ? 한꺼번에 늘어나서 세부적인 조정이 필요하다
+// ? data-set을 이용해서 타겟만 효과 주기
+// ? borderTop이 없어지는 부분 왜 없어지는 것인지 해결하기
+// ? 없어지는 부분도 부분이지만 문제는 크기도 제어가 안 된다는 점... 각각 다르게 적용할 수 있는 방법을 찾아야 할 것 
+// ? 왜 언디파인드가 나오는가
+// console.log(elem);
+// elem.addEventListener('mouseover', (event) => {
+//   console.log(elem);
+// *0인 부분 => text 부분
+// todo: text는 사이에 간격이 늘어나야 한다
+//   if (event.target.dataset.wave === 0) {
+//     console.log(event.target.dataset.wave);
+//     console.log(elem.dataset.wave);
+//     console.log(elem.style.width);
+//     event.target.style.letterSpacing = `1rem`;
+//     event.target.style.transition = '1s';
+
+// todo: dataset이 0이 아닌 다른 값들 => 선이 늘어나는 부분
+// *1, 2, 3, 4 => 순서대로 borderTop을 갖고 있는 박스 부분 
+// ?다 dataset 값이 무엇인지는 잘 나온다
+//   } else {
+//     console.log(event.target);
+//     setSize(event.target, `${window.innerWidth/4}px`);
+//   }
+// });
