@@ -64,7 +64,7 @@ pagesArr.forEach((elem, index) => {
   setDisplay(pageNumCon, 'grid');
 
   // pageNumCon.innerHTML = 
-  let pageNumItemArr = [1, 2, 3, 4];
+  let pageNumItemArr = ['01', '02', '03', '04'];
   let makeNumItem = '';
   pageNumItemArr.forEach((elem, index) => {
     makeNumItem += `${makeElem('a', ``, `${pageNumItemArr[index]}`)}`;
@@ -76,7 +76,11 @@ pagesArr.forEach((elem, index) => {
   console.log(pageNum);
   pageNum.forEach((elem, index) => {
     elem.href = `#num-${index+1}`;
-    elem.style.fontSize = `3rem`;
+    elem.style.fontSize = `5rem`;
+    elem.classList.add('stroke-font');
+    elem.style.fontWeight = `${hun*9}`;
+    // todo: 밑줄 없애주고, 클릭할 때마다 색도 변하지 않도록 해주기
+    // todo: 클릭 이벤트 달아주고 선택된 페이지에 따라서 크기와 정렬 부분 제어하기
     console.log(elem);
   }) 
   setPosition(pageNumCon, 'fixed', '', '0', '', '0');
