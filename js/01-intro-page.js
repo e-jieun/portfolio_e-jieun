@@ -24,6 +24,8 @@ const introPage = document.getElementById('intro');
 setSize(introPage, `${hun}vw`, `${hun}vh`);
 // introPage.classList.add('border-bk');
 setDisplay(introPage, 'flex', 'center', 'space-between', 'column');
+introPage.style.overflow = 'hidden';
+
 // introPage.style.gridTemplateRows = '1fr 1fr';
 
 // todo: introPage의 자식으로 두개의 div를 자식요소로 붙여줘야 함
@@ -109,7 +111,6 @@ const ballMoving = [{
 ];
 const diveinBall = [{
     transform: `translate(-60vw, 5vh)`
-
   },
   {
     transform: `translate(-60vw, 20vh)`
@@ -133,16 +134,15 @@ const diving = {
 let mouseoverValue = 0;
 window.addEventListener('mouseover', function () {
   mouseoverValue++;
-      // ?공 움직임이 실행되고 나서 ball 모양이 특정 지점에 도달한 다음에 나타나도록 하기 위해서
-      // !promise()를 활용해보자
-      // *동그라미가 미끄러져 내려가는 부분
-      if (mouseoverValue === 1) {
-        
-        const first = () => {
-          return new Promise((resolve) => {
-            setTimeout(() => {
-              introCircle.animate(ballMoving, ballTiming);
-              resolve();
+  // ?공 움직임이 실행되고 나서 ball 모양이 특정 지점에 도달한 다음에 나타나도록 하기 위해서
+  // !promise()를 활용해보자
+  // *동그라미가 미끄러져 내려가는 부분
+  if (mouseoverValue === 1) {
+    const first = () => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          introCircle.animate(ballMoving, ballTiming);
+          resolve();
         }, 1000);
       })
     }
@@ -184,16 +184,18 @@ window.addEventListener('mouseover', function () {
         return new Promise((resolve) => {
           setTimeout(() => {
             // console.log(this);
-            waveCon.addEventListener('click', () => {
+            introPage.addEventListener('click', () => {
               // ?계속 이 부분에서 걸려서 다음으로 스크롤이 되지 않음
-              // !변수 선언으로 해결
+              // !변수로 해결
               let scrollValue = true;
-              if(scrollValue === true){
-                this.scrollTo({
-                  top: this.innerHeight,
+              if (scrollValue === true) {
+                window.scrollTo({
+                  top: window.innerHeight,
                   behavior: `smooth`
                 })
-                makeWaterBg();
+                // 배경을 보이도록 해줌
+                setSize(root, '', '');
+                makeWaterBg()
                 scrollValue = false;
               }
               resolve();
