@@ -56,8 +56,10 @@ const projPageModuleFour = (page) => {
   projContents.innerHTML = makeBubble(4, 'div', `${titleTextArr[2]}`);
   // makePage(projContents, 'img');
   // console.log(projContents.children);
-  const projText = projContents.children;
-  setSize(projText, `${hun/5}vw`, 'inherit');
+  const projText = Array.from(projContents.children);
+  projText.map(elem => setSize(elem, `${hun/5}vw`, 'inherit'));
+  
+
   
   // *link
   const projLink = page.lastElementChild;
