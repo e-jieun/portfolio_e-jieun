@@ -13,6 +13,7 @@ const root = document.getElementById('root');
 console.log(root);
 
 // *root style
+setSize(root, `${hun}vw`, `${hun}vh`);
 root.style.boxSizing = 'border-box';
 root.style.overflow = 'hidden';
 root.style.fontFamily = `'Montserrat', Noto Sans`;
