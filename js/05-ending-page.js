@@ -111,45 +111,43 @@ const informConArr = Array.from(endingInform.children);
 const addli = informConArr.map(elem => elem.innerHTML = `${makeElem('li')}${makeElem('a')}`);
 
 // todo: textContent informConArr > li
-const informTitleObj = {
-  titleOne: 'Personal Page',
-  titleTwo: 'My Github Page',
-  titleThree: 'If You Wanna Contact Me'
-}
+const informTitleArr = [
+  'Personal Page',
+  'My Github Page',
+  'If You Wanna Contact Me'
+]
 const anchorHrefArr = [
   'https://www.notion.so/Shaka-265effdb10cb4a47a248cbf8bfc18445',
   'https://github.com/e-jieun',
   'liz950827@gmail.com'
 ];
-
+// *inform link & inform title
+informConArr.forEach((elem, index) => {
+  setPosition(elem, 'relative', '', '',  `${-hun/10+2}vh`, '');
+  setSize(elem, `${hun/2}}vw`);
+})
+// *inform link
 const informLink = Array.from(endingPage.querySelectorAll('a'));
 informLink.forEach((elem, index) => {
   setPosition(elem, 'relative');
   setSize(elem, `${window.innerWidth/2}vw`);
-  elem.style.borderTop = `1px solid ${colorObj.colorFf}`;
   elem.setAttribute('data-link', index+1);
-  Number(elem.dataset.link) == index+1 ? elem.href = anchorHrefArr[index] : console.log('again');
-  Number(elem.dataset.link) == index+1 ? elem.textContent = anchorHrefArr[index] : console.log('again');
-
+  Number(elem.dataset.link) == index+1 ? elem.href = anchorHrefArr[index] : console.error('try again');
+  Number(elem.dataset.link) == index+1 ? elem.textContent = anchorHrefArr[index] : console.error('try again');
+  elem.style.textDecoration = 'none';
+  elem.setAttribute('style',`text-decoration: none; color: inherit;`)
 });
 
-informConArr.forEach((elem, index) => {
-  elem.firstElementChild.style.fontSize = '3vw';
-  elem.style.listStyleType = 'none';
-  setPosition(elem, 'relative', '', '', '-10vh', '');
-  setSize(elem, `${window.innerWidth/2}vw`);
-  // *personal page
-  if (index === 0) {
-    elem.firstElementChild.textContent = informTitleObj.titleOne;
-    // *my github page
-  } else if (index === 1) {
-    elem.firstElementChild.textContent = informTitleObj.titleTwo;
-    // *if you wanna contact me
-  } else {
-    elem.firstElementChild.textContent = informTitleObj.titleThree;
-    console.log(elem.lastElementChild);
-  }
-})
+// *inform title
+const informTitle = Array.from(endingInform.querySelectorAll('li'));
+console.log(informTitle);
+informTitle.forEach((elem, index) => {
+  elem.setAttribute('style',`list-style-type: none; font-size: 3vw;`)
+  elem.style.borderBottom = `1px solid ${colorObj.colorFf}`;
+  elem.setAttribute('data-title', index+1);
+  Number(elem.dataset.title) === index+1 ? elem.textContent = informTitleArr[index] : console.error('try again');
+  
+});
 
 // *#ending-msg
 makePage(endingPage, 'div', `${endingSection.sectionThree}`);
@@ -161,6 +159,7 @@ makePage(endingMsg, 'div');
 const endingMsgItem = endingMsg.firstElementChild;
 endingMsgItem.textContent = 'Thank you for surfing me';
 endingMsgItem.style.fontSize = `2vw`;
+endingMsgItem.setAttribute('style',`font-size: 2vw; font-weight: 100;`);
 setDisplay(endingMsg, 'flex', '', 'flex-end');
 
 // *#ending-page.children
