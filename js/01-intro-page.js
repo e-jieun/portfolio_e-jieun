@@ -190,11 +190,13 @@ window.addEventListener('mouseover', function () {
               let scrollValue = true;
               if (scrollValue === true) {
                 window.scrollTo({
+
                   top: window.innerHeight,
                   behavior: `smooth`
                 })
-                // 배경을 보이도록 해줌
+                // root의 사이즈가 자식요소에 맞춰지도로 빈 값을 넣어줌
                 setSize(root, '', '');
+                // 배경을 보이도록 해줌
                 makeWaterBg()
                 scrollValue = false;
               }
