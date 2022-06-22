@@ -52,16 +52,19 @@ setDisplay(endingTitle, 'flex', '', 'space-between');
 const endingTitleText = endingTitle.firstElementChild;
 // console.log(endingTitleText);
 endingTitleText.textContent = 'Web Designer E-JIEUN';
-endingTitleText.style.fontSize = `5rem`;
+endingTitleText.setAttribute('style',`font-size: 5vw; color: ${colorObj.colorSb}`);
+endingTitleText.style.fontSize = `5vw`;
 
 // *div[1] > div#top-btn+img#shakahand
 const topBtn = endingTitle.lastElementChild;
 // console.log(topBtn);
+setDisplay(topBtn, 'flex', 'center', 'space-around', 'column');
 topBtn.innerHTML = `${makeElem('div', 'top-btn', 'Surfing Again')}${makeElem('img', 'shakahand')}`;
 // console.log(topBtn);
 
 // *#top-btn
 const topBtnItem = document.getElementById('top-btn');
+topBtnItem.setAttribute('style',`margin: ${hun/10}px;`);
 // console.log(topBtnItem);
 
 // *#shakahand
@@ -113,48 +116,40 @@ const informTitleObj = {
   titleTwo: 'My Github Page',
   titleThree: 'If You Wanna Contact Me'
 }
-const anchorHrefObj = {
-  hrefOne: 'https://www.notion.so/Shaka-265effdb10cb4a47a248cbf8bfc18445',
-  hrefTwo: 'https://github.com/e-jieun',
-  hrefThree: 'liz950827@gmail.com'
-}
+const anchorHrefArr = [
+  'https://www.notion.so/Shaka-265effdb10cb4a47a248cbf8bfc18445',
+  'https://github.com/e-jieun',
+  'liz950827@gmail.com'
+];
+
+const informLink = Array.from(endingPage.querySelectorAll('a'));
+informLink.forEach((elem, index) => {
+  setPosition(elem, 'relative');
+  setSize(elem, `${window.innerWidth/2}vw`);
+  elem.style.borderTop = `1px solid ${colorObj.colorFf}`;
+  elem.setAttribute('data-link', index+1);
+  Number(elem.dataset.link) == index+1 ? elem.href = anchorHrefArr[index] : console.log('again');
+  Number(elem.dataset.link) == index+1 ? elem.textContent = anchorHrefArr[index] : console.log('again');
+
+});
+
 informConArr.forEach((elem, index) => {
-  elem.firstElementChild.style.fontSize = '2rem';
+  elem.firstElementChild.style.fontSize = '3vw';
   elem.style.listStyleType = 'none';
-  elem.lastElementChild.style.borderTop = `1px solid ${colorObj.colorFf}`;
   setPosition(elem, 'relative', '', '', '-10vh', '');
-  setSize(elem, `${hun/2}vw`);
+  setSize(elem, `${window.innerWidth/2}vw`);
   // *personal page
   if (index === 0) {
-    elem.firstElementChild.style.fontSize = '2rem';
     elem.firstElementChild.textContent = informTitleObj.titleOne;
-    elem.lastElementChild.href = anchorHrefObj.hrefOne;
-    elem.lastElementChild.style.paddingTop = `${hun/10}px`;
-    elem.lastElementChild.textContent = anchorHrefObj.hrefOne;
-    setPosition(elem.lastElementChild, 'relative');
     // *my github page
   } else if (index === 1) {
     elem.firstElementChild.textContent = informTitleObj.titleTwo;
-    elem.lastElementChild.href = anchorHrefObj.hrefTwo;
-    elem.lastElementChild.style.paddingTop = `${hun/10}px`;
-    elem.lastElementChild.textContent = anchorHrefObj.hrefTwo;
-    setPosition(elem.lastElementChild, 'relative');
     // *if you wanna contact me
   } else {
     elem.firstElementChild.textContent = informTitleObj.titleThree;
-    elem.lastElementChild.textContent = anchorHrefObj.hrefThree;
     console.log(elem.lastElementChild);
   }
 })
-
-// todo: .map()으로 공통 적용된 a태그를 지우고 마지막 요소로 img 추가해주기
-// *#ul[2] > li+img => email
-const contact = informConArr.at(-1);
-const removeA = contact.lastElementChild;
-const makeImg = document.createElement('img');
-// console.log(removeA);
-const contactItem = contact.replaceChild(makeImg, removeA);
-// console.log(contact);
 
 // *#ending-msg
 makePage(endingPage, 'div', `${endingSection.sectionThree}`);
@@ -164,8 +159,8 @@ const endingMsg = endingPage.lastElementChild;
 // *#ending-msg > div
 makePage(endingMsg, 'div');
 const endingMsgItem = endingMsg.firstElementChild;
-endingMsgItem.innerHTML = '지금까지 이지은을<br>서핑해주셔서 감사합니다';
-endingMsgItem.style.fontSize = `2rem`;
+endingMsgItem.textContent = 'Thank you for surfing me';
+endingMsgItem.style.fontSize = `2vw`;
 setDisplay(endingMsg, 'flex', '', 'flex-end');
 
 // *#ending-page.children
