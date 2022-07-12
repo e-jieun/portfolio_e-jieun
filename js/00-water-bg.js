@@ -26,98 +26,120 @@ const makeWaterBg = () => {
   setSize(waterBg, `${hun}vw`, `${hun*2}vh`);
   setPosition(waterBg, 'fixed', `0px`);
   waterBg.style.zIndex = -1;
+  waterBg.style.transition = '1s';
   waterBg.style.backgroundColor = `${colorObj.colorNa}`;
+  waterBg.style.opacity = 0;
+  // waterBg.style.opacity = 
+  // *배경색 점점 바뀌도록 해주는 부분
+  let opc = 0;
+  const bgchg = setInterval(() => {
+    opc += 0.1;
+    waterBg.style.opacity = opc;
+    function bgchged() {
+      waterBg.style.opacity === 1 ? clearInterval(bgchg) : console.log(waterBg.style.opacity);
+    }
+  }, 10);
   console.log(waterBg);
 
   // todo: 배경이 고정된 채로 인트로 페이지를 제외한 나머지 페이지에서 보여주려면...?
   // todo: 1. 우선 인트로 페이지가 끝나고나서 생성되어야 함 => 해결 인트로에서 모든 인터랙션이 종료된 후에 생성되도록 했다 -> 주석 처리해 둠
   // todo: 2. 물방울이 생기도록 요소가 랜덤의 숫자로  반복해서 생겨나도록 해야한다 -> waterBg가 인트로 페이지 이후에 로드 될 때
-    const bubbleGun = setInterval(() => {
-      let waterBgChild = ''
-      waterBgChild += `${makeBubble(2, 'div', '')}`;
-      waterBg.innerHTML = waterBgChild;
 
-      setDisplay(waterBg, 'flex', 'flex-end', 'space-around');
+  // !겹치지 않도록 해주는 것 꼭 해결하기, 반드시 해결하기
+  // !조건식하고, 랜덤으로 나오는 숫자가 문제임
+  const bubbleGun = setInterval(() => {
+    let waterBgChild = ''
+    waterBgChild += `${makeBubble(2, 'div', '')}`;
+    waterBg.innerHTML = waterBgChild;
 
-      // *bubble 요소를 랜덤 숫자만큼 덧붙여 줄 부분 => 랜덤 숫자만큼 만들어지면 너무 많아져서, 하나씩 만들어 준다
-      waterBg.innerHTML += `${makeBubble(5, 'div', '')}`;
+    setDisplay(waterBg, 'flex', 'flex-end', 'space-around');
 
-      // *animate
-      let bubbleX = randomNum(1, `${hun}`);
-      let bubbleY = randomNum(1, `${hun}`);
-      let bubbleX2 = randomNum(1, `${hun}`);
-      let bubbleY2 = randomNum(1, `${hun}`);
+    // *bubble 요소를 랜덤 숫자만큼 덧붙여 줄 부분 => 랜덤 숫자만큼 만들어지면 너무 많아져서, 하나씩 만들어 준다
+    waterBg.innerHTML += `${makeBubble(5, 'div', '')}`;
 
-      // ?물방울이 가로로 이동하는 것이 문제
-      const bubbleMoving = [{
-          transform: `translate(${bubbleX}vw, ${bubbleY}vh)`
-        },
-        {
-          transform: `translate(${bubbleX2}vw, ${bubbleY2}vh)`
-        },
-        {
-          transform: `translate(${bubbleX}vw, -100vh)`
-        }
-      ]
-      const bubbleMovingReverse = [{
-          transform: `translate(${bubbleX2}vw, ${bubbleY2}vh)`
-        },
-        {
-          transform: `translate(${bubbleX}vw, ${bubbleY}vh)`
-        },
-        {
-          transform: `translate(${bubbleX2}vw, -100vh)`
-        }
-      ]
-      const bubbleMovingHorizonal = [{
-          transform: `translate(${bubbleY2}vw, ${bubbleX2}vh)`
-        },
-        {
-          transform: `translate(${bubbleY}vw, ${bubbleX}vh)`
-        },
-        {
-          transform: `translate(${bubbleX}vw, -100vh)`
-        }
-      ]
+    // *animate
+    let bubbleX = randomNum(1, `${hun}`) === randomNum(1, `${hun}`)? randomNum(1, `${hun}`) : '';
+    console.log(bubbleX);
+    let bubbleY = randomNum(1, `${hun}`);
+    let bubbleX2 = randomNum(1, `${hun}`);
+    let bubbleY2 = randomNum(1, `${hun}`);
 
-      const bubbleTiming = {
-        duration: 5000,
-        // fill: 'forwards',
-        iterations: Infinity
+    // ?물방울이 가로로 이동하는 것이 문제
+    const bubbleMoving = [{
+        transform: `translate(${bubbleX}vw, ${bubbleY}vh)`
+      },
+      {
+        transform: `translate(${bubbleX2}vw, ${bubbleY2}vh)`
+      },
+      {
+        transform: `translate(${bubbleX}vw, -100vh)`
       }
-
-      // *bubble 식별
-      const bubbleItem = Array.from(waterBg.children);
-      console.log(bubbleItem);
-      bubbleItem.map(elem => {
-        // *크기 무작위로 만들어내기
-        // ?크기가 자꾸 틀어진다, 가로 세로 값이 똑같아야 타원이 아닌 원이 나올 것
-        // 각각이 아니라 변수에 랜덤 숫자를 담아서 사용해줘야 둘 다 같은 수를 적용해 사이즈가 타원이 되지 않음
-        let bubbleSize = `${randomNum(5, 20)}`;
-        setBubble(elem, `${bubbleSize}px`, `${bubbleSize}px`, '100%');
-        elem.style.backgroundColor = '#bad8f2';
-        // elem.animate();
-        setPosition(elem, 'absolute', '0', '0', '0', '0');
-      });
-      bubbleItem.forEach((elem, index) => {
-        // ?테스트 했던 것보다 위치가 잘 안 움직여진다, 계속 바닥에만 물방울이 가로로 움직여지는 부분 해결하기 
-        elem.style.border = '5px solid #fff';
-        if (index % 2 === 0) {
-          elem.style.opacity = 0.1;
-          elem.animate(bubbleMoving, bubbleTiming);
-        } else if (index % 3 === 0) {
-          elem.style.opacity = 0.2;
-          elem.animate(bubbleMovingReverse, bubbleTiming);
-        } else {
-          elem.style.opacity = 0.3;
-          elem.animate(bubbleMovingHorizonal, bubbleTiming);
-        }
-      });
-      if (waterBg.children.length < 30) {
-        clearInterval(bubbleGun);
+    ]
+    const bubbleMovingReverse = [{
+        transform: `translate(${bubbleX2}vw, ${bubbleY2}vh)`
+      },
+      {
+        transform: `translate(${bubbleX}vw, ${bubbleY}vh)`
+      },
+      {
+        transform: `translate(${bubbleX2}vw, -100vh)`
       }
+    ]
+    const bubbleMovingHorizonal = [{
+        transform: `translate(${bubbleY2}vw, ${bubbleX2}vh)`
+      },
+      {
+        transform: `translate(${bubbleY}vw, ${bubbleX}vh)`
+      },
+      {
+        transform: `translate(${bubbleX}vw, -100vh)`
+      }
+    ]
 
-    }, 5000);
+    const bubbleTiming = {
+      duration: 5000,
+      // fill: 'forwards',
+      iterations: Infinity
+    }
+
+    // *bubble 식별
+    const bubbleItem = Array.from(waterBg.children);
+    console.log(bubbleItem);
+    bubbleItem.map(elem => {
+      // *크기 무작위로 만들어내기
+      // ?크기가 자꾸 틀어진다, 가로 세로 값이 똑같아야 타원이 아닌 원이 나올 것
+      // 각각이 아니라 변수에 랜덤 숫자를 담아서 사용해줘야 둘 다 같은 수를 적용해 사이즈가 타원이 되지 않음
+      let bubbleSize = `${randomNum(5, 20)}`;
+      setBubble(elem, `${bubbleSize}px`, `${bubbleSize}px`, '100%');
+      // elem.style.backgroundColor = '#bad8f2';
+      // elem.animate();
+      setPosition(elem, 'absolute', '0', '0', '0', '0');
+    });
+    bubbleItem.forEach((elem, index) => {
+      // ?테스트 했던 것보다 위치가 잘 안 움직여진다, 계속 바닥에만 물방울이 가로로 움직여지는 부분 해결하기 
+      // !이 부분 고치기, 조건식에 동일하게 적용되지 않도록 하기, 그래야 안 겹침
+      elem.style.border = '1px solid #fff';
+      if (index % 2 === 0) {
+        // elem.style.opacity = 0.1;
+        elem.animate(bubbleMoving, bubbleTiming);
+        console.log(elem);
+
+      } else if (index % 3 === 0) {
+        // elem.style.opacity = 0.2;
+        elem.animate(bubbleMovingReverse, bubbleTiming);
+        console.log(elem);
+      } else {
+        // elem.style.opacity = 0.3;
+        elem.animate(bubbleMovingHorizonal, bubbleTiming);
+        console.log(elem);
+
+      }
+    });
+    if (waterBg.children.length < 30) {
+      clearInterval(bubbleGun);
+    }
+
+  }, 5000);
 
   // ?물방울 좌표 알아보기위해서 만듬
   window.addEventListener('click', (event) => {
