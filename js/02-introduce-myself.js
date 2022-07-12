@@ -86,9 +86,11 @@ myselfFontH1.innerHTML = `<div>안녕하세요</div>
 // todo: span을 제외한 부분에 classList .stroke font 적용 혹은 반대로
 const strokeText = Array.from(myselfFontH1.children);
 console.log(strokeText);
-strokeText.map(elem => {
+strokeText.map((elem, index) => {
   elem.classList.add('stroke-font');
-  elem.setAttribute('style',`font-size: 7vw; font-weight: 200; font-family: Gugi;`);
+  elem.setAttribute('style',`font-size: 7vw; font-weight: 200; font-family: 'CWDangamAsac-Bold';
+  `);
+  index === 1 ? elem.style.fontSize = '6vw': '';
 });
 
 const fillText = document.querySelectorAll('span');

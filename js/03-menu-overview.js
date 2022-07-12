@@ -62,7 +62,7 @@ console.log(bigTxtCon);
 bigTxtCon.innerHTML = makeElem('div', '', 'PROJECT');
 const bigTxt = bigTxtCon.firstElementChild;
 console.log(bigTxt);
-bigTxt.setAttribute('style', `transform: rotate(${-hun/10*9}deg); font-size: 18vw; font-weight: ${hun*8};`);
+bigTxt.setAttribute('style', `transform: rotate(${-hun/10*9}deg); font-size: 18vw; font-weight: ${hun*8}; font-family: CWDangamAsac-Bold;`);
 setPosition(bigTxt, 'absolute', window.innerHeight*3.3+'px', '', '', 30+'vw');
 bigTxt.classList.add('stroke-font');
 
