@@ -63,7 +63,7 @@ bigTxtCon.innerHTML = makeElem('div', '', 'PROJECT');
 const bigTxt = bigTxtCon.firstElementChild;
 console.log(bigTxt);
 bigTxt.setAttribute('style', `transform: rotate(${-hun/10*9}deg); font-size: 18vw; font-weight: ${hun*8}; font-family: CWDangamAsac-Bold;`);
-setPosition(bigTxt, 'absolute', window.innerHeight*3.3+'px', '', '', 30+'vw');
+setPosition(bigTxt, 'absolute', window.innerHeight * 3.3 + 'px', '', '', 30 + 'vw');
 bigTxt.classList.add('stroke-font');
 
 
@@ -83,15 +83,15 @@ smallTxt.style.fontSize = `0.8rem`;
 
 // *ul > li
 const menuTextCon = document.getElementById('menu-text');
-const projNameArr = ['프로젝트 보라도라', '프로젝트 다닥', 'The Volunteers 랜딩 페이지', '개인 프로젝트'];
+const projNameArr = ['프로젝트 보라도라', '프로젝트 다닥', `The Volunteers 랜딩 페이지`, '개인 프로젝트'];
 
 // *li*8 추가
-let li = '';
+let a = '';
 for (let i = 0; i < 8; i++) {
-  li += makeElem('li');
+  a += makeElem('a');
 }
 // console.log(li);
-menuTextCon.innerHTML = li;
+menuTextCon.innerHTML = a;
 // console.log(menuTextCon);
 
 // *li rowGap
@@ -135,17 +135,20 @@ menuText.forEach((elem, index) => {
   // todo: 순서대로 잘 늘어났다, 그러나 정렬이 틀어졌고 텍스트 정렬도 갑자기 세로 정렬이 되버렸다
   // todo: 마우스오버 이벤트를 만들어서 마우스오버 이벤트에서 이벤트 타겟의 데이터 값이 0이면 => 텍스트
   // todo: 마우스 오버 이벤트에서 이벤트 타겟의 값이 0보다 크면, 다른 수일 때
+  elem.style.letterSpacing = '0';
+  elem.style.width = `${hun*elem.dataset.wave}px`;
+  elem.style.transition = '1s';
   menuTextCon.addEventListener('mouseover', (event) => {
     console.log(event.target);
     let isStatus = true;
     if (event.target.dataset.wave === elem.dataset.wave) {
       console.log('this is text');
-      elem.style.letterSpacing = `1rem`;
-      elem.style.width = `${window.innerWidth/1.5}px`;
+      elem.style.letterSpacing = `2vw`;
+      elem.style.width = `${window.innerWidth/2}px`;
       elem.style.transition = '1s';
     } else {
       elem.style.letterSpacing = '0';
-      elem.style.width = `${hun*elem.dataset.wave*2}px`;
+      elem.style.width = `${hun*elem.dataset.wave}px`;
       elem.style.transition = '1s';
     }
   });
