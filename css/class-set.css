@@ -43,3 +43,7 @@
   filter: contrast(50%);
   filter: saturate(0%);
 }
+
+.transition-1s{
+  transition: 1s;
+}
