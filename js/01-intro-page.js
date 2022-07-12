@@ -221,7 +221,7 @@ window.addEventListener('mouseover', function () {
             introPage.addEventListener('click', () => {
               let scrollValue = true;
               if (scrollValue === true) {
-                window.scrollTo(0, window.innerHeight);
+                window.scrollTo(0, window.innerHeight-20);
                 // root의 사이즈가 자식요소에 맞춰지도로 빈 값을 넣어줌
                 // 배경을 보이도록 해줌
                 scrollValue = false;
