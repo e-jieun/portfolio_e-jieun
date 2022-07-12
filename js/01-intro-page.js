@@ -129,6 +129,21 @@ const diving = {
   fill: `forwards`,
   easing: `ease-out`
 }
+
+function changeTxt() {
+  // todo: 이 부분에서 페이지를 클릭하라는 텍스트가 뜨도록 만들어야 한다
+  // todo: 지금 자식 요소가 두 개인데, 이 부분에 따로 따로 넣어주는 것이 필요해보임
+  // *text 바꿀 부분 배열
+  // console.log(menuConTextArr.at(-1).children); => 여기에 넣어줄 txt가 chgTxtArr에 들어있는 txt
+  let chgTxtArr = ['Click Me!', ''];
+  const chgTxtArea = Array.from(menuConTextArr.at(-1).children);
+  console.log(chgTxtArea);
+  chgTxtArea.map((elem, index) => {
+    elem.textContent = chgTxtArr[index];
+    elem.style.opacity = 1;
+  })
+}
+
 // 3. 식별한 부분에 이벤트를 달고 위에서 만들어 준 것을 매개변수로 넣어준다
 // mouseover일 때마다 계속 반복되서 값을 설정해줌
 let mouseoverValue = 0;
@@ -163,8 +178,12 @@ window.addEventListener('mouseover', function () {
         return new Promise((resolve) => {
           setTimeout(() => {
             introCircle.animate(diveinBall, diving);
-            menuCon.style.opacity = 0;
-            menuCon.style.transition = `1s`;
+            // todo: 사라지게 하는 것이 아니라 텍스트를 바꿔주기
+            menuConTextArr.at(0).style.opacity = 0;
+            menuCon.classList.add('transition-1s');
+            // menuCon.style.transition = `1s`;
+            // *text를 바꿔주는 함수 
+            changeTxt();
             resolve();
           }, 1000);
         })
@@ -174,6 +193,8 @@ window.addEventListener('mouseover', function () {
         return new Promise((resolve) => {
           setTimeout(() => {
             introCircle.style.opacity = 0;
+            introCircle.classList.add('transition-1s');
+            // *클릭하면 자동으로 텍스트 있는 부분으로 스크롤 해주는 부분
             resolve();
           }, 500);
         })
@@ -185,24 +206,28 @@ window.addEventListener('mouseover', function () {
           setTimeout(() => {
             // console.log(this);
             introPage.addEventListener('click', () => {
-              // ?계속 이 부분에서 걸려서 다음으로 스크롤이 되지 않음
-              // !변수로 해결
+              makeWaterBg();
+              setSize(root, '100vw', '');
+            });
+            resolve();
+          }, 0);
+        })
+      })
+      .then(() => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            // ?계속 이 부분에서 걸려서 다음으로 스크롤이 되지 않음
+            // !사이즈를 미리 늘려놔줘야 클릭하자마자 스크롤이 작동하는 것이었다
+            introPage.addEventListener('click', () => {
               let scrollValue = true;
               if (scrollValue === true) {
-                window.scrollTo({
-
-                  top: window.innerHeight,
-                  behavior: `smooth`
-                })
+                window.scrollTo(0, window.innerHeight);
                 // root의 사이즈가 자식요소에 맞춰지도로 빈 값을 넣어줌
-                setSize(root, '', '');
                 // 배경을 보이도록 해줌
-                makeWaterBg()
                 scrollValue = false;
               }
-              resolve();
-            }, 0);
-          });
+            })
+          }, 0);
         })
       })
   }
