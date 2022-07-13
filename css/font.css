@@ -1,9 +1,6 @@
-/* Montserrat */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;700;900&display=swap&family=Gugi&display=swap');
-
 @font-face {
-    font-family: 'CWDangamAsac-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-}
+  font-family: "CWDangamAsac-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}/*# sourceMappingURL=font.css.map */
