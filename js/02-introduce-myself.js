@@ -18,7 +18,7 @@ const myselfPage = document.getElementById('introduce-myself');
 // console.log(myselfPage);
 
 
-setSize(myselfPage, `${hun}vw`, `${hun*2}vh`);
+setSize(myselfPage, `${hun}vw`, `${hun*3}vh`);
 myselfPage.classList.add('border-bk');
 setDisplay(myselfPage, 'grid');
 myselfPage.style.gridTemplateRows = '1fr 3fr 3fr 3fr';
@@ -132,7 +132,7 @@ fontExplain.innerHTML = `${makeElem('div', 'explain-box', `${makeElem('div', '',
 fontExplain.style.color = `${colorObj.colorFf}`;
 setDisplay(fontExplain, `flex`, ``, `flex-end`);
 // console.dir();
-setPosition(fontExplain, `relative`, ``, `25%`, ``, ``);
+setPosition(fontExplain, `relative`, ``, ``, ``, ``);
 
 const explainTxtCon = fontExplain.firstElementChild;
 console.log(explainTxtCon);
@@ -157,7 +157,7 @@ qnaDataArr.forEach(elem => {
 });
 // todo: ul을 그리드로 높이값을 정해주기
 setDisplay(qna, 'grid');
-qna.style.gridTemplateRows = '2fr 2fr 2fr';
+qna.style.gridTemplateRows = '1fr 1fr 1fr';
 
 
 // makePage();
@@ -166,7 +166,8 @@ const qnaCon = Array.from(qna.children);
 // console.log(qnaCon);
 qnaCon.forEach((elem, index) => {
   elem.setAttribute('data-qna', qnaDataArr[index]);
-  setSize(elem, `${hun/10*9}vw`, ``);
+  // *글씨 담겨져있는 부분
+  setSize(elem, `${hun/10*9}vmax`, ``);
   elem.classList.add('border-bk');
   // todo: ul마다 각각 > div > li*2
   elem.innerHTML = `${makeElem('div', '', `${makeElem('li', '', `${qTextArr[index]}`)}<br>${makeElem('li', '', `${aTextArr[index]}`)}`)}`;
@@ -188,7 +189,7 @@ qnaCon.forEach((elem, index) => {
   const textBox = elem.firstElementChild;
   // console.log(textBox);
   textBox.classList.add('border-bk');
-  setSize(textBox, `${elem.offsetWidth/2}px`, `${elem.offsetHeight/4}vh`);
+  setSize(textBox, `${elem.offsetWidth/2}px`, `30vh`);
 
   // *ul > div > li*2(li태그)
   const textItems = Array.from(textBox.children);
