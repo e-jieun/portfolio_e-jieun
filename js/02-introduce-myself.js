@@ -19,7 +19,7 @@ const myselfPage = document.getElementById('introduce-myself');
 
 
 setSize(myselfPage, `${hun}vw`, `${hun*3}vh`);
-myselfPage.classList.add('border-bk');
+// myselfPage.classList.add('border-bk');
 setDisplay(myselfPage, 'grid');
 myselfPage.style.gridTemplateRows = '1fr 3fr 3fr 3fr';
 // gridTemplateRows = '1fr 3fr 3fr 3fr';
@@ -36,7 +36,7 @@ const section = Array.from(myselfPage.children);
 // console.log(section);
 
 section.forEach(elem => {
-  elem.classList.add('border-bk');
+  // elem.classList.add('border-bk');
   elem.style.width = `${hun}vw`;
 })
 
@@ -168,7 +168,7 @@ qnaCon.forEach((elem, index) => {
   elem.setAttribute('data-qna', qnaDataArr[index]);
   // *글씨 담겨져있는 부분
   setSize(elem, `${hun/10*9}vmax`, ``);
-  elem.classList.add('border-bk');
+  // elem.classList.add('border-bk');
   // todo: ul마다 각각 > div > li*2
   elem.innerHTML = `${makeElem('div', '', `${makeElem('li', '', `${qTextArr[index]}`)}<br>${makeElem('li', '', `${aTextArr[index]}`)}`)}`;
   elem.lastElementChild.style.fontWeight = 300;
@@ -188,7 +188,7 @@ qnaCon.forEach((elem, index) => {
   // *ul >div
   const textBox = elem.firstElementChild;
   // console.log(textBox);
-  textBox.classList.add('border-bk');
+  // textBox.classList.add('border-bk');
   setSize(textBox, `${elem.offsetWidth/2}px`, `30vh`);
 
   // *ul > div > li*2(li태그)

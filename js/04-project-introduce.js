@@ -1,7 +1,7 @@
 import {
   setDisplay,
   setSize,
-  borderBk,
+  // borderBk,
   setPosition,
   setBgColor
 } from "./module/css-function.js";
@@ -38,7 +38,7 @@ console.log(projPage);
 const projPageArr = Array.from(projPage);
 projPageArr.forEach(elem => {
   setSize(elem, `${hun}vw`, `${hun}vh`);
-  borderBk(elem);
+  // borderBk(elem);
   setDisplay(elem, 'grid');
   elem.style.color = `${colorObj.colorFf}`;
   elem.style.gridTemplateRows = '1fr 1fr 1fr';

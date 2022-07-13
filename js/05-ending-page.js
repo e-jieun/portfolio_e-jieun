@@ -20,7 +20,7 @@ makePage(root, 'section', 'ending-page');
 const endingPage = document.getElementById('ending-page');
 // console.log(endingPage); //잘 생성됨
 setSize(endingPage, `${hun}vw`, `${hun}vh`);
-endingPage.classList.add('border-bk');
+// endingPage.classList.add('border-bk');
 endingPage.style.padding = `${hun/5}px`;
 endingPage.style.color = `${colorObj.colorFf}`;
 
@@ -135,7 +135,7 @@ informLink.forEach((elem, index) => {
   Number(elem.dataset.link) == index+1 ? elem.href = anchorHrefArr[index] : console.error('try again');
   Number(elem.dataset.link) == index+1 ? elem.textContent = anchorHrefArr[index] : console.error('try again');
   elem.style.textDecoration = 'none';
-  elem.setAttribute('style',`text-decoration: none; color: inherit;`)
+  elem.setAttribute('style',`text-decoration: none; color: inherit;`);
 });
 
 // *inform title

@@ -1,7 +1,7 @@
 import {
   setDisplay,
   setSize,
-  borderBk,
+  // borderBk,
   setPosition,
   setBgColor
 } from "./module/css-function.js";
@@ -20,7 +20,7 @@ makePage(root, 'section', 'menu-overview');
 const overviewPage = document.getElementById('menu-overview');
 // console.log(overviewPage);
 setSize(overviewPage, `${hun}vw`, `${hun}vh`);
-borderBk(overviewPage);
+// borderBk(overviewPage);
 overviewPage.style.color = `${colorObj.colorFf}`;
 
 // todo: overviewSection sizing
@@ -33,7 +33,7 @@ const overviewSection = Array.from(overviewPage.children);
 // console.log(overviewSection);
 // todo: set data-section = index+1;
 overviewSection.forEach((elem, index) => {
-  borderBk(elem);
+  // borderBk(elem);
   setSize(elem, `45vw`, 'inherit');
   if (index === 0) {
     index += 1;
@@ -50,7 +50,7 @@ overviewSection.forEach((elem, index) => {
 
 // *canvas#projText => stroke text
 const projText = document.getElementById('project-stroke');
-borderBk(projText);
+// borderBk(projText);
 // console.dir(projText);
 
 // *bigTxtCon
@@ -97,7 +97,7 @@ menuTextCon.innerHTML = a;
 // *li rowGap
 setSize(menuTextCon, `inherit`, `${hun/4}vmax`);
 setDisplay(menuTextCon, 'flex', 'flex-end', 'space-around', 'column');
-borderBk(menuTextCon);
+// borderBk(menuTextCon);
 
 // todo: 프로젝트명은 data-wave가 없는 곳에 들어감
 const menuTextItem = Array.from(menuTextCon.children);
@@ -138,7 +138,12 @@ menuText.forEach((elem, index) => {
   elem.style.letterSpacing = '0';
   elem.style.width = `${150*elem.dataset.wave}px`;
   elem.style.transition = '1s';
-  index%2 === 0? elem.href = `#num-${index/2+1}`: ''; 
+  // *overview menu
+  if(index%2 === 0){
+    elem.href = `#num-${index/2+1}`;
+    elem.style.color = 'inherit';
+    elem.style.textDecoration = 'none';
+  }
   menuTextCon.addEventListener('click', (event) => {
     console.log(elem.href);
   })
