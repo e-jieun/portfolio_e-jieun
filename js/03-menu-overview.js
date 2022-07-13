@@ -62,8 +62,8 @@ console.log(bigTxtCon);
 bigTxtCon.innerHTML = makeElem('div', '', 'PROJECT');
 const bigTxt = bigTxtCon.firstElementChild;
 console.log(bigTxt);
-bigTxt.setAttribute('style', `transform: rotate(${-hun/10*9}deg); font-size: 18vw; font-weight: ${hun*8}; font-family: CWDangamAsac-Bold;`);
-setPosition(bigTxt, 'absolute', window.innerHeight * 3.3 + 'px', '', '', 30 + 'vw');
+bigTxt.setAttribute('style', `transform: rotate(${-hun/10*9}deg); font-size: 15vw; font-weight: ${hun*8}; font-family: CWDangamAsac-Bold;`);
+setPosition(bigTxt, 'relative', window.innerHeight / 2 + 'px');
 bigTxt.classList.add('stroke-font');
 
 
@@ -95,7 +95,7 @@ menuTextCon.innerHTML = a;
 // console.log(menuTextCon);
 
 // *li rowGap
-setSize(menuTextCon, `inherit`, `${hun/2}vh`);
+setSize(menuTextCon, `inherit`, `${hun/4}vmax`);
 setDisplay(menuTextCon, 'flex', 'flex-end', 'space-around', 'column');
 borderBk(menuTextCon);
 
@@ -136,20 +136,33 @@ menuText.forEach((elem, index) => {
   // todo: 마우스오버 이벤트를 만들어서 마우스오버 이벤트에서 이벤트 타겟의 데이터 값이 0이면 => 텍스트
   // todo: 마우스 오버 이벤트에서 이벤트 타겟의 값이 0보다 크면, 다른 수일 때
   elem.style.letterSpacing = '0';
-  elem.style.width = `${hun*elem.dataset.wave}px`;
+  elem.style.width = `${150*elem.dataset.wave}px`;
   elem.style.transition = '1s';
+  index%2 === 0? elem.href = `#num-${index/2+1}`: ''; 
+  menuTextCon.addEventListener('click', (event) => {
+    console.log(elem.href);
+  })
   menuTextCon.addEventListener('mouseover', (event) => {
+    console.clear();
+    let isStatus = true;
+    if (event.target.dataset.wave === elem.dataset.wave) {
+      console.log('this is text');
+      elem.style.letterSpacing = `10px`;
+      elem.style.width = `${window.innerWidth/2}px`;
+      elem.style.transition = '1s';
+    }
+  });
+  menuTextCon.addEventListener('mouseout', (event) => {
+    console.clear();
     console.log(event.target);
     let isStatus = true;
     if (event.target.dataset.wave === elem.dataset.wave) {
       console.log('this is text');
-      elem.style.letterSpacing = `2vw`;
-      elem.style.width = `${window.innerWidth/2}px`;
-      elem.style.transition = '1s';
-    } else {
       elem.style.letterSpacing = '0';
-      elem.style.width = `${hun*elem.dataset.wave}px`;
+      elem.style.width = `${150*elem.dataset.wave}px`;
       elem.style.transition = '1s';
     }
-  });
+  })
+console.log(elem.dataset.wave);  
+
 });
