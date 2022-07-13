@@ -118,7 +118,10 @@ projPageModuleFour(pages[3]);
 const projImg = Array.from(projCon.getElementsByTagName('img'));
 console.log(projImg);
 projImg.map(elem => {
-  elem.addEventListener('mouseover', () => {
-    elem.classList.toggle('img-change');
+  elem.addEventListener('mouseover', function(){
+    this.classList.toggle('img-change');
+  })
+  elem.addEventListener('mouseout', function(){
+    this.classList.toggle('img-change');
   })
 })
