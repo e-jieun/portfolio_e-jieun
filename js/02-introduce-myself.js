@@ -60,19 +60,25 @@ const topMenuUl = Array.from(topMenu.children);
 // console.log(topMenuUl);
 
 const topMenuTextArr = ['Personal Page', 'Github'];
+const topMenuHref = [
+  'https://www.notion.so/265effdb10cb4a47a248cbf8bfc18445e',
+  'https://github.com/e-jieun'
+]
 // *topMenu > ul 각각 > li*2
 topMenuUl.forEach((elem, index) => {
   // console.log(elem);
   elem.style.color = `${colorObj.colorSb}`;
   elem.style.listStyleType = 'none';
   elem.innerHTML = `${makeElem('li')}${makeElem('li')}`;
-  // console.log(elem);
-  // elem.style.listStyleType = 'none';
+  console.log(elem.firstElementChild);
   if (index === 0) {
-    elem.firstElementChild.textContent = topMenuTextArr[index];
+    elem.innerHTML = makeElem('a', 'top-personal-page', topMenuTextArr[index]);
+    elem.firstElementChild.href = topMenuHref[index];
   } else {
-    elem.firstElementChild.textContent = topMenuTextArr[index];
+    elem.innerHTML = makeElem('a', 'top-github', topMenuTextArr[index]);
+    elem.firstElementChild.href = topMenuHref[index];
   }
+  elem.firstElementChild.classList.add('url-color');
 });
 
 // *myselfFont

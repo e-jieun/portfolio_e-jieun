@@ -141,8 +141,7 @@ menuText.forEach((elem, index) => {
   // *overview menu
   if(index%2 === 0){
     elem.href = `#num-${index/2+1}`;
-    elem.style.color = 'inherit';
-    elem.style.textDecoration = 'none';
+    elem.classList.add('url-color');
   }
   menuTextCon.addEventListener('click', (event) => {
     console.log(elem.href);

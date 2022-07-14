@@ -134,8 +134,8 @@ informLink.forEach((elem, index) => {
   elem.setAttribute('data-link', index+1);
   Number(elem.dataset.link) == index+1 ? elem.href = anchorHrefArr[index] : console.error('try again');
   Number(elem.dataset.link) == index+1 ? elem.textContent = anchorHrefArr[index] : console.error('try again');
-  elem.style.textDecoration = 'none';
-  elem.setAttribute('style',`text-decoration: none; color: inherit;`);
+  // *url style
+  elem.classList.add('url-color');
 });
 
 // *inform title
