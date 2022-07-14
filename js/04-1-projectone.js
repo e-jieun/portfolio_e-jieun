@@ -37,9 +37,27 @@ const projPageModuleOne = (page) => {
   // console.log(projTitle);
 
   // *title>div*2
-  const titleTextArr = ['프로젝트 보라도라', `프로젝트 보라도라는 일본 드라마 감상으로 일본어를 학습할 수 있는 드라마 스트리밍 서비스 입니다`, `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget commodo, augue dis habitant viverra odio amet. Nec, amet, nisi hendrerit pellentesque nisl neque etiam laoreet morbi. Diam tempus placerat consectetur et. Ultrices vel ultrices condimentum sed nisi, blandit. Sed nunc fringilla senectus nunc sed. 
+  const titleTextArr = ['프로젝트 보라도라', `프로젝트 보라도라는 일본 드라마 감상으로 일본어를 학습할 수 있는 드라마 스트리밍 서비스 입니다`, 
+  `프로젝트 보라도라는 일본어를 학습하던 중 일본 드라마를 감상하며 학습을 위해 해외의 미디어 콘텐츠를 이용하는 OTT 서비스 사용자들의 Needs를 예측해 만들어졌습니다.
+  <br>
+  <br>
+  보라도라는 보라라는 사용자 서비스 이용을 유도하는 한국어와 '도라'라고 하는 일본어로 드라마를 뜻하는 줄임말이 합쳐져 탄생한 프로젝트 네임입니다.
+  <br>
+  <br>
+  평소 일본어 학습을 고민만하고 작심삼일만에 포기했다거나 학습을 위해 해외 드라마를 보기 위해 OTT 서비스에 접속했는데 결국 한국어 자막으로 처음부터 끝까지 시청해버렸던 사용자들을 위한 서비스입니다. 
+  <br>
+  <br>
+  보라도라 서비스는 그런 사용자들을 위해 두 가지 자막을 동시에 제공합니다. 일본어를 다 몰라도 괜찮아요! 아래에 위치한 한국어로 동시에 감상하면 되니까요!
+  <br>
+  <br>
+  입맛에 맞는 추천 작품을 잘 골라줘요. 직접 태그를 선택해 분위기, 장르도 골라보세요!
+  <br>
+  <br>
+  북마크 해두고 두고두고 곱씹어 먹어요. 나도 모르게 어휘 실력이 상승해있을 거에요.
+  <br>
+  <br>
+  도저히 빠른 대사에 무슨 말인지 모르겠다면? 속도가 느려도 괜찮아요. 천천히 꾸준히 가면 원하던 실력에 도달해있을 거에요!`];
 
-  Consectetur ultricies lorem posuere ullamcorper morbi nulla. Tellus nunc felis tortor dolor elementum mauris morbi. Auctor amet ut nullam dolor nunc. Faucibus dictum cras a nunc, vel, non sed elementum. Enim neque pharetra, pellentesque id ultrices convallis urna diam, urna. Mattis lectus fringilla ut semper nam dignissim in. Facilisis cras mauris in vitae eu mi ultrices aenean cursus. Ac nunc ut ut turpis.`];
   projTitle.innerHTML = `${makeElem('div', '', `${titleTextArr[0]}`)}${makeElem('div', '', `${titleTextArr[1]}`)}`;
   setDisplay(projTitle, 'flex', '', 'space-between');
 
@@ -63,7 +81,7 @@ const projPageModuleOne = (page) => {
   makePage(projContents, 'div');
   const projExplainText = projContents.lastElementChild;
   // console.log(projExplainText);
-  projExplainText.textContent = `${titleTextArr[2]}`;
+  projExplainText.innerHTML = `${titleTextArr[2]}`;
   setSize(projExplainText, '30vw');
 
   // *link
