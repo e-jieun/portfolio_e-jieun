@@ -37,8 +37,8 @@ const projPageModuleOne = (page) => {
   // console.log(projTitle);
 
   // *title>div*2
-  const titleTextArr = ['프로젝트 보라도라', `프로젝트 보라도라는 일본 드라마 감상으로 일본어를 학습할 수 있는 드라마 스트리밍 서비스 입니다`, 
-  `프로젝트 보라도라는 일본어를 학습하던 중 일본 드라마를 감상하며 학습을 위해 해외의 미디어 콘텐츠를 이용하는 OTT 서비스 사용자들의 Needs를 예측해 만들어졌습니다.
+  const titleTextArr = ['프로젝트 보라도라', `프로젝트 보라도라는 일본 드라마 감상으로 일본어를 학습할 수 있는 드라마 스트리밍 서비스 입니다`,
+    `프로젝트 보라도라는 일본어를 학습하던 중 일본 드라마를 감상하며 학습을 위해 해외의 미디어 콘텐츠를 이용하는 OTT 서비스 사용자들의 Needs를 예측해 만들어졌습니다.
   <br>
   <br>
   보라도라는 보라라는 사용자 서비스 이용을 유도하는 한국어와 '도라'라고 하는 일본어로 드라마를 뜻하는 줄임말이 합쳐져 탄생한 프로젝트 네임입니다.
@@ -56,7 +56,8 @@ const projPageModuleOne = (page) => {
   북마크 해두고 두고두고 곱씹어 먹어요. 나도 모르게 어휘 실력이 상승해있을 거에요.
   <br>
   <br>
-  도저히 빠른 대사에 무슨 말인지 모르겠다면? 속도가 느려도 괜찮아요. 천천히 꾸준히 가면 원하던 실력에 도달해있을 거에요!`];
+  도저히 빠른 대사에 무슨 말인지 모르겠다면? 속도가 느려도 괜찮아요. 천천히 꾸준히 가면 원하던 실력에 도달해있을 거에요!`
+  ];
 
   projTitle.innerHTML = `${makeElem('div', '', `${titleTextArr[0]}`)}${makeElem('div', '', `${titleTextArr[1]}`)}`;
   setDisplay(projTitle, 'flex', '', 'space-between');
@@ -64,7 +65,7 @@ const projPageModuleOne = (page) => {
   // *title>div:nth-child(1)
   const projTitleTextOne = projTitle.firstElementChild;
   console.log(projTitleTextOne);
-  projTitleTextOne.style.fontSize = '1.5rem';
+  projTitleTextOne.style.fontSize = '4vw';
 
   // *contents
   const projContents = page.firstElementChild.nextElementSibling;
@@ -98,13 +99,21 @@ const projPageModuleOne = (page) => {
   setSize(anchorCon, `${hun/5}vw`);
   setDisplay(anchorCon, 'flex', '', 'space-around');
   const aName = ['Process', 'Github'];
-  const hrefArr = ['', ''];
+  const hrefArr = ['https://www.notion.so/e-jieun/88d8205f36234397a7ee351a185bbc98', 'https://github.com/e-jieun/project-boradora.git'];
   let makeAnchor = '';
   hrefArr.forEach((elem, index) => {
     makeAnchor += `${makeElem('a', '', `${aName[index]}`)}`;
+
   })
   // console.log(makeAnchor);
   anchorCon.innerHTML = makeAnchor;
+
+  const anchorItem = Array.from(anchorCon.children);
+  console.log(anchorItem);
+  anchorItem.map((elem, index) => {
+    elem.href = hrefArr[index];
+    elem.classList.add('url-color');
+  })
 };
 
 export default projPageModuleOne;
