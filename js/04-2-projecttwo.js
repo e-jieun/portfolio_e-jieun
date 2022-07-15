@@ -58,7 +58,7 @@ const projPageModuleTwo = (page) => {
   // *title>div:nth-child(1)
   const projTitleTextOne = projTitle.firstElementChild;
   console.log(projTitleTextOne);
-  projTitleTextOne.style.fontSize = '4vw';
+  projTitleTextOne.style.fontSize = '3vw';
 
   // *contents
   const projContents = page.firstElementChild.nextElementSibling;
