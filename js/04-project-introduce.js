@@ -1,9 +1,7 @@
 import {
   setDisplay,
   setSize,
-  // borderBk,
   setPosition,
-  setBgColor
 } from "./module/css-function.js";
 import makePage from "./module/makepage.js";
 import makeElem from "./module/makeelem.js"

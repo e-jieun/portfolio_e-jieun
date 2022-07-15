@@ -4,7 +4,6 @@ import {
   setSize,
   setDisplay,
   setPosition,
-  setBgColor
 } from "./module/css-function.js";
 import hun from "./module/reset.js";
 import makeElem from "./module/makeelem.js";

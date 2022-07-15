@@ -4,7 +4,6 @@ import {
   setPosition,
   setSize
 } from "./module/css-function.js";
-import makeElem from "./module/makeelem.js";
 import makePage from "./module/makepage.js";
 import hun from "./module/reset.js";
 import makeBubble from "./module/makebubble.js"

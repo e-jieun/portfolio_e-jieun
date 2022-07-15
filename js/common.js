@@ -1,6 +1,5 @@
 // import js
 import {
-  setDisplay,
   setSize
 } from './module/css-function.js';
 import hun from './module/reset.js';

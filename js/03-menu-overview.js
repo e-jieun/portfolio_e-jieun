@@ -1,14 +1,11 @@
 import {
   setDisplay,
   setSize,
-  // borderBk,
   setPosition,
-  setBgColor
 } from "./module/css-function.js";
 import makePage from "./module/makepage.js";
 import makeElem from "./module/makeelem.js"
 import hun from "./module/reset.js";
-import makeCanvas from "./module/makecanvas.js";
 import colorObj from "./module/color.js";
 
 const root = document.getElementById('root');
