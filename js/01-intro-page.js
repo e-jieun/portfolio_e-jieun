@@ -92,7 +92,7 @@ setSize(introCircle, `${hun/2}px`, `${hun/2}px`);
 // todo: 동그라미 움직여줄 부분
 introCircle.classList.add('circle');
 // *circle의 첫 시작 포인트
-setPosition(introCircle, 'absolute', '', '15vh', '', '15vh');
+setPosition(introCircle, 'absolute', '', '18vh', '', '15vh');
 // 바다 아래로 내려가도록 해주는 부분
 introCircle.style.zIndex = -1;
 
@@ -103,7 +103,10 @@ const ballMoving = [{
     transform: `translate(0, 0)`
   },
   {
-    transform: `translate(-60vw, 13vh)`
+    transform: `translate(-10vw, -2vh)`
+  },
+  {
+    transform: `translate(-60vw, 15vh)`
   },
   {
     transform: `translate(-60vw, 5vh)`
@@ -127,7 +130,7 @@ const ballTiming = {
 const diving = {
   duration: 500,
   fill: `forwards`,
-  easing: `ease-out`
+  easing: `ease-in`
 }
 
 function changeTxt() {
